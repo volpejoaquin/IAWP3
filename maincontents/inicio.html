@@ -1,15 +1,20 @@
+<script src="templates/template2/js/cargarProductosInicio.js" type="text/javascript" charset="utf-8"></script>
 <section id="main">
 	<section id="featured">
 		<h2 class="ftheading">Featured</h2>
 		<div class="ftwrap">
 			<div class="ftimg">
-				<img src="productos/producto5.jpg" alt="img1" width="204" height="128">
+				<img id="imgProdDes" src="productos/producto5.jpg" alt="img1" width="204" height="128">
 			</div>
 			
 			<div class="fttxt">
-				<h3>{pDestacado}</h3>
-				<p>{pDestacadoTexto}</p>
-				</div>
+				<h3 id="pDestacadoNom">{pDestacado}</h3>
+				<p id="pDestacadoDesc" class="pDestacadoDesc">{pDestacadoTexto}</p>
+				
+				<span class="author">Marca: JS</span>
+				<span class="permalink"><a href="#permalink">Leer mas</a></span>
+				<span class="comments"><a href="#">21 comentarios</a></span>
+			</div>
 		</div>
 	</section>
 	

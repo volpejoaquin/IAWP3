@@ -1,4 +1,4 @@
-<script src="templates/template2/js/cargarProductosInicio.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/cargarProductosInicio.js" type="text/javascript" charset="utf-8"></script>
 <section id="main">
 	<section id="featured">
 		<h2 class="ftheading">Featured</h2>
@@ -11,9 +11,8 @@
 				<h3 id="pDestacadoNom">{pDestacado}</h3>
 				<p id="pDestacadoDesc" class="pDestacadoDesc">{pDestacadoTexto}</p>
 				
-				<span class="author">Marca: JS</span>
-				<span class="permalink"><a href="#permalink">Leer mas</a></span>
-				<span class="comments"><a href="#">21 comentarios</a></span>
+				<span class="author" id="pDestacadoMarca"></span>
+				<span class="comments"><a href="#"><span id="pDestacadoCantComent">21</span> comentarios</a></span>
 			</div>
 		</div>
 	</section>
@@ -23,38 +22,19 @@
 		{tituloProductos}
 		</h2>
 
-		<article class="post">
-			<div class="ftimg">
-				<img src="productos/producto1.jpg" alt="img1" width="204" height="128">
-			</div>
+		<div id="productos">
 			
-			<header>
-				<h3>Cinturones de 5 puntas</h3>
-				<p class="postinfo">Published on <time>18 August, 2010</time> under <a href="#">CSS Templates </a></p>
-			</header>
-			
-			<p class="posttext"> Cinturones de seguridad de 5 puntas con enganche de aluminio. <a href="#">Read More</a></p>
-
-			<footer>
-				<span class="author">Marca: JS</span>
-				<span class="permalink"><a href="#permalink">Leer mas</a></span>
-				<span class="comments"><a href="#">21 comentarios</a></span>
-			</footer>
-		</article>
-
-				
+		</div>
 		
 		<div class="wp-pagenavi">
-			<span class="current">1</span>
-			<a href="http://www.cssheaven.org/page/2/" title="2">2</a>
-			<a href="http://www.cssheaven.org/page/3/" title="3">3</a>
-			<a href="http://www.cssheaven.org/page/4/" title="4">4</a>
-			<a href="http://www.cssheaven.org/page/5/" title="5">5</a>
-			<a href="http://www.cssheaven.org/page/6/" title="6">6</a>
-			<a href="http://www.cssheaven.org/page/7/" title="7">7</a>
-			<a href="http://www.cssheaven.org/page/8/" title="8">8</a>
-			<a href="http://www.cssheaven.org/page/2/">{indicePagS} &#187;</a>
-			<span class="extend">...</span><a href="http://www.cssheaven.org/page/27/" title="Last �">{indicePagU} &#187;</a>
+			<span id="vermas" class="link" onClick="cargarMas();">
+				<span id="textvermas">&#171; {indicePagS} &#187; </span>
+				<div id="imgLoading">
+					<img width="20" height="20" src="templates/template2/images/ajax-loader.gif" alt="loading" title="loading" />
+				</div>
+			</span>
+			
+
 		</div>
 		<div class="clear"></div>
 	</div>

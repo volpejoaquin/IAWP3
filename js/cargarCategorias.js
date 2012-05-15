@@ -1,13 +1,12 @@
 $(document).ready(function() {
 	$.getJSON('_lib/categorias.php', function(data) {
 		for (i=0; i<data.length;i++) {
-			categoria = "";
 			id = data[i].id;
 			nombre = data[i].nombre;
 			descripcion = data[i].descripcion;
 			cantProd = data[i].cantProd;
 			
-			categoria += "<article class='post'>\
+			categoria = "<article class='post'>\
 							<header>\
 								 <h3>"+nombre+"</h3>\
 							 </header>\

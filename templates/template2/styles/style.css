@@ -35,6 +35,22 @@ abbr[title], dfn[title] {
 	min-height:90px;
 }
 
+#pDestacadoMarca {
+	margin-right:15px;
+}
+
+.link {
+	color:#1496d9;
+	text-decoration:none;
+	cursor:pointer;
+}
+
+div#imgLoading {
+    display:none;
+    width:20px;
+    height:20px;
+}
+
 .clear:after {
  display:block; 
  visibility:hidden; 

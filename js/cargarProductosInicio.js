@@ -4,7 +4,7 @@ $(document).ready(function() {
 	
 		for (i=0; i<productos.length;i++) {
 			
-			console.log(productos[i]);
+			
 			id = productos[i].id;
 			nombre = productos[i].nombre;
 			descripcion = productos[i].descripcion;
@@ -56,7 +56,7 @@ function cargarMas() {
 	
 		for (i=0; i<productos.length;i++) {
 			
-			console.log(productos[i]);
+
 			id = productos[i].id;
 			nombre = productos[i].nombre;
 			descripcion = productos[i].descripcion;

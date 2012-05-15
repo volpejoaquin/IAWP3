@@ -1,25 +1,30 @@
 $(document).ready(function() {
 	
 	$.getJSON('_lib/categorias.php', function(data) {
-		console.log(data);
+
 		for (i=0; i<data.length;i++) {
 			id = data[i].id;
 			nombre = data[i].nombre;
 			descripcion = data[i].descripcion;
 			cantProd = data[i].cantProd;
 			
-			categoria = "<article class='post'>\
+			categoria = "<article id='cat"+id+"' class='post'>\
 							<header>\
-								 <h3>"+nombre+"</h3>\
+								 <a class='link' onClick='verCategoria("+id+");'><h3>"+nombre+"</h3></a>\
 							 </header>\
 							 <p>"+descripcion+"</p>\
 							 <footer>\
 							 <span class='author'>Productos: "+ cantProd+"</span>\
 							 <span class='permalink'><a href='#permalink'>Ver Categoria</a></span>\
 							 </footer>\
-							</article>";
+						</article>";
 	
 			$("#categorias").append(categoria);
 		}		
 	});	
 });
+
+function verCategoria(id) {
+	$("[id^='cat']").hide("slow");	
+	$("[id='cat"+id+"']").show("slow");	
+}

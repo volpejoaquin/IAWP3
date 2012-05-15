@@ -1,4 +1,5 @@
 <?php
+
 // Incluyo las clases php necesarias
 require_once('_lib/parser.php');
 require_once('_lib/descriptor.php');

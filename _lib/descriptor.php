@@ -16,7 +16,7 @@ class descriptor
 	   $identificador = fopen($ruta, 'r');
 	   while ($linea= fgets($identificador,1024))
 	   {
-		  $palabras=split("=", $linea);
+		  $palabras=explode("=", $linea);
 		  $this->agregarItem(trim($palabras[0]), trim($palabras[1]));
 	   }
 	}

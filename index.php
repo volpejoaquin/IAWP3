@@ -1,4 +1,5 @@
 <?php
+
 // Incluyo las clases php necesarias
 require_once('_lib/parser.php');
 require_once('_lib/descriptor.php');
@@ -11,14 +12,17 @@ if (empty($_GET['mc'])) {
 	$maincontent = 'maincontents/inicio.html';
 } else {
 	switch ($_GET['mc']) {
-		case 'inicio' :
+		case 'boton1' :
 			$maincontent = 'maincontents/inicio.html';
 			break;
-		case 'plantel' :
-			$maincontent = 'maincontents/plantel.html';
+		case 'boton2' :
+			$maincontent = 'maincontents/categorias.html';
 			break;
-		case 'horarios' :
-			$maincontent = 'maincontents/horarios.html';
+		case 'boton3' :
+			$maincontent = 'maincontents/admin.html';
+			break;
+		case 'boton4' :
+			$maincontent = 'maincontents/contacto.html';
 			break;
 	}
 }
@@ -30,5 +34,6 @@ $parser = new templateParser($desc->getTemplate());
 $parser->parseTemplate($desc->getTags());
 
 // Muestro la página generada.
-echo $parser->display();
+$pagina = $parser->display();
+echo $pagina;
 ?>

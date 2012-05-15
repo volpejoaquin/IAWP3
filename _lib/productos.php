@@ -4,7 +4,7 @@ $cat2 = array("id"=>"1", "nombre"=>"Cinturones de 10 puntas", "descripcion"=>"Ci
 $cat3 = array("id"=>"2", "nombre"=>"Botitas", "descripcion"=>"Cintasdasdasddad de 5 puntas con enganche de aluminio.", "marca"=>"PS", "cantComent"=>"2");
 $miArray = array("destacado"=>$cat1, $cat2, $cat3);
 
-
-$miArray = array("destacado"=> $cat1,"productos"=>"todosLosProductos");
+//Mandar los 5 ultimos
+$miArray = array("destacado"=> $cat1,"productos"=>"todosLosProductos","masProductos"=> "false");
 echo json_encode($miArray);
 ?>

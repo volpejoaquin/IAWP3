@@ -3,7 +3,7 @@
 
 try{
 try {
-    $db = new PDO('sqlite:./db/iawp3.sqlite');
+    $db = new PDO('sqlite:../db/iawp3.sqlite');
 } catch (Exception $e) {
     die($e);
 }
@@ -13,7 +13,7 @@ $limit="100";
 $inic="0";
 
 //Consulta
-$cats = $db->prepare('SELECT * FROM productos LIMIT '.$inic.','.$limit.';');
+$cats = $db->prepare('SELECT * FROM categorias LIMIT '.$inic.','.$limit.';');
 $cats->execute();
 	
 	
@@ -22,7 +22,7 @@ $cats->execute();
 	foreach ($cats as $cat){
 		// Indice => Una categoria completa
 		$allCats[$i++]=     array("id"=>$cat["id"],
-								 "nombre"=>$prod["nombre"]);
+								 "nombre"=>$cat["nombre"]);
 	}
 								 
 // return a json array

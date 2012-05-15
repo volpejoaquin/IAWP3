@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	$.getJSON('_lib/categorias.php', function(data) {
+		console.log(data);
 		for (i=0; i<data.length;i++) {
 			id = data[i].id;
 			nombre = data[i].nombre;

@@ -1,3 +1,4 @@
+
 <?php
 
 
@@ -21,20 +22,16 @@ $cats->execute();
 	$i=0;
 	foreach ($cats as $cat){
 		
-		$nroProds=$db->prepare("SELECT COUNT() FROM productos WHERE id_categoria='".$cat["id"]."'");
+		$nroProds=$db->prepare('SELECT COUNT() FROM productos WHERE id_categoria='.$cat["id"].';');
 		$nroProds->execute();
 		
-		foreach($nroProds as $cant)
-		{
-			var_dump($cant);
-			echo $cant[0];
+		foreach ($nroProds as $nroProd){
+			// Indice => Una categoria completa
+			$allCats[$i++]=     array("id"=>$cat["id"],
+									 "nombre"=>$cat["nombre"],
+									 "descripcion"=>$cat["descripcion"],
+									 "cantProd"=>$nroProd[0]);
 		}
-		
-		// Indice => Una categoria completa
-		$allCats[$i++]=     array("id"=>$cat["id"],
-								 "nombre"=>$cat["nombre"],
-								 "descripcion"=>$cat["descripcion"],
-								 "cantProd"=>$cant);
 	}
 								 
 // return a json array

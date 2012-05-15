@@ -20,9 +20,14 @@ $cats->execute();
 	$allCats=array();
 	$i=0;
 	foreach ($cats as $cat){
+		
+		$nroProds=$db->prepare('SELECT COUNT() FROM productos WHERE id_categoria='.$cat[id].';');
+		$nroProds->execute();
 		// Indice => Una categoria completa
 		$allCats[$i++]=     array("id"=>$cat["id"],
-								 "nombre"=>$cat["nombre"]);
+								 "nombre"=>$cat["nombre"],
+								 "descripcion"=>$cat["descripcion"],
+								 "cantProd"=>$nroProds);
 	}
 								 
 // return a json array

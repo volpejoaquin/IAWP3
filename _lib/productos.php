@@ -23,14 +23,16 @@ $prods->execute();
 	foreach ($prods as $prod){
 		
 		// Indice => Una categoria completa
-		$allProds[$i++]=     array("id"=>$prod["id"],
+		$allProds[$i++]= array("id"=>$prod["id"],
 								 "nombre"=>$prod["nombre"],
-								 "descripcion"=>$prod["descripcion"]);
+								 "descripcion"=>$prod["descripcion"],
+								 "marca"=>"JS", // VER MARCA PRODUCTOS
+								 "cantComent"=>"2"); //VER CANTIDAD DE COMENTARIOS
 	}
 								 
 // return a json array
- 
-  echo json_encode($allProds);
+  $resp = array("destacado"=>$allProds[0],"productos"=>$allProds,"masproductos"=>"true");
+  echo json_encode($resp);
   flush();
 
 }

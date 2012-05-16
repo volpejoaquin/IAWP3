@@ -1,16 +1,15 @@
 $(document).ready(function() {
 	$.getJSON('_lib/productos.php', function(data) {
 		var productos = data.productos;
-	
+		
 		for (i=0; i<productos.length;i++) {
-			
 			
 			id = productos[i].id;
 			nombre = productos[i].nombre;
 			descripcion = productos[i].descripcion;
 			cantComent = productos[i].cantComent;
 			marca = productos[i].marca;
-			
+
 			producto = "<article class='post'>\
 							<div class='ftimg'>\
 								<img src='productos/producto"+id+".jpg' alt='img1' width='204' height='128'>\
@@ -22,11 +21,11 @@ $(document).ready(function() {
 							<p class='posttext'>"+descripcion+"</p>\
 							<footer>\
 								<span class='author'>Marca: "+marca+"</span>\
-								<span class='permalink'><a href='#permalink'>Leer mas</a></span>\
 								<span class='comments'><a href='#'>"+cantComent+" comentarios</a></span>\
 							</footer>\
 						</article>";
 			$("#productos").append(producto);
+			
 		}		
 		
 		var destacado = data.destacado;
@@ -74,7 +73,6 @@ function cargarMas() {
 							<p class='posttext'>"+descripcion+"</p>\
 							<footer>\
 								<span class='author'>Marca: "+marca+"</span>\
-								<span class='permalink'><a href='#permalink'>Leer mas</a></span>\
 								<span class='comments'><a href='#'>"+cantComent+" comentarios</a></span>\
 							</footer>\
 						</article>";

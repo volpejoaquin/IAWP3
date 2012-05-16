@@ -111,7 +111,6 @@ body {background: #fff url(images/bodybg.jpg) repeat-x; font-family:Verdana, Gen
 #footerwrap a {color:#fff;}
 .wp-pagenavi {background:url(images/pagenavibg.gif) no-repeat; height:26px; width:553px; margin:0 auto 10px auto; padding-left:20px; padding-right:20px; font-size:1.2em; text-align:center; padding-top:2px;}
 .wp-pagenavi span, .wp-pagenavi a { display:inline-block; height:24px; line-height:24px; margin:0 4px; color:#555; padding:0 8px;}
-.wp-pagenavi a:hover {background:url(images/pagenaviactivebg.png) repeat-x; color:#000;}
 .wp-pagenavi .current {background:url(images/pagenaviactivebg.png) repeat-x; color:#000;}
 
 .entry .avatar {height:45px; margin-bottom:10px;}

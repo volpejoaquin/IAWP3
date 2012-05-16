@@ -35,6 +35,12 @@ abbr[title], dfn[title] {
 	min-height:90px;
 }
 
+.link {
+	color:#1496d9; 
+	text-decoration:none;
+	cursor:pointer;
+}
+
 .clear:after {
  display:block; 
  visibility:hidden; 

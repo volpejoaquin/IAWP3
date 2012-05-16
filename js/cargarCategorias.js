@@ -15,7 +15,7 @@ $(document).ready(function() {
 							 <p>"+descripcion+"</p>\
 							 <footer>\
 							 <span class='author'>Productos: "+ cantProd+"</span>\
-							 <span class='permalink'><a href='#permalink'>Ver Categoria</a></span>\
+							 <span id='verCat"+id+"' class='permalink link'><a onClick='verCategoria("+id+");'>Ver Categoria</a></span>\
 							 </footer>\
 						</article>";
 	
@@ -25,6 +25,14 @@ $(document).ready(function() {
 });
 
 function verCategoria(id) {
-	$("[id^='cat']").hide("slow");	
-	$("[id='cat"+id+"']").show("slow");	
+	var idCat = "cat"+id;
+	var idverCat = "verCat"+id;
+	$("[id!='"+idCat+"'][id!='categorias'][id^='cat']").hide("slow");
+	$("[id='"+idverCat+"']").hide();
+	
+}
+
+function verCategorias() {
+	$("[id!='categorias'][id^='cat']").show("slow");
+	$("[id^='verCat']").show("slow");
 }

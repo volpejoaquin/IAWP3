@@ -16,9 +16,8 @@ $(document).ready(function() {
 							</div>\
 							<header>\
 								<h3>"+nombre+"</h3>\
-								<p class='postinfo'>Published on <time>18 August, 2010</time> under <a href='#'>CSS Templates </a></p>\
 							</header>\
-							<p class='posttext'>"+descripcion+"</p>\
+							<p class='posttext pComunDesc'>"+descripcion+"</p>\
 							<footer>\
 								<span class='author'>Marca: "+marca+"</span>\
 								<span class='comments'><a href='#'>"+cantComent+" comentarios</a></span>\
@@ -66,9 +65,8 @@ function cargarMas() {
 							</div>\
 							<header>\
 								<h3>"+nombre+"</h3>\
-								<p class='postinfo'>Published on <time>18 August, 2010</time> under <a href='#'>CSS Templates </a></p>\
 							</header>\
-							<p class='posttext'>"+descripcion+"</p>\
+							<p class='posttext pComunDesc'>"+descripcion+"</p>\
 							<footer>\
 								<span class='author'>Marca: "+marca+"</span>\
 								<span class='comments'><a href='#'>"+cantComent+" comentarios</a></span>\
@@ -76,7 +74,6 @@ function cargarMas() {
 						</article>";
 			$("#productos").append(producto);
 		}		
-		alert("sarsasa");
 		var haymas = data.masproductos;
 		
 		if (haymas == "false") {

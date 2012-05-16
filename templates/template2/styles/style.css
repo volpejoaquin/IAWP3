@@ -35,6 +35,10 @@ abbr[title], dfn[title] {
 	min-height:90px;
 }
 
+.pComunDesc {
+	min-height:120px;
+}
+
 .marca {
 	padding-right:20px;
 }
@@ -42,6 +46,10 @@ abbr[title], dfn[title] {
 div#imgLoading {
     display:none;
     z-index:99999;
+}
+
+.none {
+	display:none;
 }
 
 .link {

@@ -13,8 +13,16 @@ try {
 $limit="5";
 $inic="0";
 
+
+if (isset($_GET['id'])) {
+	$id = $_GET['id'];
+	$prods = $db->prepare('SELECT * FROM productos WHERE id_categoria=='.$id.' LIMIT '.$inic.','.$limit.';');
+} else {
+	$prods = $db->prepare('SELECT * FROM productos LIMIT '.$inic.','.$limit.';');
+}
+
 //Consulta
-$prods = $db->prepare('SELECT * FROM productos LIMIT '.$inic.','.$limit.';');
+
 $prods->execute();
 	
 	

@@ -1,7 +1,4 @@
-
 <?php
-
-
 try{
 try {
     $db = new PDO('sqlite:../db/iawp3.sqlite');
@@ -9,38 +6,77 @@ try {
     die($e);
 }
 
+if(isset($_GET['limit']))
+{
+	$limit=$_GET['limit'];
+}
+else
+{
+	$limit="5";
+}
 
-$limit="5";
-$inic="0";
-
-
-if (isset($_GET['id'])) {
-	$id = $_GET['id'];
-	$prods = $db->prepare('SELECT * FROM productos WHERE id_categoria=='.$id.' LIMIT '.$inic.','.$limit.';');
-} else {
-	$prods = $db->prepare('SELECT * FROM productos LIMIT '.$inic.','.$limit.';');
+if(isset($_GET['limit']))
+{
+	$inic=$_GET['inic'];
+}
+else
+{
+	$inic="0";
 }
 
 //Consulta
+if(isset($_GET['id']))
+{
+	$categoria = $_GET['id'];
+	$prods = $db->prepare("SELECT * FROM productos where id_categoria='".$categoria."' LIMIT ".$inic.",".$limit.";");
+}
+else {
+	$prods = $db->prepare("SELECT * FROM productos LIMIT ".$inic.",".$limit.";");
+}
 
 $prods->execute();
-	
-	
+
 	$allProds=array();
 	$i=0;
+	$destacado= null;
+	$masproductos=true;
 	foreach ($prods as $prod){
 		
-		// Indice => Una categoria completa
-		$allProds[$i++]= array("id"=>$prod["id"],
-								 "nombre"=>$prod["nombre"],
-								 "descripcion"=>$prod["descripcion"],
-								 "marca"=>"JS", // VER MARCA PRODUCTOS
-								 "cantComent"=>"2"); //VER CANTIDAD DE COMENTARIOS
+		$nroComents=$db->prepare('SELECT COUNT() FROM lista_comentarios WHERE id_producto='.$prod["id"].';');
+		$nroComents->execute();
+		
+		foreach ($nroComents as $nroComent){
+			// Indice => Una categoria completa
+			$allProds[$i++]=     array("id"=>$prod["id"],
+                                                                        "nombre"=>$prod["nombre"],
+                                                                        "descripcion"=>$prod["descripcion"],
+                                                                        "precio"=>$prod["precio"],
+                                                                        "nro_likes"=>$prod["nro_likes"],
+                                                                        "stock"=>$prod["stock"],
+                                                                        "marca"=>$prod["marca"],
+                                                                        "cantComent"=>$nroComent[0]);									 
+		}
+		if ($i == 1) 
+		{
+			$destacado=$allProds[0]; //El primer producto es el destacado
+		}
 	}
-								 
-// return a json array
-  $resp = array("destacado"=>$allProds[0],"productos"=>$allProds,"masproductos"=>"true");
-  echo json_encode($resp);
+  
+  //Verificar si hay mas elementos
+  $inic = $inic + 5;
+
+  $cantidad = $db->prepare("SELECT * FROM productos LIMIT ".$inic.",".$limit.";");
+  $cantidad->execute();
+  $count = count($cantidad->fetchAll());
+  
+  if ($count == 0) {
+	$masproductos = false;
+  }
+
+  $response= array("destacado"=>$destacado,"productos"=>$allProds,"masproductos"=>$masproductos);
+
+  //echo $response;
+  echo json_encode($response);
   flush();
 
 }
@@ -52,10 +88,4 @@ catch(PDOException $e)
 //Cierro la conex a la bd
 $db=null;
 
-
-/*
-$cat1 = array("id"=>"0", "nombre"=>"Accesorios", "descripcion"=>"Todo tipo de accesorios para el interior de tu auto de carreras. Extractores de volante, redes de puerta	 espejos interiores y exteriores, teclas de contacto para instalacion electrica, etc.", "cantProd"=>"5");
-$cat2 = array("id"=>"1", "nombre"=>"Cintos" , "descripcion"=>"Todo tipo de accesorios para el interior de tu auto de carreras.", "cantProd"=>"5");
-$miArray = array($cat1, $cat2);
-echo json_encode($miArray);*/
 ?>

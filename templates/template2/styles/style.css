@@ -106,7 +106,7 @@ body {background: #fff url(images/bodybg.jpg) repeat-x; font-family:Verdana, Gen
 .post h3,#comments h3 {font:bold 1.6em Arial, Helvetica, sans-serif; color:#000; margin-bottom:5px;}
 .post h3 a {color:#333; text-decoration:none;}
 .post header .postinfo {font-size:1.1em; color:#777;}
-.post .posttext { min-height:100px;}
+.post .posttext { min-height:120px;}
 .post footer {border: solid 1px; border-color:#ddd #fff #ddd #fff; padding:3px; font-size:1.1em; color:#777;}
 
 .post footer {height:15px; line-height:15px;}

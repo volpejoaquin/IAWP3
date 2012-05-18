@@ -6,40 +6,20 @@ try {
     die($e);
 }
 
-if(isset($_GET['limit']))
-{
-	$limit=$_GET['limit'];
-}
-else
-{
-	$limit="5";
-}
-
-if(isset($_GET['limit']))
-{
-	$inic=$_GET['inic'];
-}
-else
-{
-	$inic="0";
-}
-
 //Consulta
 if(isset($_GET['id']))
 {
-	$categoria = $_GET['id'];
-	$prods = $db->prepare("SELECT * FROM productos where id_categoria='".$categoria."' LIMIT ".$inic.",".$limit.";");
+	$idProd = $_GET['id'];
+	$prods = $db->prepare("SELECT * FROM productos where id='".$idProd."' ;");
 }
 else {
-	$prods = $db->prepare("SELECT * FROM productos LIMIT ".$inic.",".$limit.";");
+	$prods = $db->prepare("SELECT * FROM productos where id='1' ;");
 }
 
 $prods->execute();
 
 	$allProds=array();
 	$i=0;
-	$destacado= null;
-	$masproductos=true;
 	foreach ($prods as $prod){
 		
 		$nroComents=$db->prepare('SELECT COUNT() FROM lista_comentarios WHERE id_producto='.$prod["id"].';');
@@ -56,24 +36,10 @@ $prods->execute();
 										"marca"=>$prod["marca"],
 										"cantComent"=>$nroComent[0]);									 
 		}
-		if ($i == 1) 
-		{
-			$destacado=$allProds[0]; //El primer producto es el destacado
-		}
+
 	}
-  
-  //Verificar si hay mas elementos
-  $inic = $inic + 5;
-
-  $cantidad = $db->prepare("SELECT * FROM productos LIMIT ".$inic.",".$limit.";");
-  $cantidad->execute();
-  $count = count($cantidad->fetchAll());
-  
-  if ($count == 0) {
-	$masproductos = false;
-  }
-
-  $response= array("destacado"=>$destacado,"productos"=>$allProds,"masproductos"=>$masproductos);
+ 
+  $response= array("productos"=>$allProds);
 
   //echo $response;
   echo json_encode($response);

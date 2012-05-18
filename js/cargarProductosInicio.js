@@ -1,9 +1,9 @@
 $(document).ready(function() {
-	$limit=5;
-	$inic=0;
+	limit=5;
+	inic=0;
 	
 	//Carga productos destacados y lista de productos
-	$.getJSON('_lib/productos.php?limit='+$limit+'&inic='+$inic+'', function(data) {
+	$.getJSON('_lib/productos.php?limit='+limit+'&inic='+inic+'', function(data) {
 		//Recorre los ultimos 5 productos
 		var productos = data.productos;
 		agregarProductos(productos);		
@@ -12,7 +12,7 @@ $(document).ready(function() {
 		var destacado = data.destacado;
 		$("#imgProdDes").attr("src","productos/producto"+destacado.id+".jpg");
 		$("#pDestacadoNom").html(destacado.nombre);
-		$("#pDestacadoDes").html(destacado.descripcion);
+		$("#pDestacadoDesc").html(destacado.descripcion);
 		$("#pDestacadoMarca").html("Marca: "+destacado.marca);
 		$("#pDestacadoPrecio").html(destacado.precio);
 		$("#pDestacadoCantComent").html(destacado.cantComent);
@@ -20,6 +20,8 @@ $(document).ready(function() {
 		//Verifica si hay mas productos en el sistema
 		var haymas = data.masproductos;
 		existenMasProductos(haymas);
+		
+		oyentesItemProducto();
 	});	
 	
 
@@ -30,10 +32,10 @@ $(document).ready(function() {
 		$("#imgLoading").show();
 		
 		//Proximos 5 
-		$inic+=5;
+		inic+=5;
 		
-		//Busca 5 productos mas '_lib/productos.php?limit='+$ultimoProdNuevo+'&inic='+ultimoProd+''
-		$.getJSON('_lib/productos.php?limit='+$limit+'&inic='+$inic+'', function(data) {
+		//Busca 5 productos mas
+		$.getJSON('_lib/productos.php?limit='+limit+'&inic='+inic+'', function(data) {
 				
 				//Recorre los nuevos productos
 				var productos = data.productos;
@@ -44,10 +46,43 @@ $(document).ready(function() {
 				existenMasProductos(haymas);
 				
 				$("#imgLoading").hide();			
-			});
+				
+				oyentesItemProducto();
+		});
+			
+		
 	});
+	
+	
 });
 
+function oyentesItemProducto() {
+	console.log("agrega oyentes botones nuevos");
+
+	//Oyente para cada producto que empieza con id iprod. Ej: iprod1, iprod2
+	$("[id^='iprod']").click(function() {
+		console.log("abrio :"+textid);
+		var textid = this.id;
+		var prodId = textid.replace("iprod","");
+		
+		$.getJSON('_lib/producto.php?id='+prodId+'', function(data) {
+			console.log(data);
+			var productos = data.productos;
+			$("#imgProdDes").attr("src","productos/producto"+productos[0].id+".jpg");
+			$("#pDestacadoNom").html(productos[0].nombre);
+			$("#pDestacadoDesc").html(productos[0].descripcion);
+			$("#pDestacadoMarca").html("Marca: "+productos[0].marca);
+			$("#pDestacadoPrecio").html(productos[0].precio);
+			$("#pDestacadoCantComent").html(productos[0].cantComent);	
+			
+		});
+		
+		$("#tituloProductos").html("Comentarios");
+		$("#vermas").hide();
+		$("#nomascoment").show();
+		$("#productos").hide("slow");	
+	});
+}
 
 function agregarProductos(productos) {
 	for (i=0; i<productos.length;i++) {
@@ -63,13 +98,13 @@ function agregarProductos(productos) {
 								<img src='productos/producto"+id+".jpg' alt='img1' width='204' height='128'>\
 							</div>\
 							<header>\
-								<h3>"+nombre+"</h3>\
+								<h3 id='iprod"+id+"' class='link'>"+nombre+"</h3>\
 							</header>\
 							<p class='posttext pComunDesc'>"+descripcion+"</p>\
 							<footer>\
 								<span class='author'>Marca: "+marca+"</span>\
 								<span class='comments'>$"+precio+"</span>\
-								<span class='comments'><a href='#'>"+cantComent+" comentarios</a></span>\
+								<span class='comments' id='iprod"+id+"'><a href='#'>"+cantComent+" comentarios</a></span>\
 							</footer>\
 						</article>";
 		$("#productos").append(producto);

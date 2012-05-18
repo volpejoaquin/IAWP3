@@ -1,7 +1,6 @@
 <script src="js/cargarProductosInicio.js" type="text/javascript" charset="utf-8"></script>
 <section id="main">
 	<section id="featured">
-		<h2 class="ftheading">Featured</h2>
 		<div class="ftwrap">
 			<div class="ftimg">
 				<img id="imgProdDes" src="" alt="img1" width="204" height="128">
@@ -9,18 +8,19 @@
 			
 			<div class="fttxt">
 				
-				<h3 id="pDestacadoNom">{pDestacado}</h3>
+				<h3 id="pDestacadoNom" class="link">{pDestacado}</h3>
 				<p id="pDestacadoDesc" class="pDestacadoDesc">{pDestacadoTexto}</p>
 				
 				<span class="author marca" id="pDestacadoMarca">Marca: JS</span>
 				<span class="comments">$<span id="pDestacadoPrecio"></span></span>
-				<span class="comments"><a href="#"><span id="pDestacadoCantComent"></span> comentarios</a></span>
+				<span class="comments right"><a href="#"><span id="pDestacadoCantComent"></span> comentarios</a></span>
+
 			</div>
 		</div>
 	</section>
 	
 	<div id="leftcontainer">
-		<h2 class="mainheading">
+		<h2 id="tituloProductos" class="mainheading">
 		{tituloProductos}
 		</h2>
 
@@ -31,6 +31,7 @@
 		
 		<div class="wp-pagenavi">
 			<a id="vermas" class="link">&#171; {indicePagS} &#187;</a>
+			<p id="nomascoment" class="none">&#171; {comentarioFooter} &#187;</p>
 			<div id="imgLoading">
 				<img width="20" height="20" src="img/ajax-loader.gif" alt="loading" title="loading" />
 			</div>

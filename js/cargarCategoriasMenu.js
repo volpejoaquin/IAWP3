@@ -11,5 +11,18 @@ $(document).ready(function() {
 		
 			$("#menuCategorias").append(categoria);
 		}		
+		
+		oyentesListaProductos();
 	});	
+
+	
 });
+
+function oyentesListaProductos() {
+	$("#listaProductos").click(function() {
+			$("#tituloProductos").html("Lista productos");
+			$("#productos").show("slow");	
+			$("#vermas").show();
+			$("#nomascoment").hide();
+	});	
+}

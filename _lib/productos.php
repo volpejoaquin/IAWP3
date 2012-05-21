@@ -15,7 +15,7 @@ else
 	$limit="5";
 }
 
-if(isset($_GET['limit']))
+if(isset($_GET['inic']))
 {
 	$inic=$_GET['inic'];
 }

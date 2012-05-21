@@ -1,3 +1,5 @@
+var categorias = true;
+
 $(document).ready(function() {
 
 	$.getJSON('_lib/categorias.php', function(data) {
@@ -20,21 +22,43 @@ $(document).ready(function() {
 						</article>";
 	
 			$("#categorias").append(categoria);
-		}		
-	});	
+		}	
+
+			parametros = parametrosUrl();
+		if (parametros["idCat"] != undefined) {
+			verCategoria(parametros["idCat"]);
+		}
+	});		
 });
-var categorias = true;
+
+
+function parametrosUrl() {
+	query=window.location.search.substring(1);
+	q=query.split("&");
+	vars=[];
+	for(i=0;i<q.length;i++){
+		x=q[i].split("=");
+		k=x[0];
+		v=x[1];
+		vars[k]=v;
+	}
+	return vars;
+}
 
 function verCategoria(id) {
 	if (categorias == true) {
+		
 		var idCat = "cat"+id;
 		var idverCat = "verCat"+id;
+
+		
 		$("[id!='"+idCat+"'][id!='categorias'][id^='cat']").hide("slow");
 		$("[id='"+idverCat+"']").hide();
 		categorias = false;
 		cargarProductos(id);		
 		$("#listaproductos").show("slow");
 		$("#productos").html("");
+
 	} else {
 		verCategorias();		
 	}
@@ -57,20 +81,23 @@ function cargarProductos(id) {
 			id = productos[i].id;
 			nombre = productos[i].nombre;
 			descripcion = productos[i].descripcion;
-			cantComent = productos[i].cantComent;
+			precio = productos[i].precio;
 			marca = productos[i].marca;
-
+			catId = productos[i].catid;
+			catNombre = productos[i].nombrecat;
+		
 			producto = "<article class='post'>\
 							<div class='ftimg'>\
-								<img src='productos/producto"+id+".jpg' alt='img1' width='204' height='128'>\
+								<img id='iprod"+id+"' class='link' src='productos/producto"+id+".jpg' alt='img1' width='204' height='128'>\
 							</div>\
 							<header>\
-								<h3>"+nombre+"</h3>\
+								<h3 id='iprod"+id+"' class='link'>"+nombre+"</h3>\
 							</header>\
-							<p class='posttext'>"+descripcion+"</p>\
+							<p class='posttext pComunDesc'>"+descripcion+"</p>\
 							<footer>\
 								<span class='author'>Marca: "+marca+"</span>\
-								<span class='comments'><a href='#'>"+cantComent+" comentarios</a></span>\
+								<span class='comments'>$"+precio+"</span>\
+								<span class='comments' id='icat"+catId+"'><a href='#'>"+catNombre+"</a></span>\
 							</footer>\
 						</article>";
 			$("#productos").append(producto);

@@ -21,22 +21,15 @@ $prods->execute();
 	$allProds=array();
 	$i=0;
 	foreach ($prods as $prod){
-		
-		$nroComents=$db->prepare('SELECT COUNT() FROM lista_comentarios WHERE id_producto='.$prod["id"].';');
-		$nroComents->execute();
-		
-		foreach ($nroComents as $nroComent){
-			// Indice => Una categoria completa
-			$allProds[$i++]=     array("id"=>$prod["id"],
+
+		$allProds[$i++]=     array("id"=>$prod["id"],
 										"nombre"=>$prod["nombre"],
 										"descripcion"=>$prod["descripcion"],
 										"precio"=>$prod["precio"],
-										"nro_likes"=>$prod["nro_likes"],
 										"stock"=>$prod["stock"],
 										"marca"=>$prod["marca"],
-										"cantComent"=>$nroComent[0]);									 
-		}
-
+										"catid"=>$prod["id_categoria"],
+										"nombrecat"=>"Sarsasa");
 	}
  
   $response= array("productos"=>$allProds);

@@ -120,9 +120,10 @@ function agregarProductos(productos) {
 		id = productos[i].id;
 		nombre = productos[i].nombre;
 		descripcion = productos[i].descripcion;
-		cantComent = productos[i].cantComent;
 		precio = productos[i].precio;
 		marca = productos[i].marca;
+		catId = productos[i].catid;
+		catNombre = productos[i].nombrecat;
 
 		producto = "<article class='post'>\
 							<div class='ftimg'>\
@@ -135,7 +136,7 @@ function agregarProductos(productos) {
 							<footer>\
 								<span class='author'>Marca: "+marca+"</span>\
 								<span class='comments'>$"+precio+"</span>\
-								<span class='comments' id='iprod"+id+"'><a href='#'>"+cantComent+" comentarios</a></span>\
+								<span class='comments' id='icat"+catId+"'><a href='#'>"+catNombre+"</a></span>\
 							</footer>\
 						</article>";
 		$("#productos").append(producto);

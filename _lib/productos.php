@@ -33,8 +33,7 @@ if(isset($_GET['id']))
 else {
 	$prods = $db->prepare("SELECT * FROM productos LIMIT ".$inic.",".$limit.";");
 }
-
-$prods->execute();
+	$prods->execute();
 
 	$allProds=array();
 	$i=0;
@@ -42,20 +41,22 @@ $prods->execute();
 	$masproductos=true;
 	foreach ($prods as $prod){
 		
-		$nroComents=$db->prepare('SELECT COUNT() FROM lista_comentarios WHERE id_producto='.$prod["id"].';');
-		$nroComents->execute();
-		
-		foreach ($nroComents as $nroComent){
+		$cats = $db->prepare("SELECT * FROM categorias where id_categoria='".$prod["id_categoria"]."';");
+		//$cats->execute();
+
+		//foreach ($cats as $cat){
 			// Indice => Una categoria completa
 			$allProds[$i++]=     array("id"=>$prod["id"],
 										"nombre"=>$prod["nombre"],
 										"descripcion"=>$prod["descripcion"],
 										"precio"=>$prod["precio"],
-										"nro_likes"=>$prod["nro_likes"],
 										"stock"=>$prod["stock"],
 										"marca"=>$prod["marca"],
-										"cantComent"=>$nroComent[0]);									 
-		}
+										"catid"=>$prod["id_categoria"]);
+										//"nombrecat"=>$cats["nombre"]);								 
+		//}
+		
+		
 		if ($i == 1) 
 		{
 			$destacado=$allProds[0]; //El primer producto es el destacado

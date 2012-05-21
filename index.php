@@ -12,16 +12,16 @@ if (empty($_GET['mc'])) {
 	$maincontent = 'maincontents/inicio.html';
 } else {
 	switch ($_GET['mc']) {
-		case 'boton1' :
+		case 'Inicio' :
 			$maincontent = 'maincontents/inicio.html';
 			break;
-		case 'boton2' :
+		case 'Categorías' :
 			$maincontent = 'maincontents/categorias.html';
 			break;
-		case 'boton3' :
+		case 'Admin' :
 			$maincontent = 'maincontents/admin.html';
 			break;
-		case 'boton4' :
+		case 'Contacto' :
 			$maincontent = 'maincontents/contacto.html';
 			break;
 	}

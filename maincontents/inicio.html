@@ -3,12 +3,12 @@
 	<section id="featured">
 		<div class="ftwrap">
 			<div class="ftimg">
-				<img id="imgProdDes" src="" alt="img1" width="204" height="128">
+				<img name="imgProdDes" class="link" src="" alt="img1" width="204" height="128">
 			</div>
 			
 			<div class="fttxt">
 				
-				<h3 id="pDestacadoNom" class="link">{pDestacado}</h3>
+				<h3 name="pDestacadoNom" class="link">{pDestacado}</h3>
 				<p id="pDestacadoDesc" class="pDestacadoDesc">{pDestacadoTexto}</p>
 				
 				<span class="author marca" id="pDestacadoMarca">Marca: JS</span>
@@ -20,6 +20,10 @@
 	</section>
 	
 	<div id="leftcontainer">
+		<div id="likes" class="none">
+			<div class="fb-like" data-href="http://localhost:8080/IAW-Proy3/index.php?mc=Inicio&amp;idProd=1" data-send="true" data-show-faces="true"></div>
+		</div>
+		
 		<h2 id="tituloProductos" class="mainheading">
 		{tituloProductos}
 		</h2>
@@ -27,9 +31,12 @@
 		<div id="productos">
 		</div>
 
+		<div id="comentarios" class="none">
+			<div class="fb-comments" data-href="http://localhost:8080/IAW-Proy3/index.php?mc=Inicio&amp;idProd=1" data-num-posts="5" data-width="600"></div>
+		</div>
 				
 		
-		<div class="wp-pagenavi">
+		<div id="divvermas" class="wp-pagenavi">
 			<a id="vermas" class="link">&#171; {indicePagS} &#187;</a>
 			<p id="nomascoment" class="none">&#171; {comentarioFooter} &#187;</p>
 			<div id="imgLoading">

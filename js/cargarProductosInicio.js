@@ -10,12 +10,7 @@ $(document).ready(function() {
 		
 		//Agrega el producto destacado
 		var destacado = data.destacado;
-		$("#imgProdDes").attr("src","productos/producto"+destacado.id+".jpg");
-		$("#pDestacadoNom").html(destacado.nombre);
-		$("#pDestacadoDesc").html(destacado.descripcion);
-		$("#pDestacadoMarca").html("Marca: "+destacado.marca);
-		$("#pDestacadoPrecio").html(destacado.precio);
-		$("#pDestacadoCantComent").html(destacado.cantComent);
+		agregarProductoDestacado(destacado);
 
 		//Verifica si hay mas productos en el sistema
 		var haymas = data.masproductos;
@@ -24,7 +19,12 @@ $(document).ready(function() {
 		oyentesItemProducto();
 	});	
 	
-
+	parametros = parametrosUrl();
+	if (parametros["idProd"] != undefined) {
+		mostrarProducto(parametros["idProd"]);
+	}
+	
+	
 	//Agrega oyente para el paginado de la lista de productos
 	$("#vermas").click(function() {
 		//Animacion de carga
@@ -56,32 +56,63 @@ $(document).ready(function() {
 	
 });
 
+function parametrosUrl() {
+	query=window.location.search.substring(1);
+	q=query.split("&");
+	vars=[];
+	for(i=0;i<q.length;i++){
+		x=q[i].split("=");
+		k=x[0];
+		v=x[1];
+		vars[k]=v;
+	}
+	return vars;
+}
+
+function agregarParametrosUrl(id,valor) {
+	query=window.location.search.substring(1);
+	q=query.split("&");
+	vars=[];
+	vars[id] = valor;
+	window.location.search = "?"+vars.toString();
+}
+
 function oyentesItemProducto() {
-	console.log("agrega oyentes botones nuevos");
 
 	//Oyente para cada producto que empieza con id iprod. Ej: iprod1, iprod2
 	$("[id^='iprod']").click(function() {
-		console.log("abrio :"+textid);
 		var textid = this.id;
 		var prodId = textid.replace("iprod","");
 		
-		$.getJSON('_lib/producto.php?id='+prodId+'', function(data) {
-			console.log(data);
-			var productos = data.productos;
-			$("#imgProdDes").attr("src","productos/producto"+productos[0].id+".jpg");
-			$("#pDestacadoNom").html(productos[0].nombre);
-			$("#pDestacadoDesc").html(productos[0].descripcion);
-			$("#pDestacadoMarca").html("Marca: "+productos[0].marca);
-			$("#pDestacadoPrecio").html(productos[0].precio);
-			$("#pDestacadoCantComent").html(productos[0].cantComent);	
-			
-		});
+		mostrarProducto(prodId);
 		
-		$("#tituloProductos").html("Comentarios");
-		$("#vermas").hide();
-		$("#nomascoment").show();
-		$("#productos").hide("slow");	
 	});
+}
+
+function mostrarProducto(prodId) {
+	$.getJSON('_lib/producto.php?id='+prodId+'', function(data) {
+		var productos = data.productos;
+		agregarProductoDestacado(productos[0]);			
+	});
+		
+	$("#tituloProductos").html("Comentarios");
+	$("#divvermas").hide();
+	$("#productos").hide("slow");
+	
+	$("#likes").show();
+	$("#comentarios").show();
+	
+}
+
+function agregarProductoDestacado(destacado) {
+	$("[name='imgProdDes']").attr("src","productos/producto"+destacado.id+".jpg");
+	$("[name='imgProdDes']").attr("id","iprod"+destacado.id+"");		
+	$("[name='pDestacadoNom']").html(destacado.nombre);
+	$("[name='pDestacadoNom']").attr("id","iprod"+destacado.id+"");
+	$("#pDestacadoDesc").html(destacado.descripcion);
+	$("#pDestacadoMarca").html("Marca: "+destacado.marca);
+	$("#pDestacadoPrecio").html(destacado.precio);
+	$("#pDestacadoCantComent").html(destacado.cantComent);
 }
 
 function agregarProductos(productos) {
@@ -95,7 +126,7 @@ function agregarProductos(productos) {
 
 		producto = "<article class='post'>\
 							<div class='ftimg'>\
-								<img src='productos/producto"+id+".jpg' alt='img1' width='204' height='128'>\
+								<img id='iprod"+id+"' class='link' src='productos/producto"+id+".jpg' alt='img1' width='204' height='128'>\
 							</div>\
 							<header>\
 								<h3 id='iprod"+id+"' class='link'>"+nombre+"</h3>\

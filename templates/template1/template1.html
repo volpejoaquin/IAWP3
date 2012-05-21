@@ -9,6 +9,29 @@
 </head>
 
 <body>
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : 'YOUR_APP_ID', // App ID
+      channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File
+      status     : true, // check login status
+      cookie     : true, // enable cookies to allow the server to access the session
+      xfbml      : true  // parse XFBML
+    });
+
+    // Additional initialization code here
+  };
+
+  // Load the SDK Asynchronously
+  (function(d){
+     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement('script'); js.id = id; js.async = true;
+     js.src = "//connect.facebook.net/en_US/all.js";
+     ref.parentNode.insertBefore(js, ref);
+   }(document));
+</script>
     <div id="page-background-gradient"></div>
     <div id="page-background-glare">
         <div id="page-background-glare-image"></div>
@@ -62,9 +85,13 @@
                 	</ul>
                 	</div>
                 </div>
+			  <div>
+				asdasd
+					<div class="fb-like" data-href="http://localhost:8080/IAW-Proy3/index.php?mc=Inicio&amp;idProd=1" data-send="true" data-width="450" data-show-faces="true"></div>
+			  </div>
               <div class="contentLayout">
 				<p align="center">
-					{maincontent}
+					
 				</p>
               </div>
                 <div class="cleared"></div>

@@ -20,7 +20,7 @@ $(document).ready(function() {
 
 function oyentesListaProductos() {
 	$("#listaProductos").click(function() {
-			$("#tituloProductos").html("Lista productos");
+			$("#tituloProductos").html("Lista de productos");
 			$("#productos").show("slow");	
 			$("#vermas").show();
 			$("#nomascoment").hide();

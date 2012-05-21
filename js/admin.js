@@ -17,27 +17,70 @@ $(document).ready(function() {
 	
 	$("#menuBackup").click(menuBackup);
 
-});
+
+	//Validar el formulario de agregar
+	$('#agregarForm').validate({
+		debug: false,
+		rules:
+		{
+		"nombre":{
+		required:true,
+		maxlength:40
+		},
+		"descripcion":{
+		required:true,
+		maxlength:100
+		},
+		"marca":{
+		required:true,
+		maxlength:40
+		}},
+		
+		messages:
+		{
+		"nombre":{
+		required:" **Campo requerido"
+		},
+		"descripcion":{
+		required:" **Campo requerido",
+		},
+		"marca":{
+		required:" **Campo requerido"
+		}},
+		
+		submitHandler: function(form){
+			
+			$.post('_lib/agregarProd.php', $("#agregarForm").serialize(), function(data) {
+					$('#divA').toggle('fast');
+					$('#agregarForm').get(0).reset();
+					$('#result').html(data);
+				});
+			
+		}
+		});
+		
+
+});//fin document.ready
 
 
 //Muestra los componentes para agregar un prod
 function menuAgregarProd(){
-	$("#divA").toggle("slow");
+	$("#divA").toggle("fast");
 	
 }
 
 function menuModificarProd(){
-	$("#divB").toggle("slow");
+	$("#divB").toggle("fast");
 	
 }
 
 function menuConfigurar(){
-	$("#divC").toggle("slow");
+	$("#divC").toggle("fast");
 	
 }
 
 function menuBackup(){
-	$("#divD").toggle("slow");
+	$("#divD").toggle("fast");
 	
 }
 
@@ -59,10 +102,10 @@ function cargarCategorias()
 				optionString = "<option value="+i+">"+data[i]+"</option>";
 			}
 			
-			$("#Alist").append(optionString);
+			$("#list").append(optionString);
 		}
 		
-		$("#Alist").append("<option value="+(data.length+1)+">Otra...</option>");
+		$("#list").append("<option value="+(data.length+1)+">Otra...</option>");
 	});
 	
 	
@@ -71,17 +114,18 @@ function cargarCategorias()
 //Se encarga de controlar si el usuario elige crear una nueva categoria en vez de elegir una del combobox
 function validarCat(){
 
-	var selec=$("#Alist option:selected").text();
+	var selec=$("#list option:selected").text();
 	
 	if(selec=="Otra...")
 	{
-		$("#Acategoria").val("null");
-		$("#otraCat").show("slow");
+		$("#categoria").val("");
+		$("#otraCat").show("fast");
 	}
 	else
 	{
-		$("#Acategoria").val($("#Alist option:selected").val());
-		$("#otraCat").hide("slow");
+		$("#categoria").val($("#list option:selected").val());
+		$("#otraCat").hide("fast");
+		$("#otraCat:input").val("");
 	}
 	
 }
@@ -89,36 +133,28 @@ function validarCat(){
 
 function agregar()
 {
-	alert($("#Anombre").val());
-	alert($("#Anombre").text());
-	alert($("#Anombre").html());
-	
-	var array= new Array();
-	var url = "_lib/agregarProd.php?nombre="+$("#Anombre").val()+
-								"&descripcion="+$("#Adescripcion").val()+
-								"&precio="+$("#Aprecio").val()+
-								"&stock="+$("#Astock").val()+
-								"&marca="+$("#Amarca").val()+
-								"&tags="+$("#Atags").val();
+	alert("entre a agregar()....");
+
+/*	var array= new Array();
+	var url = "_lib/agregarProd.php?nombre="+$("#nombre").val()+
+								"&descripcion="+$("#descripcion").val()+
+								"&precio="+$("#precio").val()+
+								"&stock="+$("#stock").val()+
+								"&marca="+$("#marca").val()+
+								"&tags="+$("#tags").val();
+								*/
 								
-	if($("#Alist option:selected").text()=="Otra...")
+								
+	if($("#list option:selected").text()=="Otra...")
 	{
-		url+="&nuevaCat="+$("#Alist option:selected").val();
+		url+="&nuevaCat="+$("#list option:selected").val();
 	}
 	else
 	{
-		url+="&categoria="+$("#Acategoria").val();
+		url+="&categoria="+$("#categoria").val();
 	}
-								
-	alert(url);
-	//Hace el ingreso y publica el resultado en el html
-	$.get( url,	function(data){
-						
-						alert ("AGREGADOO!!!");
-							$('#Aresult').html(data);
-						}
-			
-	);
+					
+	}
+	
 
 
-}

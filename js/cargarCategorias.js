@@ -24,7 +24,7 @@ $(document).ready(function() {
 			$("#categorias").append(categoria);
 		}	
 
-			parametros = parametrosUrl();
+		parametros = parametrosUrl();
 		if (parametros["idCat"] != undefined) {
 			verCategoria(parametros["idCat"]);
 		}
@@ -103,19 +103,13 @@ function cargarProductos(id) {
 			$("#productos").append(producto);
 			
 		}		
-		
-		var destacado = data.destacado;
-		
-		$("#imgProdDes").attr("src","productos/producto"+destacado.id+".jpg");
-		$("#pDestacadoNom").html(destacado.nombre);
-		$("#pDestacadoDes").html(destacado.descripcion);
-		$("#pDestacadoMarca").html("Marca: "+destacado.marca);
-		$("#pDestacadoCantComent").html(destacado.cantComent);
 
 		var haymas = data.masproductos;
-		if (haymas == "false") {
+		if (haymas == false) {
 			$("#vermas").html("&#171; No hay mas productos &#187;");
 			$("#vermas").removeClass("link");
+		} else {
+			$("#divvermas").show();
 		}
 	});	
 }

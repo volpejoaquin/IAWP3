@@ -63,22 +63,31 @@ else {
 		}
 	}
   
-  //Verificar si hay mas elementos
-  $inic = $inic + 5;
+	//Verificar si hay mas elementos
+	$inic = $inic + 5;
 
-  $cantidad = $db->prepare("SELECT * FROM productos LIMIT ".$inic.",".$limit.";");
-  $cantidad->execute();
-  $count = count($cantidad->fetchAll());
-  
-  if ($count == 0) {
-	$masproductos = false;
-  }
+	if(isset($_GET['id']))
+	{
+		$categoria = $_GET['id'];
+		$cantidad = $db->prepare("SELECT * FROM productos where id_categoria='".$categoria."' LIMIT ".$inic.",".$limit.";");
+	}
+	else {
+		$cantidad = $db->prepare("SELECT * FROM productos LIMIT ".$inic.",".$limit.";");
+	}
 
-  $response= array("destacado"=>$destacado,"productos"=>$allProds,"masproductos"=>$masproductos);
+	$cantidad->execute();
+	$count = count($cantidad->fetchAll());
 
-  //echo $response;
-  echo json_encode($response);
-  flush();
+
+	if ($count == 0) {
+		$masproductos = false;
+	}
+
+	$response= array("destacado"=>$destacado,"productos"=>$allProds,"masproductos"=>$masproductos);
+
+	//echo $response;
+	echo json_encode($response);
+	flush();
 
 }
 catch(PDOException $e)

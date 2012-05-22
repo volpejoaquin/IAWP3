@@ -1,4 +1,4 @@
-$(document).ready(function() {
+﻿$(document).ready(function() {
 	$.getJSON('_lib/categorias.php', function(data) {
 		for (i=0; i<data.length;i++) {
 			categoria = "";
@@ -7,7 +7,7 @@ $(document).ready(function() {
 			descripcion = data[i].descripcion;
 			cantProd = data[i].cantProd;
 			
-			categoria += "<li><a href='#'>"+nombre+"</a>("+cantProd+")</li>";
+			categoria += "<li><a href='index.php?mc=Categorías&idCat="+data[i].id+"'>"+nombre+"</a>("+cantProd+")</li>";
 		
 			$("#menuCategorias").append(categoria);
 		}		

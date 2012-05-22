@@ -1,6 +1,14 @@
-limit=8;
+﻿limit=8;
 inic=0;
 verdestacado = "true";
+
+//Menu current
+$(document).ready(function() {
+	parametros = parametrosUrl();
+	if (parametros["mc"] != undefined) {
+		$("[id^=menu"+parametros['mc'][0]+""+parametros['mc'][1]+"]").addClass("current");		
+	} 
+});
 
 function agregarProductoDestacado(destacado, producto) {
 	if (verdestacado == "true" || producto) {

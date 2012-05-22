@@ -19,7 +19,9 @@ function agregarProductoDestacado(destacado, producto) {
 		$("#pDestacadoDesc").html(destacado.descripcion);
 		$("#pDestacadoMarca").html("Marca: "+destacado.marca);
 		$("#pDestacadoPrecio").html(destacado.precio);
-		$("#pDestacadoCantComent").html(destacado.cantComent);
+		$("#pDestacadoCategoria").html(destacado.nombrecat);
+		$("#pDestacadoCategoria").attr("href","http://localhost:8080/IAW-Proy3/index.php?mc=Categorías&idCat="+catId);
+		
 		$("#featured").show();
 	} else {
 		$("#featured").hide();
@@ -47,7 +49,7 @@ function agregarProductos(productos) {
 							<footer>\
 								<span class='author'>Marca: "+marca+"</span>\
 								<span class='comments'>$"+precio+"</span>\
-								<span class='comments' id='icat"+catId+"'><a href='#'>"+catNombre+"</a></span>\
+								<span class='comments' id='icat"+catId+"'><a href='http://localhost:8080/IAW-Proy3/index.php?mc=Categorías&idCat="+catId+"'>"+catNombre+"</a></span>\
 							</footer>\
 						</article>";
 		$("#productos").append(producto);

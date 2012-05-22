@@ -28,7 +28,7 @@ else
 if(isset($_GET['id']))
 {
 	$categoria = $_GET['id'];
-	$prods = $db->prepare("SELECT * FROM productos where id_categoria='".$categoria."' LIMIT ".$inic.",".$limit.";");
+	$prods = $db->prepare("SELECT * FROM productos WHERE id_categoria='".$categoria."' LIMIT ".$inic.",".$limit.";");
 }
 else {
 	$prods = $db->prepare("SELECT * FROM productos LIMIT ".$inic.",".$limit.";");
@@ -41,10 +41,10 @@ else {
 	$masproductos=true;
 	foreach ($prods as $prod){
 		
-		$cats = $db->prepare("SELECT * FROM categorias where id_categoria='".$prod["id_categoria"]."';");
-		//$cats->execute();
+		$cats = $db->prepare("SELECT * FROM categorias WHERE id='".$prod["id_categoria"]."';");
+		$cats->execute();
 
-		//foreach ($cats as $cat){
+		foreach ($cats as $cat){
 			// Indice => Una categoria completa
 			$allProds[$i++]=     array("id"=>$prod["id"],
 										"nombre"=>$prod["nombre"],
@@ -52,9 +52,9 @@ else {
 										"precio"=>$prod["precio"],
 										"stock"=>$prod["stock"],
 										"marca"=>$prod["marca"],
-										"catid"=>$prod["id_categoria"]);
-										//"nombrecat"=>$cats["nombre"]);								 
-		//}
+										"catid"=>$prod["id_categoria"],
+										"nombrecat"=>$cat["nombre"]);								 
+		}
 		
 		
 		if ($i == 1) 

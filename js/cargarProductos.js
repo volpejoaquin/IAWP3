@@ -1,15 +1,21 @@
 limit=8;
 inic=0;
-	
-function agregarProductoDestacado(destacado) {
-	$("[name='imgProdDes']").attr("src","productos/producto"+destacado.id+".jpg");
-	$("[name='imgProdDes']").attr("id","iprod"+destacado.id+"");		
-	$("[name='pDestacadoNom']").html(destacado.nombre);
-	$("[name='pDestacadoNom']").attr("id","iprod"+destacado.id+"");
-	$("#pDestacadoDesc").html(destacado.descripcion);
-	$("#pDestacadoMarca").html("Marca: "+destacado.marca);
-	$("#pDestacadoPrecio").html(destacado.precio);
-	$("#pDestacadoCantComent").html(destacado.cantComent);
+verdestacado = "true";
+
+function agregarProductoDestacado(destacado, producto) {
+	if (verdestacado == "true" || producto) {
+		$("[name='imgProdDes']").attr("src","productos/producto"+destacado.id+".jpg");
+		$("[name='imgProdDes']").attr("id","iprod"+destacado.id+"");		
+		$("[name='pDestacadoNom']").html(destacado.nombre);
+		$("[name='pDestacadoNom']").attr("id","iprod"+destacado.id+"");
+		$("#pDestacadoDesc").html(destacado.descripcion);
+		$("#pDestacadoMarca").html("Marca: "+destacado.marca);
+		$("#pDestacadoPrecio").html(destacado.precio);
+		$("#pDestacadoCantComent").html(destacado.cantComent);
+		$("#featured").show();
+	} else {
+		$("#featured").hide();
+	}
 }
 
 function agregarProductos(productos) {
@@ -51,13 +57,14 @@ function existenMasProductos(haymas) {
 }
 
 function mostrarProducto(prodId) {
+
 	$.getJSON('_lib/producto.php?id='+prodId+'', function(data) {
 		var productos = data.productos;
-		agregarProductoDestacado(productos[0]);			
+		
+		agregarProductoDestacado(productos[0],true);
+		
 	});
 		
-	
-	
 	$("#likes").show();
 	$("#likesL").attr("data-href","http://localhost:8080/IAW-Proy3/index.php?mc=Inicio&amp;idProd="+prodId);
 	$("#comentarios").show();
@@ -66,6 +73,9 @@ function mostrarProducto(prodId) {
 	$("#tituloProductos").html("Comentarios");
 	$("#divvermas").hide("slow");
 	$("#productos").hide("slow");
+	
+	$("#imgDestacado").removeClass("ftheading");
+	$("#imgDestacado").addClass("ftheadingP");
 }
 
 function mostrarProductos(catId) {
@@ -100,14 +110,13 @@ function parametrosUrl() {
 
 
 function verMasOyente(a) {
-
+	
 	//Agrega oyente para el paginado de la lista de productos
 	$("#vermas").click(function() {
 		//Animacion de carga
 		$("#vermas").hide();
 		$("#imgLoading").show();
 		
-		console.log(a); 
 		//Proximos 5 
 		inic+= limit;
 		

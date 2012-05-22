@@ -64,8 +64,8 @@ else {
 	}
   
 	//Verificar si hay mas elementos
-	$inic = $inic + 5;
-
+	$inic = $inic + $limit;
+	
 	if(isset($_GET['id']))
 	{
 		$categoria = $_GET['id'];

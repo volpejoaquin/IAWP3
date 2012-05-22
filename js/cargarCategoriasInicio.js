@@ -45,7 +45,7 @@ function verCategoria(id) {
 		$("#productos").html("");
 		
 		mostrarProductos(id);
-
+		
 	} else {
 		verCategorias();		
 	}

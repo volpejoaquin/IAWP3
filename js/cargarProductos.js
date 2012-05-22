@@ -1,3 +1,6 @@
+limit=8;
+inic=0;
+	
 function agregarProductoDestacado(destacado) {
 	$("[name='imgProdDes']").attr("src","productos/producto"+destacado.id+".jpg");
 	$("[name='imgProdDes']").attr("id","iprod"+destacado.id+"");		
@@ -66,7 +69,7 @@ function mostrarProducto(prodId) {
 }
 
 function mostrarProductos(catId) {
-	var url = '_lib/productos.php?id='+catId+'';
+	var url = '_lib/productos.php?id='+catId+'&limit='+limit+'&inic='+inic+'';
 	$.getJSON(url, function(data) {
 		//Recorre los ultimos 5 productos
 		var productos = data.productos;
@@ -76,6 +79,7 @@ function mostrarProductos(catId) {
 		var haymas = data.masproductos;
 		existenMasProductos(haymas);
 		
+		verMasOyente(url);
 	});	
 	
 }
@@ -92,6 +96,38 @@ function parametrosUrl() {
 		vars[k]=v;
 	}
 	return vars;
+}
+
+
+function verMasOyente(a) {
+
+	//Agrega oyente para el paginado de la lista de productos
+	$("#vermas").click(function() {
+		//Animacion de carga
+		$("#vermas").hide();
+		$("#imgLoading").show();
+		
+		console.log(a); 
+		//Proximos 5 
+		inic+= limit;
+		
+		//Busca 5 productos mas
+		$.getJSON('_lib/productos.php?limit='+limit+'&inic='+inic+'', function(data) {
+				
+				//Recorre los nuevos productos
+				var productos = data.productos;
+				agregarProductos(productos);	
+				
+				//Verifica si hay mas productos
+				var haymas = data.masproductos;
+				existenMasProductos(haymas);
+				
+				$("#imgLoading").hide();			
+				
+		});
+			
+		
+	});
 }
 
 

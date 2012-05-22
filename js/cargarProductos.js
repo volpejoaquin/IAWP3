@@ -89,7 +89,7 @@ function mostrarProductos(catId) {
 		var haymas = data.masproductos;
 		existenMasProductos(haymas);
 		
-		verMasOyente(url);
+		verMasOyente(catId);
 	});	
 	
 }
@@ -109,8 +109,7 @@ function parametrosUrl() {
 }
 
 
-function verMasOyente(a) {
-	
+function verMasOyente(catId) {
 	//Agrega oyente para el paginado de la lista de productos
 	$("#vermas").click(function() {
 		//Animacion de carga
@@ -120,8 +119,15 @@ function verMasOyente(a) {
 		//Proximos 5 
 		inic+= limit;
 		
+		if (catId != undefined) {
+			var url = '_lib/productos.php?id='+catId+'&limit='+limit+'&inic='+inic+'';
+		}
+		else {
+			var url = '_lib/productos.php?&limit='+limit+'&inic='+inic+'';
+		}
+	
 		//Busca 5 productos mas
-		$.getJSON('_lib/productos.php?limit='+limit+'&inic='+inic+'', function(data) {
+		$.getJSON(url, function(data) {
 				
 				//Recorre los nuevos productos
 				var productos = data.productos;
@@ -131,7 +137,9 @@ function verMasOyente(a) {
 				var haymas = data.masproductos;
 				existenMasProductos(haymas);
 				
-				$("#imgLoading").hide();			
+				$("#imgLoading").hide();	
+				
+				verMasOyente();
 				
 		});
 			

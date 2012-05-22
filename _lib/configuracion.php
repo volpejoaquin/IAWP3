@@ -6,7 +6,7 @@ try {
     die($e);
 }
 
-	$response= array("limit"=>"5","destacado"=>"false");
+	$response= array("limit"=>"5","destacado"=>"true");
 
 	//echo $response;
 	echo json_encode($response);

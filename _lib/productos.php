@@ -33,6 +33,7 @@ if(isset($_GET['id']))
 else {
 	$prods = $db->prepare("SELECT * FROM productos LIMIT ".$inic.",".$limit.";");
 }
+
 	$prods->execute();
 
 	$allProds=array();

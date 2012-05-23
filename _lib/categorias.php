@@ -13,7 +13,18 @@ $limit="100";
 $inic="0";
 
 //Consulta
-$cats = $db->prepare('SELECT * FROM categorias LIMIT '.$inic.','.$limit.';');
+if(isset($_GET['id']))
+{
+	$categoria = $_GET['id'];
+	
+	$vist = $db->prepare("UPDATE categorias SET nro_likes = nro_likes + 1 WHERE id='".$categoria."';");
+	$vist->execute();
+	
+	$cats = $db->prepare("SELECT * FROM categorias WHERE id='".$categoria."' LIMIT ".$inic.",".$limit.";");
+}
+else {
+	$cats = $db->prepare("SELECT * FROM categorias LIMIT ".$inic.",".$limit.";");
+}
 $cats->execute();
 	
 	
@@ -29,6 +40,7 @@ $cats->execute();
 			$allCats[$i++]=     array("id"=>$cat["id"],
 									 "nombre"=>$cat["nombre"],
 									 "descripcion"=>$cat["descripcion"],
+									 "nro_visitas"=>$cat["nro_likes"],
 									 "cantProd"=>$nroProd[0]);
 		}
 	}

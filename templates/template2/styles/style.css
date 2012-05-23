@@ -65,10 +65,15 @@ p#nomascoment {
 
 
 .link {
-	color:#1496d9; 
+	color:gray; 
 	text-decoration:none;
 	cursor:pointer;
 }
+
+.link:hover {
+	color:black; 
+}
+a:hover {color:#000;}
 
 .clear:after {
  display:block; 
@@ -107,29 +112,34 @@ body {background: #fff url(images/bodybg.jpg) repeat-x; font-family:Verdana, Gen
 #featured .ftheading {position:absolute; right:0; top:-5px; z-index:800; background:url(images/featuredheading.png) no-repeat; height:117px; width:115px; text-indent:-4000px;}
 #featured .ftheadingP {position:absolute; right:0; top:-5px; z-index:800; background:url(images/producto.png) no-repeat; height:117px; width:115px; text-indent:-4000px;}
 #featured h3 {display:block; font:bold 1.8em Arial, Helvetica, sans-serif; color:#fff; margin-bottom:10px;}
-#featured a {color:#fff; text-decoration:underline!important;}
+#featured a {color:#fff;}
 #featured .ftwrap {padding:45px 35px 0 35px;}
 .ftimg {float:left; background:url(images/imgthumb.png) no-repeat; width:220px; height:144px;  padding:13px 0 0 13px;}
-.ftwrap .fttxt { margin-left:250px; padding-top:0px; padding-right:25px; font-size:1.2em;}
-.visitas { margin-left:260px; margin-top:10px; padding-left:20px !Important; font-size:1.4em; background:url(images/visto.png) left no-repeat; }
-.precio { padding-left:12px !Important; background:url(images/pesos.png) left no-repeat; }
-.categoria { padding-left:20px !Important; background:url(images/categoria.png) left no-repeat; }
+.ftwrap .fttxt { margin-left:220px; padding-top:0px; padding-right:25px; font-size:1.2em;}
+
+
+.visitas { margin-left:230px; margin-top:10px; padding-left:22px !Important; font-size:1.4em; background:url(images/visto.png) left no-repeat; }
+.precio { padding-left:14px !Important; background:url(images/pesos.png) left no-repeat; }
+.categoria { padding-right:30px !Important; background:url(images/ver.png) right no-repeat; height:20px !Important;}
+.verCategoria { background:url(images/ver.png) right no-repeat; font-size:1.4em;}
+.producto { padding-left:22px !Important; background:url(images/iconoproducto.png) left no-repeat; }
 
 .mainheading, #leftcontainer h2 {font:bold 1.8em "Trebuchet MS", Arial, Helvetica, sans-serif; color:#666; padding:10px 0; border-bottom:solid 1px #ddd; margin-bottom:15px;}
 #leftcontainer {padding: 0 10px;}
+.post { border-bottom: solid 1px; border-color:#ddd #fff; }
 .post p {font-size:1.2em; line-height:18px; margin-bottom:10px;}
 .post header {margin-bottom:10px;}
-.post h3,#comments h3 {font:bold 1.6em Arial, Helvetica, sans-serif; color:#000; margin-bottom:5px;}
+.post h3,#comments h3 { padding-top:10px; height:30px; font:bold 1.6em Arial, Helvetica, sans-serif; color:#000; margin-bottom:5px;}
 .post h3 a {color:#333; text-decoration:none;}
 .post header .postinfo {font-size:1.1em; color:#777;}
 .post .posttext { min-height:120px;}
-.post footer .comments {border: solid 1px; border-color:#ddd #fff #ddd #fff;  font-size:1.3em; color:#777;}
-.post footer {border: solid 1px; border-color:#ddd #fff #ddd #fff; padding:3px; font-size:1.1em; color:#777;}
+.post footer .comments {border-color:#ddd #fff #ddd #fff;  font-size:1.3em; color:#777;}
+.post footer {border-bottom: solid 1px; border-color:#ddd #fff; padding:3px; font-size:1.1em; color:#777;}
 
 .post footer {height:15px; line-height:15px;}
-.post footer span {margin:0 65px 0 0;}
+.post footer span {margin:0 55px 0 0;}
 .post footer a {color:#333;}
-.post {margin-bottom:20px;}
+.post {padding-bottom:20px; margin-bottom:5px;}
 #sidebar h2 {font:bold 1.8em "Trebuchet MS", Arial, Helvetica, sans-serif; color:#000; margin-bottom:10px;}
 
 #sidebar p {font-size:1.2em; line-height:18px; margin-bottom:20px;}
@@ -172,4 +182,3 @@ body {background: #fff url(images/bodybg.jpg) repeat-x; font-family:Verdana, Gen
 .post ul li {display:block; background:url(images/ulli.png) 0 6px no-repeat; padding-left:25px; margin-bottom:10px;}
 .post h4 {font:bold 1.4em "Trebuchet MS", Arial, Helvetica, sans-serif; color:#000; margin-bottom:10px;}
 .post h2 {display:block; font:1.8em "Trebuchet MS", Arial, Helvetica, sans-serif; color:#000;}
-.post a:hover {color:#000; text-decoration:underline;}

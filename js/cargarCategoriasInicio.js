@@ -29,13 +29,12 @@ $(document).ready(function() {
 				
 				categoria = "<article id='cat"+id+"' class='post'>\
 								<header>\
-									 <a class='link' href='index.php?mc=Categorías&idCat="+id+"'><h3>"+nombre+"</h3></a>\
+									 <a class='link' href='index.php?mc=Categorías&idCat="+id+"'><h3 class='verCategoria'>"+nombre+"</h3></a>\
 								 </header>\
 								 <p>"+descripcion+"</p>\
 								 <footer>\
-								 <span class='author'>Productos: "+ cantProd+"</span>\
-								 <span id='visitas"+id+"' class='author'>Visitas: "+ nrovis+"</span>\
-								 <span id='verCat"+id+"' class='permalink link'><a href='index.php?mc=Categorías&idCat="+id+"'>Ver Categoria</a></span>\
+									<span class='comments producto' title='Cantidad de productos'>"+ cantProd+"</span>\
+									<span id='visitas"+id+"' class='author visitas' title='Numero de visitas'>"+ nrovis+"</span>\
 								 </footer>\
 							</article>";
 							
@@ -74,13 +73,6 @@ function verCategoria(id) {
 	} else {
 		verCategorias();		
 	}
-}
-
-function verCategorias() {
-	$("[id!='categorias'][id^='cat']").show("slow");
-	$("[id^='verCat']").show("slow");
-	$("#listaproductos").hide();
-	categorias = true;
 }
 
 

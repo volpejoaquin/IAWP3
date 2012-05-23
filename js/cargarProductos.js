@@ -52,7 +52,7 @@ function agregarProductos(productos) {
 								<span class='comments'>Marca: "+marca+"</span>\
 								<span class='comments precio' title='Precio'>"+precio+"</span>\
 								<span class='comments visitas' title='Numero de visitas'>"+nrovis+"</span>\
-								<span class='comments categoria' id='icat"+catId+"' title='Categoria'><a href='http://localhost:8080/IAW-Proy3/index.php?mc=Categorías&idCat="+catId+"'>"+catNombre+"</a></span>\
+								<span class='comments' id='icat"+catId+"' title='Categoria'><a class='categoria' href='http://localhost:8080/IAW-Proy3/index.php?mc=Categorías&idCat="+catId+"'>"+catNombre+"</a></span>\
 							</footer>\
 						</article>";
 		$("#productos").append(producto);

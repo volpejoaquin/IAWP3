@@ -110,7 +110,10 @@ body {background: #fff url(images/bodybg.jpg) repeat-x; font-family:Verdana, Gen
 #featured a {color:#fff; text-decoration:underline!important;}
 #featured .ftwrap {padding:45px 35px 0 35px;}
 .ftimg {float:left; background:url(images/imgthumb.png) no-repeat; width:220px; height:144px;  padding:13px 0 0 13px;}
-.ftwrap .fttxt { margin-left:260px; padding-top:15px; padding-right:25px;}
+.ftwrap .fttxt { margin-left:250px; padding-top:0px; padding-right:25px; font-size:1.2em;}
+.visitas { margin-left:260px; margin-top:10px; padding-left:20px !Important; font-size:1.4em; background:url(images/visto.png) left no-repeat; }
+.precio { padding-left:12px !Important; background:url(images/pesos.png) left no-repeat; }
+.categoria { padding-left:20px !Important; background:url(images/categoria.png) left no-repeat; }
 
 .mainheading, #leftcontainer h2 {font:bold 1.8em "Trebuchet MS", Arial, Helvetica, sans-serif; color:#666; padding:10px 0; border-bottom:solid 1px #ddd; margin-bottom:15px;}
 #leftcontainer {padding: 0 10px;}
@@ -120,6 +123,7 @@ body {background: #fff url(images/bodybg.jpg) repeat-x; font-family:Verdana, Gen
 .post h3 a {color:#333; text-decoration:none;}
 .post header .postinfo {font-size:1.1em; color:#777;}
 .post .posttext { min-height:120px;}
+.post footer .comments {border: solid 1px; border-color:#ddd #fff #ddd #fff;  font-size:1.3em; color:#777;}
 .post footer {border: solid 1px; border-color:#ddd #fff #ddd #fff; padding:3px; font-size:1.1em; color:#777;}
 
 .post footer {height:15px; line-height:15px;}

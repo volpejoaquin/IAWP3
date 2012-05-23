@@ -20,7 +20,8 @@ function agregarProductoDestacado(destacado, producto) {
 		$("#pDestacadoMarca").html("Marca: "+destacado.marca);
 		$("#pDestacadoPrecio").html(destacado.precio);
 		$("#pDestacadoCategoria").html(destacado.nombrecat);
-		$("#pDestacadoCategoria").attr("href","http://localhost:8080/IAW-Proy3/index.php?mc=Categorías&idCat="+catId);
+		$("#pDestacadoCategoria").attr("href","http://localhost:8080/IAW-Proy3/index.php?mc=Categorías&idCat="+destacado.catid);
+		$("#nroVisita").html(destacado.nro_visitas);
 		
 		$("#featured").show();
 	} else {
@@ -37,6 +38,7 @@ function agregarProductos(productos) {
 		marca = productos[i].marca;
 		catId = productos[i].catid;
 		catNombre = productos[i].nombrecat;
+		nrovis = productos[i].nro_visitas;
 
 		producto = "<article class='post'>\
 							<div class='ftimg'>\
@@ -47,9 +49,10 @@ function agregarProductos(productos) {
 							</header>\
 							<p class='posttext pComunDesc'>"+descripcion+"</p>\
 							<footer>\
-								<span class='author'>Marca: "+marca+"</span>\
-								<span class='comments'>$"+precio+"</span>\
-								<span class='comments' id='icat"+catId+"'><a href='http://localhost:8080/IAW-Proy3/index.php?mc=Categorías&idCat="+catId+"'>"+catNombre+"</a></span>\
+								<span class='comments'>Marca: "+marca+"</span>\
+								<span class='comments precio' title='Precio'>"+precio+"</span>\
+								<span class='comments visitas' title='Numero de visitas'>"+nrovis+"</span>\
+								<span class='comments categoria' id='icat"+catId+"' title='Categoria'><a href='http://localhost:8080/IAW-Proy3/index.php?mc=Categorías&idCat="+catId+"'>"+catNombre+"</a></span>\
 							</footer>\
 						</article>";
 		$("#productos").append(producto);

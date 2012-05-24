@@ -5,6 +5,8 @@ $(document).ready(function() {
 		limit = data.limit;
 		verdestacado = data.destacado;
 		
+		
+		
 		if (verdestacado == "true") {
 			$("#featured").show();
 		} else {
@@ -13,6 +15,8 @@ $(document).ready(function() {
 		
 		parametros = parametrosUrl();
 		if (parametros["idCat"] != undefined) {
+			$("#ult").attr("href","index.php?mc=Categorías&idCat="+parametros["idCat"]+"&ord=ult");
+			$("#masV").attr("href","index.php?mc=Categorías&idCat="+parametros["idCat"]+"&ord=masV");
 			var url = '_lib/categorias.php?id='+parametros["idCat"];
 		} else {
 			var url = '_lib/categorias.php';
@@ -29,7 +33,7 @@ $(document).ready(function() {
 				
 				categoria = "<article id='cat"+id+"' class='post'>\
 								<header>\
-									 <a class='link' href='index.php?mc=Categorías&idCat="+id+"'><h3 class='verCategoria'>"+nombre+"</h3></a>\
+									 <a class='link' href='index.php?mc=Categorías&idCat="+id+"&ord=ult'><h3 class='verCategoria'>"+nombre+"</h3></a>\
 								 </header>\
 								 <p>"+descripcion+"</p>\
 								 <footer>\
@@ -44,13 +48,22 @@ $(document).ready(function() {
 		
 		
 		if (parametros["idCat"] != undefined) {
-			verCategoria(parametros["idCat"]);
+			if (parametros["ord"] != undefined) {
+				verCategoria(parametros["idCat"],parametros["ord"]);
+				url = '_lib/productos.php?limit='+limit+'&inic='+inic+'&ord='+parametros["ord"];
+				$("#"+parametros["ord"]).addClass("current");
+			} 
+			else {
+				$("#ult").addClass("current");
+				verCategoria(parametros["idCat"]);
+			}
+			
 		} 		
 		
 	});
 });
 
-function verCategoria(id) {
+function verCategoria(id,ord) {
 	if (categorias == true) {
 		
 		var idCat = "cat"+id;
@@ -68,7 +81,11 @@ function verCategoria(id) {
 		$("#listaproductos").show("slow");
 		$("#productos").html("");
 		
-		mostrarProductos(id);
+		if (ord != undefined) {
+			mostrarProductos(id,ord);
+		} else {
+			mostrarProductos(id);
+		}
 		
 	} else {
 		verCategorias();		

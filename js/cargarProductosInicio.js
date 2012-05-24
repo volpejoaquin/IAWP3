@@ -7,8 +7,17 @@ $(document).ready(function() {
 			$("#featured").show();
 		}
 		
+		parametros = parametrosUrl();
+		if (parametros["ord"] != undefined) {
+			url = '_lib/productos.php?limit='+limit+'&inic='+inic+'&ord='+parametros["ord"];
+			$("#"+parametros["ord"]).addClass("current");
+		} 
+		else {
+			$("#ult").addClass("current");
+			url = '_lib/productos.php?limit='+limit+'&inic='+inic+'';
+		}
 		//Carga productos destacados y lista de productos
-		$.getJSON('_lib/productos.php?limit='+limit+'&inic='+inic+'', function(data) {
+		$.getJSON(url, function(data) {
 			//Recorre los ultimos 5 productos
 			var productos = data.productos;
 			agregarProductos(productos);		
@@ -23,13 +32,12 @@ $(document).ready(function() {
 			
 		});	
 		
-		parametros = parametrosUrl();
+		
 		if (parametros["idProd"] != undefined) {
 			mostrarProducto(parametros["idProd"]);
 		}
 		
-		
-		verMasOyente();
+		verMasOyente(undefined,parametros["ord"]);
 		
 	});	
 });

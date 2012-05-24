@@ -24,16 +24,29 @@ else
 	$inic="0";
 }
 
+if(isset($_GET['ord']))
+{
+	if ($_GET['ord'] == "ult") {
+		$ord='id';
+	} 
+	if ($_GET['ord'] == "masV") {
+		$ord='nro_likes';
+	} 	
+}
+else
+{
+	$ord='id';
+}
+
 //Consulta
 if(isset($_GET['id']))
 {
 	$categoria = $_GET['id'];
-	$prods = $db->prepare("SELECT * FROM productos WHERE id_categoria='".$categoria."' LIMIT ".$inic.",".$limit.";");
+	$prods = $db->prepare("SELECT * FROM productos  WHERE id_categoria='".$categoria."' ORDER BY ".$ord." DESC LIMIT ".$inic.",".$limit.";");
 }
 else {
-	$prods = $db->prepare("SELECT * FROM productos LIMIT ".$inic.",".$limit.";");
+	$prods = $db->prepare("SELECT * FROM productos ORDER BY ".$ord." DESC LIMIT ".$inic.",".$limit.";");
 }
-
 	$prods->execute();
 
 	$allProds=array();

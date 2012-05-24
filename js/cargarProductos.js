@@ -49,7 +49,7 @@ function agregarProductos(productos) {
 							</header>\
 							<p class='posttext pComunDesc'>"+descripcion+"</p>\
 							<footer>\
-								<span class='comments'>Marca: "+marca+"</span>\
+								<span class='comments' title='Marca'>"+marca+"</span>\
 								<span class='comments precio' title='Precio'>"+precio+"</span>\
 								<span class='comments visitas' title='Numero de visitas'>"+nrovis+"</span>\
 								<span class='comments' id='icat"+catId+"' title='Categoria'><a class='categoria' href='http://localhost:8080/IAW-Proy3/index.php?mc=Categorías&idCat="+catId+"'>"+catNombre+"</a></span>\
@@ -91,8 +91,12 @@ function mostrarProducto(prodId) {
 	$("#imgDestacado").addClass("ftheadingP");
 }
 
-function mostrarProductos(catId) {
+function mostrarProductos(catId,ord) {
 	var url = '_lib/productos.php?id='+catId+'&limit='+limit+'&inic='+inic+'';
+	if (ord != undefined) {
+		url = '_lib/productos.php?id='+catId+'&limit='+limit+'&inic='+inic+'&ord='+parametros["ord"];
+	}
+	
 	$.getJSON(url, function(data) {
 		//Recorre los ultimos 5 productos
 		var productos = data.productos;
@@ -102,7 +106,8 @@ function mostrarProductos(catId) {
 		var haymas = data.masproductos;
 		existenMasProductos(haymas);
 		
-		verMasOyente(catId);
+		console.log("mostrar productos");
+		verMasOyente(catId,ord);
 	});	
 	
 }
@@ -122,21 +127,32 @@ function parametrosUrl() {
 }
 
 
-function verMasOyente(catId) {
+function verMasOyente(catId,ord) {
 	//Agrega oyente para el paginado de la lista de productos
 	$("#vermas").click(function() {
 		//Animacion de carga
 		$("#vermas").hide();
 		$("#imgLoading").show();
 		
+		
 		//Proximos 5 
 		inic+= limit;
 		
 		if (catId != undefined) {
-			var url = '_lib/productos.php?id='+catId+'&limit='+limit+'&inic='+inic+'';
+			if (ord != undefined) {
+				url = '_lib/productos.php?id='+catId+'&limit='+limit+'&inic='+inic+'&ord='+parametros["ord"];
+			} 
+			else  {
+				url = '_lib/productos.php?id='+catId+'&limit='+limit+'&inic='+inic+'';
+			}
 		}
 		else {
-			var url = '_lib/productos.php?&limit='+limit+'&inic='+inic+'';
+			if (ord != undefined) {
+				url = '_lib/productos.php?limit='+limit+'&inic='+inic+'&ord='+parametros["ord"];
+			} 
+			else  {
+				url = '_lib/productos.php?limit='+limit+'&inic='+inic+'';
+			}
 		}
 	
 		//Busca 5 productos mas
@@ -151,8 +167,8 @@ function verMasOyente(catId) {
 				existenMasProductos(haymas);
 				
 				$("#imgLoading").hide();	
-				
-				verMasOyente();
+					
+				verMasOyente(undefined,parametros["ord"]);
 				
 		});
 			

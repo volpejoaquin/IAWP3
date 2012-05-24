@@ -6,7 +6,6 @@ $(document).ready(function() {
 		verdestacado = data.destacado;
 		
 		
-		
 		if (verdestacado == "true") {
 			$("#featured").show();
 		} else {

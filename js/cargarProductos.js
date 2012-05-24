@@ -56,8 +56,7 @@ function agregarProductos(productos) {
 							</footer>\
 						</article>";
 		$("#productos").append(producto);
-		
-	}		
+	}	
 }
 
 function existenMasProductos(haymas) {

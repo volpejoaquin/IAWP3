@@ -168,3 +168,16 @@ body {background: #fff url(images/bodybg.jpg) repeat-x; font-family:Verdana, Gen
 .post h4 {font:bold 1.4em "Trebuchet MS", Arial, Helvetica, sans-serif; color:#000; margin-bottom:10px;}
 .post h2 {display:block; font:1.8em "Trebuchet MS", Arial, Helvetica, sans-serif; color:#000;}
 .post a:hover {color:#000; text-decoration:underline;}
+
+
+.tdheader {
+    background-color: #E0EBF6;
+    border-color: #0033FF;
+    border-radius: 5px 5px 5px 5px;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 12px;
+    font-weight: bold;
+    padding-left: 10px;
+    padding-right: 10px;
+}

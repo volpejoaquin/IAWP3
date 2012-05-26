@@ -6,7 +6,10 @@ verdestacado = "true";
 $(document).ready(function() {
 	parametros = parametrosUrl();
 	if (parametros["mc"] != undefined) {
-		$("[id^=menu"+parametros['mc'][0]+""+parametros['mc'][1]+"]").addClass("current");		
+		$("[id^=menu"+parametros['mc'][0]+""+parametros['mc'][1]+"]").addClass("current");	
+		if (parametros["mc"] == "Logout") {
+			$("#menuAdmin").addClass("current");	
+		}
 	} else {
 		$("#menuInicio").addClass("current");		
 	}	

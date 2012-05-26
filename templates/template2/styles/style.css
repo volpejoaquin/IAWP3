@@ -78,6 +78,14 @@ a:hover {color:#000;}
 
 .filtar {color:black;}
 
+#login {margin:auto; background:url(images/login.png) 0 40px no-repeat; width:160px; height:26px; padding:45px 5px 5px 5px;}
+.logout { float:right; padding-top:8px; font-size:0.6em !Important; width:100px !Important;  height:70px !Important;}
+.logout  .icono {padding-left:22px !Important; background:url(images/logout.png) left no-repeat; width:15px !Important; color:black; }
+
+#entrar {margin:auto; width:70px; height:25px; padding-top:20px;}
+#error {text-align:center; color:red; height:25px; padding-top:20px;}
+.searchInput {display:block; background:transparent!important; border:none!important; width:130px; padding:0 10px; color:#333; line-height:24px; height:26px;}
+
 .clear:after {
  display:block; 
  visibility:hidden; 

@@ -45,7 +45,15 @@ if(isset($_GET['id']))
 	$prods = $db->prepare("SELECT * FROM productos  WHERE id_categoria='".$categoria."' ORDER BY ".$ord." DESC LIMIT ".$inic.",".$limit.";");
 }
 else {
-	$prods = $db->prepare("SELECT * FROM productos ORDER BY ".$ord." DESC LIMIT ".$inic.",".$limit.";");
+	if(isset($_GET['search']))
+	{
+		$search = $_GET['search'];
+		//VER BD TAGS !!
+		$prods = $db->prepare("SELECT * FROM productos WHERE nombre LIKE '%".$search."%' ORDER BY ".$ord." DESC LIMIT ".$inic.",".$limit.";");
+	}
+	else {
+		$prods = $db->prepare("SELECT * FROM productos ORDER BY ".$ord." DESC LIMIT ".$inic.",".$limit.";");
+	}
 }
 	$prods->execute();
 

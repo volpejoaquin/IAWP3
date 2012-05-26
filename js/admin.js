@@ -131,6 +131,7 @@ function validarCat(){
 }
 
 
+
 function agregar()
 {
 	alert("entre a agregar()....");
@@ -154,7 +155,22 @@ function agregar()
 		url+="&categoria="+$("#categoria").val();
 	}
 					
-	}
-	
+}
+
+$(document).ready(function() {
+	$("#botonLogin").click(function() {
+		var url = '_lib/login.php?user='+$("#usuario").val()+'&password='+$("#password").val()+'';
+		
+		$.getJSON(url, function(data) {
+			var resp = data.respuesta;
+			if (resp == false) {
+				$("#error").html(data.msj);
+				$("#error").show();
+			} else {
+				window.location.href = "index.php?mc=Admin";
+			}
+		});	
+	});
+});
 
 

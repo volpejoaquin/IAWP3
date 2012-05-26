@@ -17,11 +17,14 @@
 				<h3>Agregar Nuevo Producto</h3>
 			</a>
 			<div id="divA" class="none">
+				<div id="erroresAgregar">
+					
+				</div>
 				<form id="agregarForm" method="post" action="">
 					Nombre: <input name="nombre" type="text" size="30" tabindex="1"><br/>
 					Descripci&oacute;n: <input name="descripcion" type="text" size="30" tabindex="2"><br/>
-					Precio: <input name="precio" type="text" size="30" tabindex="3"><br/>
-					Stock: <input name="stock" type="text" size="30" tabindex="4"><br/>
+					Precio: <input name="precio" type="text" size="30" value="0.00" tabindex="3"><br/>
+					Stock: <input name="stock" type="text" size="30" value="0" tabindex="4"><br/>
 					Marca: <input name="marca" type="text" size="30"  tabindex="5"><br/>
 					Tags: <input name="tags" type="text" size="30" tabindex="6"><br/>
 					Categor&iacute;a: <select id='list' name="list" tabindex="7" onchange="validarCat()"></select>
@@ -29,7 +32,7 @@
 								Nueva Categor&iacute;a: <input type="text" name="nuevaCat" tabindex="8"><br/>
 								Descripci&oacute;n: <input type="text" name="nuevaDesc" tabindex="9"><br/>
 							</div>
-					<input id='categoria' name="categoria" type="hidden"/>
+					<input type="hidden" name="categoria" id="categoria" />
 					<br/>
 					<input type="submit" value="Agregar" tabindex="10"/>	
 				</form>
@@ -46,6 +49,7 @@
 						
 						<form id="modificarForm" method="post" action="">
 						<fieldset>
+							<input type="hidden" id="hiddenId"/>
 							<label for="name">Nombre </label>
 							<input type="text" name="name" id="diagName" class="ui-widget-content ui-corner-all" tabindex="1"/><br/>
 							<label for="desc">Descripci&oacute;n </label>
@@ -60,6 +64,12 @@
 							<input type="text" name="marca" id="diagMarca" value="" class="ui-widget-content ui-corner-all" tabindex="6" /><br/>
 						</fieldset>
 						</form>
+					</div>
+					<div id="dialogElim" title="Eliminar un producto">
+						<input type="hidden" id="deleteId" />
+						<div id="deleteInfo">
+							
+						</div>
 					</div>
 					<div id="tablaProductos">
 						<table id="tableProd" class="viewTable" cellspacing="2" cellpadding="0" border="0" >

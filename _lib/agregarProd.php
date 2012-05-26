@@ -4,15 +4,17 @@ try{
 try {
     $db = new PDO('sqlite:../db/iawp3.sqlite');
 } catch (Exception $e) {
+	echo($e);
     die($e);
 }
 
 //Si se creo una nueva categoria en vez de usarse una existente...
-if(isset($_POST['nuevaCat']) && ($_POST['categoria']!= "NULL") && ($_POST['categoria']!= "null"))
+if(isset($_POST['nuevaCat']) && $_POST['nuevaCat']!="null")
 {
 	//Inserto la categoria
 	$qry = $db->prepare(
     'INSERT INTO categorias VALUES (null,?,?)');
+	var_dump($db);
 	$qry->execute(array($_POST['nuevaCat'],$_POST['nuevaDesc']));
 	
 	//Obtengo el id de la categoria recien insertada

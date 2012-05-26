@@ -20,7 +20,7 @@ $(document).ready(function() {
 	$("#divD").hide();
 	$("#otraCat").hide();
 	$("#dialog-form").hide();
-	dialogoModif();
+	$("#dialogElim").hide();
 
 	cargarCategorias();
 
@@ -31,32 +31,62 @@ $(document).ready(function() {
 	
 	//Validar el formulario de agregar
 	$('#agregarForm').validate({
-		debug: false,
+		debug: true,
+		errorClass:'invalid',
+		validClass:'success',
+		errorLabelContainer: "#erroresAgregar",
+   		wrapper: "li",
 		rules:
 		{
 		"nombre":{
 		required:true,
-		maxlength:40
+		maxlength:60,
+		minlength:1
 		},
 		"descripcion":{
 		required:true,
-		maxlength:100
+		maxlength:100,
+		minlength:1,
 		},
 		"marca":{
 		required:true,
-		maxlength:40
-		}},
+		maxlength:40,
+		minlength:1
+		},
+		"stock":{
+		required:true,
+		number:true,
+		minlength:1,
+		maxlength:10
+		},
+		"precio":{
+		required:true,
+		number:true,
+		minlength:1,
+		maxlength:20
+		}
+		},
 		
 		messages:
 		{
 		"nombre":{
-		required:" **Campo requerido"
+		required:"Se requiere un nombre para el producto.",
+		minlength: jQuery.format("Como mínimo {0} caracter para el nombre!")
 		},
 		"descripcion":{
-		required:" **Campo requerido",
+		required:"Se requiere una descripción para el producto.",
+		minlength: jQuery.format("Como mínimo {0} caracter para la descripcion!")
+		},
+		"precio":{
+		required:"Se requiere un precio para el producto.",
+		number:"Se especificó un número inválido para el precio."	
+		},
+		"stock":{
+		required:"Se requiere la cantidad de productos en stock.",
+		number:"Se especificó un número inválido para el stock."
 		},
 		"marca":{
-		required:" **Campo requerido"
+		required:"Se requiere una marca para el producto."
 		}},
 		
 		submitHandler: function(form){
@@ -91,11 +121,16 @@ $(document).ready(function() {
 //Muestra los componentes para agregar un prod
 function menuAgregarProd(){
 	$("#divA").toggle("fast");
-	
+	$("#divB").hide();
+	$("#divC").hide();
+	$("#divD").hide();
 }
 
 function menuModificarProd(){
 	$("#divB").toggle("fast");
+	$("#divA").hide();
+	$("#divC").hide();
+	$("#divD").hide();
 	
 	var isHidden = $('#divB').is(':hidden');
 	
@@ -152,14 +187,14 @@ function validarCat(){
 	
 	if(selec=="Otra...")
 	{
-		$("#categoria").val("");
-		$("#otraCat").toggle('fast');
+		$("#otraCat").show('fast');
+		$("#categoria").val("null");
 	}
 	else
 	{
-		$("#categoria").val($("#list option:selected").val());
-		$("#otraCat").toggle('fast');
-		$("#otraCat:input").val("");
+		$("#otraCat").hide('fast');
+		$("#otraCat:input").val("null");
+		$("#categoria").val($("#list").val());
 	}
 	
 }
@@ -200,27 +235,6 @@ function mostrarTablaProductos(){
 			$("#tbodyProductos").append(fila);
 		}
 						
-		/*	
-		//lleno las categorias
-		var url = "_lib/nombresCategorias.php";
-			$.getJSON(url, function(data){
-				for(i=0;i<data.length;i++)
-				{
-					if(i==0)
-					{
-						optionString = "<option value="+i+" selected>"+data[i]+"</option>";
-					}
-					else
-					{
-						
-						optionString = "<option value="+i+">"+data[i]+"</option>";
-					}
-					
-					$("#list").append(optionString);
-				}
-			});	
-						
-			*/
 		});
 	
 	
@@ -230,6 +244,22 @@ function mostrarTablaProductos(){
 		var id;
 		id=$(this).parent().parent().children(':first-child').text();
 		
+		nombre=$(this).parent().parent().children(':first-child').next().text();
+		desc=$(this).parent().parent().children(':first-child').next().next().text();
+		precio=$(this).parent().parent().children(':first-child').next().next().next().text();
+		stock=$(this).parent().parent().children(':first-child').next().next().next().next().text();
+		categoria=$(this).parent().parent().children(':first-child').next().next().next().next().next().text();
+		marca=$(this).parent().parent().children(':first-child').next().next().next().next().next().next().text();
+		
+			$("#hiddenId").val(id);
+			$("#diagName").val(nombre);
+			$("#diagDesc").val(desc);
+			$("#diagPrecio").val(precio);
+			$("#diagStock").val(stock);
+			$("#diagMarca").val(marca);
+		
+			dialogoModif();
+		
 			$("#dialog-form" ).dialog( "open" );
 		
 		
@@ -238,8 +268,13 @@ function mostrarTablaProductos(){
 	$(".deleteProducto").live('click',function(){
 		var id;
 		id=$(this).parent().parent().children(':first-child').text();
+		nombre=$(this).parent().parent().children(':first-child').next().text();
+		$("#deleteId").val(id);
+		$("#deleteInfo").text("Está a punto de eliminar '"+nombre+"' con ID: "+id+". \n¿Está seguro?");
+		dialogoElim(id);
+		
+		$("#dialogElim").dialog("open");
 	
-		alert("Quiere borrar el producto> "+id);
 	});
 	
 
@@ -297,60 +332,92 @@ function dialogoModif (){
 					var bValid = true;
 					allFields.removeClass( "ui-state-error" );
 
-					bValid = bValid && checkLength( name, "Nombre", 1, 30 );
+					bValid = bValid && checkLength( name, "Nombre", 1, 80 );
 					bValid = bValid && checkLength( desc, "Descripción", 1, 80 );
 					bValid = bValid && checkLength( precio, "Precio", 1, 20 );
 					bValid = bValid && checkLength( stock, "Stock", 1, 10 );
-					bValid = bValid && checkLength( marca, "Marca", 1, 30 );
+					bValid = bValid && checkLength( marca, "Marca", 1, 40 );
 
-					bValid = bValid && checkRegexp( name, /^[a-z|A-Z]([0-9a-z_A-Z ])+$/i, "El nombre del producto sólo puede contener letras, números y guiones bajos, empezando con una letra." );
-					bValid = bValid && checkRegexp( desc, /^[a-z|A-Z]([0-9a-z_A-Z ])+$/i, "La descripción del producto sólo puede contener letras, números y guiones bajos, empezando con una letra." );
+					bValid = bValid && checkRegexp( name, /^[a-z|A-Z ]([0-9a-z_A-Z ])+$/i, "El nombre del producto sólo puede contener letras, números y guiones bajos, empezando con una letra." );
+					bValid = bValid && checkRegexp( desc, /^[a-z|A-Z ]([0-9a-z_A-Z ])+$/i, "La descripción del producto sólo puede contener letras, números y guiones bajos, empezando con una letra." );
               		//bValid = bValid && checkRegexp( precio,/^  $/i, "El precio debe ser un número con dos cifras decimales, separar con punto o coma es indistinto");
 					bValid = bValid && checkRegexp( stock, /^([0-9]|[1-9][0-9]+)$/i, "El stock debe ser un número entero." );
-					bValid = bValid && checkRegexp( marca, /^[a-z|A-Z]([0-9a-z_A-Z ])+$/i, "La marca del producto sólo puede contener letras, números y guiones bajos, empezando con una letra." );
+					bValid = bValid && checkRegexp( marca, /^[a-z|A-Z ]([0-9a-z_A-Z ])+$/i, "La marca del producto sólo puede contener letras, números y guiones bajos, empezando con una letra." );
          
 					
 					if ( bValid ) { //Si se validaron los campos
 						
 						//Modificar el producto en la BD
-						$.ajax({
-                                          type: "post",
-                                          url: "_lib/modificarProd.php",
-                                          dataType: "json",
-                                          data: {
-                                                        'nombre' : name.val(),
-                                                        'desc': desc.val(),
-                                                        'precio': precio.val(),
-                                                        'stock' : stock.val(),
-                                                        'categoria' : categoria.val(),
-                                                        'marca' : marcal.val() 
-                                                },
-                                          success: function(data) {
-                                                //alert(data);
-                                                if(data.success)
-                                                {
-                                                        alert('success');     
-                                                }
-                                      }
-                                        }); // End ajax method
-						
-						
-						//Refrescar la tabla
-						modificarTablaProductos();
-						$( this ).dialog( "close" );
+						$.post("_lib/modificarProd.php", //PHP file to send POST to
+			                { 
+			                	'id' : $("#hiddenId").val(),
+	                            'name' : name.val(),
+                                'desc': desc.val(),
+                                'precio': precio.val(),
+                                'stock' : stock.val(),
+                                'categoria' : categoria.val(),
+                                'marca' : marca.val()
+							 }, //POST fields to send
+			                function(returned) { //What to do if the POST finishes. 'returned' is the value recieved back from the script.
+			                        if (returned == 'Exito') {
+			                                //PHP retorna 'Exito'
+	                                        alert('Submit successful'); 
+	                                        //Refrescar la tabla
+											mostrarTablaProductos();
+											$("#dialog-form").dialog( "close" );                                 
+			                        } else {
+			                                alert('Ha ocurrido algun error en el procesamiento de los datos: '+returned);
+			                              	 $("#dialog-form").dialog( "close" );
+			                               }
+			                    });
 					}
-					//return false;
 				},
 				"Cancelar": function() {
 					allFields.val( "" ).removeClass( "ui-state-error" );
-					$( this ).dialog( "close" );
+					$("#dialog-form").dialog( "close" );
 				}
 			},
 			close: function() {
 				allFields.val( "" ).removeClass( "ui-state-error" );
 			}
-		});
+		});	
+}
+
+//Inicializa el dialog de eliminar producto
+function dialogoElim(id){
 	
+	$("#dialogElim").dialog({
+			autoOpen: false,
+			height: 200,
+			width: 250,
+			modal: true,
+			buttons: {
+				"Eliminar producto": function() {
+				$.post("_lib/eliminarProd.php", //PHP file to send POST to
+	                { 
+	                	'id' : id
+                    }, //POST fields to send
+	                function(returned) { //What to do if the POST finishes. 'returned' is the value recieved back from the script.
+	                        if (returned == 'Exito') {
+	                                //si PHP retorna 'Exito'
+                                    alert('Submit successful'); 
+                                    //Refrescar la tabla
+									mostrarTablaProductos();
+									$("#dialogElim").dialog( "close" );                                 
+	                        } else {
+	                                alert('Ha ocurrido algun error en el procesamiento de los datos: '+returned);
+	                              	 $("#dialogElim").dialog( "close" );
+	                               }
+	                    });
+				},
+				"Cancelar": function() {
+					
+					$("#dialogElim").dialog( "close" );
+				}
+			},
+			close: function() {
+			}
+		});
 	
 }
 

@@ -75,6 +75,9 @@ p#nomascoment {
 }
 a:hover {color:#000;}
 
+.contacto { margin-top:10px; padding:0px 0px 20px 20px;}
+.contacto li { padding-top:8px;}
+.cheading {position:absolute; right:0; top:-5px; z-index:800; background:url(images/contactoheading.png) no-repeat; height:117px; width:115px; text-indent:-4000px;}
 
 .filtar {color:black;}
 

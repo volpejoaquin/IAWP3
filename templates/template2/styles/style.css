@@ -75,6 +75,9 @@ p#nomascoment {
 }
 a:hover {color:#000;}
 
+
+.filtar {color:black;}
+
 .clear:after {
  display:block; 
  visibility:hidden; 
@@ -100,7 +103,7 @@ body {background: #fff url(images/bodybg.jpg) repeat-x; font-family:Verdana, Gen
 #pageheader h1 span {color:#aaa;}
 #search {float:right; background:url(images/searchbg.png) 0 40px no-repeat; width:261px; height:26px; padding:45px 5px 5px 5px;}
 #search .searchfield {float:left;}
-#search .searchbtn {float:right;}
+#search .search {float:right;}
 .searchfield input {display:block; background:transparent!important; border:none!important; width:170px; padding:0 10px; color:#333; line-height:24px; height:26px;}
 #contents {padding:18px 20px; background:url(images/sidebarbg.jpg) 649px 0 repeat-y; min-height:200px;}
 #main {width:615px; float:left;}

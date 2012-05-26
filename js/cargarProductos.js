@@ -7,7 +7,9 @@ $(document).ready(function() {
 	parametros = parametrosUrl();
 	if (parametros["mc"] != undefined) {
 		$("[id^=menu"+parametros['mc'][0]+""+parametros['mc'][1]+"]").addClass("current");		
-	} 
+	} else {
+		$("#menuInicio").addClass("current");		
+	}	
 });
 
 function agregarProductoDestacado(destacado, producto) {

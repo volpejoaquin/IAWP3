@@ -1,57 +1,65 @@
 $(document).ready(function() {
-	limit=5;
-	inic=0;
-	
-	//Carga productos destacados y lista de productos
-	$.getJSON('_lib/productos.php?limit='+limit+'&inic='+inic+'', function(data) {
-		//Recorre los ultimos 5 productos
-		var productos = data.productos;
-		agregarProductos(productos);		
+	$.getJSON('_lib/configuracion.php', function(data) {
+		limit = data.limit;
+		verdestacado = data.destacado;
 		
-		//Agrega el producto destacado
-		var destacado = data.destacado;
-		agregarProductoDestacado(destacado);
+		if (verdestacado == "true" && parametros["search"] == undefined) {
+			$("#featured").show();
+		}
+		
+		parametros = parametrosUrl();
+		if (parametros["ord"] != undefined) {
+			url = '_lib/productos.php?limit='+limit+'&inic='+inic+'&ord='+parametros["ord"];
+			$("#"+parametros["ord"]).addClass("current");
+		} 
+		else {
+			$("#ult").addClass("current");
+			url = '_lib/productos.php?limit='+limit+'&inic='+inic+'';
+		}
+		
+		if (parametros["search"] != undefined) {
+			url = '_lib/productos.php?search='+parametros["search"]+'&limit='+limit+'&inic='+inic+'';
+			$("#textsearch").val(parametros["search"]);
+			$("#filtro").html("Filtrado por: <span class='filtar'>"+parametros["search"]+"</span>");
 
-		//Verifica si hay mas productos en el sistema
-		var haymas = data.masproductos;
-		existenMasProductos(haymas);
-		
-	});	
-	
-	parametros = parametrosUrl();
-	if (parametros["idProd"] != undefined) {
-		mostrarProducto(parametros["idProd"]);
-	}
-	
-	
-	//Agrega oyente para el paginado de la lista de productos
-	$("#vermas").click(function() {
-		//Animacion de carga
-		$("#vermas").hide();
-		$("#imgLoading").show();
-		
-		//Proximos 5 
-		inic+=5;
-		
-		//Busca 5 productos mas
-		$.getJSON('_lib/productos.php?limit='+limit+'&inic='+inic+'', function(data) {
-				
-				//Recorre los nuevos productos
+			//Carga productos filtrados y lista de productos
+			$.getJSON(url, function(data) {
+				//Recorre los ultimos 5 productos
 				var productos = data.productos;
-				agregarProductos(productos);	
-				
-				//Verifica si hay mas productos
+				agregarProductos(productos);		
+
+				//Verifica si hay mas productos en el sistema
 				var haymas = data.masproductos;
 				existenMasProductos(haymas);
 				
-				$("#imgLoading").hide();			
+			});	
+		}
+		else {
+			//Carga productos destacados y lista de productos
+			$.getJSON(url, function(data) {
+				//Recorre los ultimos 5 productos
+				var productos = data.productos;
+				agregarProductos(productos);		
 				
-		});
-			
+				//Agrega el producto destacado
+				var destacado = data.destacado;
+				agregarProductoDestacado(destacado);
+
+				//Verifica si hay mas productos en el sistema
+				var haymas = data.masproductos;
+				existenMasProductos(haymas);
+				
+			});	
+		}
 		
-	});
-	
-	
+		
+		if (parametros["idProd"] != undefined) {
+			mostrarProducto(parametros["idProd"]);
+		}
+		
+		verMasOyente(undefined,parametros["ord"]);
+		
+	});	
 });
 
 

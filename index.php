@@ -19,10 +19,15 @@ if (empty($_GET['mc'])) {
 			$maincontent = 'maincontents/categorias.html';
 			break;
 		case 'Admin' :
-			$maincontent = 'maincontents/admin.html';
+			$maincontent = 'maincontents/admin.php';
 			break;
 		case 'Contacto' :
 			$maincontent = 'maincontents/contacto.html';
+			break;
+		case 'Logout' :
+			session_start();
+			session_destroy();
+			$maincontent = 'maincontents/admin.php';
 			break;
 	}
 }

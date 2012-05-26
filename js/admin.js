@@ -70,6 +70,20 @@ $(document).ready(function() {
 		}
 		});
 		
+		//Boton de login
+		$("#botonLogin").click(function() {
+		var url = '_lib/login.php?user='+$("#usuario").val()+'&password='+$("#password").val()+'';
+		
+		$.getJSON(url, function(data) {
+			var resp = data.respuesta;
+			if (resp == false) {
+				$("#error").html(data.msj);
+				$("#error").show();
+			} else {
+				window.location.href = "index.php?mc=Admin";
+			}
+		});	
+	});
 
 });//fin document.ready
 
@@ -299,15 +313,33 @@ function dialogoModif (){
 					if ( bValid ) { //Si se validaron los campos
 						
 						//Modificar el producto en la BD
-						$.get("_lib/modificarProd.php?name="+name.val(), $("#modificarForm").serialize(), function(data) {
-							alert(data);
-						});
+						$.ajax({
+                                          type: "post",
+                                          url: "_lib/modificarProd.php",
+                                          dataType: "json",
+                                          data: {
+                                                        'nombre' : name.val(),
+                                                        'desc': desc.val(),
+                                                        'precio': precio.val(),
+                                                        'stock' : stock.val(),
+                                                        'categoria' : categoria.val(),
+                                                        'marca' : marcal.val() 
+                                                },
+                                          success: function(data) {
+                                                //alert(data);
+                                                if(data.success)
+                                                {
+                                                        alert('success');     
+                                                }
+                                      }
+                                        }); // End ajax method
 						
 						
 						//Refrescar la tabla
 						modificarTablaProductos();
 						$( this ).dialog( "close" );
 					}
+					//return false;
 				},
 				"Cancelar": function() {
 					allFields.val( "" ).removeClass( "ui-state-error" );

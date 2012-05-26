@@ -1,21 +1,23 @@
 <script src="js/cargarProductosInicio.js" type="text/javascript" charset="utf-8"></script>
 <section id="main">
-	<section id="featured">
+	<section id="featured" class="none">
+		<h2 id="imgDestacado" class="ftheading"></h2>
 		<div class="ftwrap">
+			
 			<div class="ftimg">
 				<img name="imgProdDes" class="link" src="" alt="img1" width="204" height="128">
 			</div>
 			
-			<div class="fttxt">
-				
+			<div class="fttxt">				
 				<h3 name="pDestacadoNom" class="link">{pDestacado}</h3>
 				<p id="pDestacadoDesc" class="pDestacadoDesc">{pDestacadoTexto}</p>
 				
 				<span class="author marca" id="pDestacadoMarca">Marca: JS</span>
-				<span class="comments">$<span id="pDestacadoPrecio"></span></span>
-				<span class="comments right"><a href="#"><span id="pDestacadoCantComent"></span></a></span>
+				<span class="comments precio" title="Precio"><span id="pDestacadoPrecio"></span></span>
+				<span class="comments right" title="Categoria"><a class='' id="pDestacadoCategoria" href="#">asd</a></span>
 
 			</div>
+			<h2 id="nroVisita" class="visitas" title="Numero de visitas"></h2>
 		</div>
 	</section>
 	
@@ -25,7 +27,12 @@
 		</div>
 		
 		<h2 id="tituloProductos" class="mainheading">
-		{tituloProductos}
+			<span id="texttituloprod">{tituloProductos}</span>
+			<div id="filtro" class="filtro">
+				Ordenar por:
+				<a id="ult" href="index.php?mc=Inicio&ord=ult" class="nuevos noCurrent" title="Nuevos"></a>
+				<a id="masV" href="index.php?mc=Inicio&ord=masV" class="masV noCurrent" title="Mas vistos"></a>
+			</div>
 		</h2>
 
 		<div id="productos">

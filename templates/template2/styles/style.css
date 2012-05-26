@@ -65,10 +65,26 @@ p#nomascoment {
 
 
 .link {
-	color:#1496d9; 
+	color:gray; 
 	text-decoration:none;
 	cursor:pointer;
 }
+
+.link:hover {
+	color:black; 
+}
+a:hover {color:#000;}
+
+
+.filtar {color:black;}
+
+#login {margin:auto; background:url(images/login.png) 0 40px no-repeat; width:160px; height:26px; padding:45px 5px 5px 5px;}
+.logout { float:right; padding-top:8px; font-size:0.6em !Important; width:100px !Important;  height:70px !Important;}
+.logout  .icono {padding-left:22px !Important; background:url(images/logout.png) left no-repeat; width:15px !Important; color:black; }
+
+#entrar {margin:auto; width:70px; height:25px; padding-top:20px;}
+#error {text-align:center; color:red; height:25px; padding-top:20px;}
+.searchInput {display:block; background:transparent!important; border:none!important; width:130px; padding:0 10px; color:#333; line-height:24px; height:26px;}
 
 .clear:after {
  display:block; 
@@ -80,7 +96,7 @@ p#nomascoment {
 h1, h2, h3 {font-family:Arial, Helvetica, sans-serif; }
 ul {list-style:none;}
 a {color:#1496d9; text-decoration:none;}
-body {background: #fff url(images/bodybg.jpg) repeat-x; font-family:Verdana, Geneva, sans-serif; font-size:62.5%; color:#444;}
+body {background: #fff url(images/bodybg.jpg) repeat-x; font-family:Verdana, Geneva, sans-serif; font-size:70.5%; color:#444;}
 #bodywrap {width:1000px; margin:0 auto; background:url(images/wrapbg.jpg) center top no-repeat; min-height:400px; padding:0 10px;}
 #pagetop {height:34px; padding:0 20px;}
 #pagetop #siteinfo {display:block; height:32px; line-height:30px; float:left; color:#ccc; font-style:italic; font-size:1.1em;}
@@ -95,7 +111,7 @@ body {background: #fff url(images/bodybg.jpg) repeat-x; font-family:Verdana, Gen
 #pageheader h1 span {color:#aaa;}
 #search {float:right; background:url(images/searchbg.png) 0 40px no-repeat; width:261px; height:26px; padding:45px 5px 5px 5px;}
 #search .searchfield {float:left;}
-#search .searchbtn {float:right;}
+#search .search {float:right;}
 .searchfield input {display:block; background:transparent!important; border:none!important; width:170px; padding:0 10px; color:#333; line-height:24px; height:26px;}
 #contents {padding:18px 20px; background:url(images/sidebarbg.jpg) 649px 0 repeat-y; min-height:200px;}
 #main {width:615px; float:left;}
@@ -105,32 +121,52 @@ body {background: #fff url(images/bodybg.jpg) repeat-x; font-family:Verdana, Gen
 #normalheader.header2 {background:url(images/normalheader.jpg) no-repeat;}
 #featured p {font-size:1.2em; line-height:18px; font-weight:normal;}
 #featured .ftheading {position:absolute; right:0; top:-5px; z-index:800; background:url(images/featuredheading.png) no-repeat; height:117px; width:115px; text-indent:-4000px;}
+#featured .ftheadingP {position:absolute; right:0; top:-5px; z-index:800; background:url(images/producto.png) no-repeat; height:117px; width:115px; text-indent:-4000px;}
 #featured h3 {display:block; font:bold 1.8em Arial, Helvetica, sans-serif; color:#fff; margin-bottom:10px;}
-#featured a {color:#fff; text-decoration:underline!important;}
+#featured a {color:#fff;}
 #featured .ftwrap {padding:45px 35px 0 35px;}
 .ftimg {float:left; background:url(images/imgthumb.png) no-repeat; width:220px; height:144px;  padding:13px 0 0 13px;}
-.ftwrap .fttxt { margin-left:260px; padding-top:15px; padding-right:25px;}
+.ftwrap .fttxt { margin-left:220px; padding-top:0px; padding-right:25px; font-size:1.2em;}
+
+
+.visitas { margin-left:230px; margin-top:5px; padding-left:22px !Important; font-size:1.4em; background:url(images/visto.png) left no-repeat; }
+.precio { padding-left:14px !Important; background:url(images/pesos.png) left no-repeat; }
+.categoria { padding-right:30px !Important; background:url(images/ver.png) right no-repeat; height:20px !Important;}
+.verCategoria { background:url(images/ver.png) right no-repeat; font-size:1.4em;}
+.producto { padding-left:22px !Important; background:url(images/iconoproducto.png) left no-repeat; }
+
+.visitasMenu { padding-left:22px !Important; background:url(images/visto.png) left no-repeat;  }
+.productoMenu { margin-right:5px; padding-left:20px !Important; background:url(images/iconoproducto.png) left no-repeat; }
+
+.filtro { float:right; padding-top:8px; font-size:0.6em !Important; width:140px;}
+.filtro  .masV {padding-left:22px !Important; background:url(images/visto.png) left no-repeat; width:15px !Important; }
+.filtro  .nuevos {padding-left:22px !Important; background:url(images/nuevos.png) left no-repeat; width:15px !Important; }
+.filtro .noCurrent { opacity:0.4; filter:alpha(opacity=40); }
+.filtro .current { opacity:1; filter:alpha(opacity=100); }
+
 
 .mainheading, #leftcontainer h2 {font:bold 1.8em "Trebuchet MS", Arial, Helvetica, sans-serif; color:#666; padding:10px 0; border-bottom:solid 1px #ddd; margin-bottom:15px;}
 #leftcontainer {padding: 0 10px;}
+.post { border-bottom: solid 1px; border-color:#ddd #fff; }
 .post p {font-size:1.2em; line-height:18px; margin-bottom:10px;}
 .post header {margin-bottom:10px;}
-.post h3,#comments h3 {font:bold 1.6em Arial, Helvetica, sans-serif; color:#000; margin-bottom:5px;}
+.post h3,#comments h3 { padding-top:10px; height:30px; font:bold 1.6em Arial, Helvetica, sans-serif; color:#000; margin-bottom:5px;}
 .post h3 a {color:#333; text-decoration:none;}
 .post header .postinfo {font-size:1.1em; color:#777;}
 .post .posttext { min-height:120px;}
-.post footer {border: solid 1px; border-color:#ddd #fff #ddd #fff; padding:3px; font-size:1.1em; color:#777;}
+.post footer .comments {border-color:#ddd #fff #ddd #fff;  font-size:1.3em; color:#777;}
+.post footer {border-bottom: solid 1px; border-color:#ddd #fff; padding:3px; font-size:1.1em; color:#777;}
 
 .post footer {height:15px; line-height:15px;}
-.post footer span {margin:0 65px 0 0;}
+.post footer span {margin:0 55px 0 0;}
 .post footer a {color:#333;}
-.post {margin-bottom:20px;}
+.post {padding-bottom:20px; margin-bottom:5px;}
 #sidebar h2 {font:bold 1.8em "Trebuchet MS", Arial, Helvetica, sans-serif; color:#000; margin-bottom:10px;}
 
-#sidebar p {font-size:1.2em; line-height:18px; margin-bottom:20px;}
-#sidebar ul {font-size:1.1em; font-style:italic; margin-bottom:20px;}
+#sidebar p {font-size:1.4em; line-height:18px; margin-bottom:20px;}
+#sidebar ul {font-size:1.4em; font-style:italic; margin-bottom:20px;}
 #sidebar ul li {display:block; height:24px; text-align:right; border-bottom:solid 1px #cdcdcd; line-height:24px;}
-#sidebar ul li a { line-height:24px; height:24px; background:url(images/ulli.png) left center no-repeat; padding:0 0 0 20px; display:block; color:#666; float:left; width:220px; text-align:left;}
+#sidebar ul li a { line-height:24px; height:24px; background:url(images/ulli.png) left center no-repeat; padding:0 0 0 10px; display:block; color:#666; float:left; text-align:left;}
 #sidebarwrap {padding:0 20px;}
 #sidebar ul li a:hover {color:#000;}
 #pagefooter {background:url(images/footerbg.jpg) repeat-x; height:89px;}

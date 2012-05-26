@@ -1,22 +1,27 @@
-<script src="js/cargarCategoriasInicio.js" type="text/javascript" charset="utf-8"></script>
+﻿<script src="js/cargarCategoriasInicio.js" type="text/javascript" charset="utf-8"></script>
 <section id="main">
 	<div id="leftcontainer">
-		<h2 class="mainheading link" onClick="verCategorias();">
-		{tituloCategorias}
+		<h2 class="mainheading" >
+			<a class="link" href="index.php?mc=Categorías">{tituloCategorias}</a>
 		</h2>
 		
 		<div id="categorias">
 		</div>
 		
 		<div id="listaproductos" class="none">
-			<h2 class="mainheading" onClick="verCategorias();">
+			<h2 class="mainheading">
 				{tituloProductos}
+				<div class="filtro">
+					Ordenar por:
+					<a id="ult" href="" class="nuevos noCurrent" title="Nuevos"></a>
+					<a id="masV" href="" class="masV noCurrent" title="Mas vistos"></a>
+				</div>
 			</h2>
 			<div id="productos">
 			</div>
-		</div>
 		
-		<div id="divvermas" class="wp-pagenavi none">
+		</div>
+		<div id="divvermas" class="none wp-pagenavi">
 			<a id="vermas" class="link">&#171; {indicePagS} &#187;</a>
 			<p id="nomascoment" class="none">&#171; {comentarioFooter} &#187;</p>
 			<div id="imgLoading">

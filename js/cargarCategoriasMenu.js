@@ -6,23 +6,15 @@
 			nombre = data[i].nombre;
 			descripcion = data[i].descripcion;
 			cantProd = data[i].cantProd;
+			nrovis = data[i].nro_visitas;
 			
-			categoria += "<li><a href='index.php?mc=Categorías&idCat="+data[i].id+"'>"+nombre+"</a>("+cantProd+")</li>";
+			categoria += "<li class='link'><a href='index.php?mc=Categorías&idCat="+id+"&ord=ult'>"+nombre+"</a><span class='productoMenu' title='Cantidad de productos'>"+cantProd+"</span><span class='visitasMenu' title='Cantidad de visitas'>"+nrovis+"</span></li>";
 		
 			$("#menuCategorias").append(categoria);
 		}		
 		
-		oyentesListaProductos();
+
 	});	
 
 	
 });
-
-function oyentesListaProductos() {
-	$("#listaProductos").click(function() {
-			$("#tituloProductos").html("Lista de productos");
-			$("#productos").show("slow");	
-			$("#vermas").show();
-			$("#nomascoment").hide();
-	});	
-}

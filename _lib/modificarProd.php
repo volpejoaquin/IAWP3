@@ -7,6 +7,10 @@ try {
     die($e);
 }
 
+	foreach ($_POST as $key => $value) {
+		echo ($key." => ".$value."\n");
+	}
+	
 
 	//Obtengo la categoria
 	$qry = $db->prepare(

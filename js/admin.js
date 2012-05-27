@@ -13,23 +13,28 @@
 
 
 $(document).ready(function() {
+	$("#acciones").hide();
+	$("#accCat").hide();
+	$("#agregarP").hide();
+	$("#modificarP").hide();
+	$("#agregarC").hide();
+	$("#modificarC").hide();
 	
-	$("#divA").hide();
-	$("#divB").hide();
-	$("#divC").hide();
-	$("#divD").hide();
-	$("#otraCat").hide();
-	$("#dialog-form").hide();
+	$("#dialogModificarProd").hide();
+	$("#dialogModificarCat").hide();
 	$("#dialogElim").hide();
+	$("#dialogElimCat").hide();
 
-	cargarCategorias();
-
+	$("#menuProductos").click(menuProductos);
+	$("#menuCateg").click(menuCateg);
 	$("#menuAgregar").click(menuAgregarProd);
 	$("#menuModificar").click(menuModificarProd);
+	$("#menuAgregarCategorias").click(menuAgregarCat);
+	$("#menuModificarCategorias").click(menuModificarCat);
 	$("#menuConfigurar").click(menuConfigurar);
 	$("#menuBackup").click(menuBackup);
 	
-	//Validar el formulario de agregar
+	//Validar el formulario de agregar producto
 	$('#agregarForm').validate({
 		debug: true,
 		errorClass:'invalid',
@@ -92,9 +97,50 @@ $(document).ready(function() {
 		submitHandler: function(form){
 			
 			$.post('_lib/agregarProd.php', $("#agregarForm").serialize(), function(data) {
-					$('#divA').toggle('fast');
+					$('#agregarP').toggle('fast');
 					$('#agregarForm').get(0).reset();
-					$('#resultA').html(data);
+					$('#resultAP').html(data);
+				});
+			
+		}
+		});
+		
+		//Validar el formulario de agregar producto
+	$('#agregarCatForm').validate({
+		debug: true,
+		errorClass:'invalid',
+		validClass:'success',
+		errorLabelContainer: "#erroresAgregarCat",
+   		wrapper: "li",
+		rules:
+		{
+		"nombre":{
+		required:true,
+		maxlength:60,
+		minlength:1
+		},
+		"descripcion":{
+		required:true,
+		maxlength:100,
+		minlength:1,
+		}},
+		messages:
+		{
+		"nombre":{
+		required:"Se requiere un nombre para la categoría.",
+		minlength: jQuery.format("Como mínimo {0} caracter para el nombre!")
+		},
+		"descripcion":{
+		required:"Se requiere una descripción para la categoría.",
+		minlength: jQuery.format("Como mínimo {0} caracter para la descripcion!")
+		}},
+		
+		submitHandler: function(form){
+			
+			$.post('_lib/agregarCat.php', $("#agregarCatForm").serialize(), function(data) {
+					$('#agregarC').toggle('fast');
+					$('#agregarCatForm').get(0).reset();
+					$('#resultAC').html(data);
 				});
 			
 		}
@@ -118,21 +164,45 @@ $(document).ready(function() {
 });//fin document.ready
 
 
+function menuProductos(){
+	$("#acciones").toggle('fast');
+	
+	$("#agregarP").hide();
+	$("#modificarP").hide();
+	$("#agregarC").hide();
+	$("#modificarC").hide();
+	$("#accCat").hide();
+	limpiarResultados();
+	
+}
+
+function menuCateg(){
+	
+	$("#accCat").toggle('fast');
+	
+	$("#agregarC").hide();
+	$("#modificarC").hide();
+	$("#agregarP").hide();
+	$("#modificarP").hide();
+	$("#acciones").hide();
+	limpiarResultados();
+}
+
 //Muestra los componentes para agregar un prod
 function menuAgregarProd(){
-	$("#divA").toggle("fast");
-	$("#divB").hide();
-	$("#divC").hide();
-	$("#divD").hide();
+	$("#agregarP").toggle("fast");
+	$("#modificarP").hide();
+	cargarCategorias();
+	limpiarResultados();
 }
 
 function menuModificarProd(){
-	$("#divB").toggle("fast");
-	$("#divA").hide();
-	$("#divC").hide();
-	$("#divD").hide();
+	$("#modificarP").toggle("fast");
+	$("#agregarP").hide();
+	cargarCategorias();
+	limpiarResultados();
 	
-	var isHidden = $('#divB').is(':hidden');
+	var isHidden = $('#modificarP').is(':hidden');
 	
 	if(isHidden!="true")
 		//Hace la consulta a la bd y carga los productos a la tabla
@@ -140,14 +210,43 @@ function menuModificarProd(){
 	
 }
 
-function menuConfigurar(){
-	$("#divC").toggle("fast");
+function menuAgregarCat(){
+	$("#agregarC").toggle("fast");
+	$("#modificarC").hide();
+	cargarCategorias();
+	limpiarResultados();
+}
+
+function menuModificarCat(){
+	$("#modificarC").toggle("fast");
+	$("#agregarC").hide();
+	cargarCategorias();
+	limpiarResultados();
 	
+	var isHidden = $('#modificarC').is(':hidden');
+	
+	if(isHidden!="true")
+		//Hace la consulta a la bd y carga los productos a la tabla
+		mostrarTablaCategorias();
+}
+
+
+//Borra el contenido de los divs que muestran los resultados de insertar
+function limpiarResultados(){
+	
+	$("#resultAP").html("");
+	$("#resultAC").html("");
+}
+
+
+function menuConfigurar(){
+	$("#agregarC").toggle("fast");
+	limpiarResultados();
 }
 
 function menuBackup(){
-	$("#divD").toggle("fast");
-	
+	$("#modificarC").toggle("fast");
+	limpiarResultados();
 }
 
 //Carga el combobox de categorias, en agregar y modif producto
@@ -175,12 +274,11 @@ function cargarCategorias()
 			$("#diagCat").append(optionString);
 		}
 		
-		$("#list").append("<option value="+(data.length+1)+">Otra...</option>");
 	});
 	
 }
 
-//Se encarga de controlar si el usuario elige crear una nueva categoria en vez de elegir una del combobox
+//
 function validarCat(){
 
 	var selec=$("#list option:selected").text();
@@ -219,7 +317,7 @@ function mostrarTablaProductos(){
 			var cat = data[i].cat;
 			var marca = data[i].marca;
 						
-			var fila = "<tr> "+
+			var fila = "<tr align='center'> "+
 							"<td>"+id+"</td>"+
 							"<td> <span class='spanProducto'>"+nombre+"</span></td>"+
 							"<td> <span class='spanProducto'>"+desc+"</span> </td>"+
@@ -260,7 +358,7 @@ function mostrarTablaProductos(){
 		
 			dialogoModif();
 		
-			$("#dialog-form" ).dialog( "open" );
+			$("#dialogModificarProd" ).dialog( "open" );
 		
 		
 	});
@@ -276,9 +374,73 @@ function mostrarTablaProductos(){
 		$("#dialogElim").dialog("open");
 	
 	});
-	
+}//end mostrarTablaProductos
 
-}
+//Refresca la tabla
+function mostrarTablaCategorias(){
+	
+	//Vacio lo que habia antes 
+	$("#tbodyCategorias").html("");
+	
+	//Lleno la tabla 
+	$.getJSON('_lib/tablaCategorias.php', function(data) {
+		//Una fila por cada producto nuevo
+		for(i=0;i<data.length;i++){
+			
+			var id = data[i].id;
+			var nombre = data[i].nombre;
+			var desc= data[i].desc;
+			var nro_likes = data[i].nro_likes;
+			var fila = "<tr align='center'> "+
+							"<td>"+id+"</td>"+
+							"<td> <span class='spanProducto'>"+nombre+"</span></td>"+
+							"<td> <span class='spanProducto'>"+desc+"</span> </td>"+
+							"<td> <span class='spanProducto'>"+nro_likes+"</span> </td>"+
+							"<td><img class='link editCategoria' src='img/editIcon.png' /> </td>"+
+							"<td><img class='link deleteCategoria' src='img/deleteIcon.png' /></td>"+
+					   "</tr>";
+			
+			
+			$("#tbodyCategorias").append(fila);
+		}
+						
+		});
+	
+	
+	//Cuando ya haya cargado todas las filas de la tabla, asigno los oyentes de click
+	$(".editCategoria").live('click',function(){
+		
+		var id;
+		id=$(this).parent().parent().children(':first-child').text();
+		
+		nombre=$(this).parent().parent().children(':first-child').next().text();
+		desc=$(this).parent().parent().children(':first-child').next().next().text();
+		nro_likes=$(this).parent().parent().children(':first-child').next().next().next().text();
+		
+			$("#hiddenIdCat").val(id);
+			$("#diagCatName").val(nombre);
+			$("#diagCatDesc").val(desc);
+			$("#diagCatLikes").val(nro_likes);
+		
+			dialogoModifCat();
+		
+			$("#dialogModificarCat" ).dialog( "open" );
+		
+		
+	});
+	
+	$(".deleteCategoria").live('click',function(){
+		var id;
+		id=$(this).parent().parent().children(':first-child').text();
+		nombre=$(this).parent().parent().children(':first-child').next().text();
+		$("#deleteIdCat").val(id);
+		$("#deleteInfoCat").text("Está a punto de eliminar la categoría '"+nombre+"' con ID: "+id+". ¿Está seguro?");
+		dialogoElimCat(id);
+		
+		$("#dialogElimCat").dialog("open");
+	
+	});
+}//end mostrarTablaCategorias
 	
 //Inicializa el dialog de modificar productos
 function dialogoModif (){
@@ -313,7 +475,7 @@ function dialogoModif (){
 		}
 
 		function checkRegexp( o, regexp, n ) {
-			if ( !( regexp.test( o.val() ) ) ) {
+			if ( !( regexp.test( $.trim(o.val()) ) ) ) {
 				o.addClass( "ui-state-error" );
 				updateTips( n );
 				return false;
@@ -322,7 +484,7 @@ function dialogoModif (){
 			}
 		}
 		
-		$( "#dialog-form" ).dialog({
+		$( "#dialogModificarProd" ).dialog({
 			autoOpen: false,
 			height: 300,
 			width: 350,
@@ -338,8 +500,8 @@ function dialogoModif (){
 					bValid = bValid && checkLength( stock, "Stock", 1, 10 );
 					bValid = bValid && checkLength( marca, "Marca", 1, 40 );
 
-					bValid = bValid && checkRegexp( name, /^[a-z|A-Z ]([0-9a-z_A-Z ])+$/i, "El nombre del producto sólo puede contener letras, números y guiones bajos, empezando con una letra." );
-					bValid = bValid && checkRegexp( desc, /^[a-z|A-Z ]([0-9a-z_A-Z ])+$/i, "La descripción del producto sólo puede contener letras, números y guiones bajos, empezando con una letra." );
+					bValid = bValid && checkRegexp( name, /^[a-z|A-Z]([0-9a-z_A-Z ])+$/i, "El nombre del producto sólo puede contener letras, números y guiones bajos, empezando con una letra." );
+					bValid = bValid && checkRegexp( desc, /^[a-z|A-Z]([0-9a-zA-Z ,.])+$/i, "La descripción del producto sólo puede contener letras, números, comas y puntos, empezando con una letra." );
               		//bValid = bValid && checkRegexp( precio,/^  $/i, "El precio debe ser un número con dos cifras decimales, separar con punto o coma es indistinto");
 					bValid = bValid && checkRegexp( stock, /^([0-9]|[1-9][0-9]+)$/i, "El stock debe ser un número entero." );
 					bValid = bValid && checkRegexp( marca, /^[a-z|A-Z ]([0-9a-z_A-Z ])+$/i, "La marca del producto sólo puede contener letras, números y guiones bajos, empezando con una letra." );
@@ -355,26 +517,26 @@ function dialogoModif (){
                                 'desc': desc.val(),
                                 'precio': precio.val(),
                                 'stock' : stock.val(),
-                                'categoria' : categoria.val(),
+                                'categoria' : $("#diagCat option:selected").text(),
                                 'marca' : marca.val()
 							 }, //POST fields to send
 			                function(returned) { //What to do if the POST finishes. 'returned' is the value recieved back from the script.
 			                        if (returned == 'Exito') {
 			                                //PHP retorna 'Exito'
-	                                        alert('Submit successful'); 
+	                                        alert('¡Se completó la modificación con éxito!'); 
 	                                        //Refrescar la tabla
 											mostrarTablaProductos();
-											$("#dialog-form").dialog( "close" );                                 
+											$("#dialogModificarProd").dialog( "close" );                                 
 			                        } else {
 			                                alert('Ha ocurrido algun error en el procesamiento de los datos: '+returned);
-			                              	 $("#dialog-form").dialog( "close" );
+			                              	 $("#dialogModificarProd").dialog( "close" );
 			                               }
 			                    });
 					}
 				},
 				"Cancelar": function() {
 					allFields.val( "" ).removeClass( "ui-state-error" );
-					$("#dialog-form").dialog( "close" );
+					$("#dialogModificarProd").dialog( "close" );
 				}
 			},
 			close: function() {
@@ -400,7 +562,8 @@ function dialogoElim(id){
 	                function(returned) { //What to do if the POST finishes. 'returned' is the value recieved back from the script.
 	                        if (returned == 'Exito') {
 	                                //si PHP retorna 'Exito'
-                                    alert('Submit successful'); 
+                                    alert('¡Se completó la eliminación con éxito!'); 
+                                                                        
                                     //Refrescar la tabla
 									mostrarTablaProductos();
 									$("#dialogElim").dialog( "close" );                                 
@@ -418,7 +581,136 @@ function dialogoElim(id){
 			close: function() {
 			}
 		});
-	
-}
+}//end dialogElim
 
+//Inicializa el dialog de modificar categorias
+function dialogoModifCat (){
+	
+	var name = $( "#diagCatName" ),
+			desc = $( "#diagCatDesc" ),
+			nro_likes = $( "#diagCatLikes" ),
+			allFields = $( [] ).add( name ).add( desc ).add( nro_likes ),
+			tips = $( ".validacion" );
+
+		function updateTips( t ) {
+			tips
+				.text( t )
+				.addClass( "ui-state-highlight" );
+			setTimeout(function() {
+				tips.removeClass( "ui-state-highlight", 1500 );
+			}, 500 );
+		}
+
+		function checkLength( o, n, min, max ) {
+			if ( o.val().length > max || o.val().length < min ) {
+				o.addClass( "ui-state-error" );
+				updateTips( "El tamaño de " + n + " debe ser entre " +
+					min + " y " + max + " caracteres." );
+				return false;
+			} else {
+				return true;
+			}
+		}
+
+		function checkRegexp( o, regexp, n ) {
+			if ( !( regexp.test( $.trim(o.val()) ) ) ) {
+				o.addClass( "ui-state-error" );
+				updateTips( n );
+				return false;
+			} else {
+				return true;
+			}
+		}
+		
+		$( "#dialogModificarCat" ).dialog({
+			autoOpen: false,
+			height: 300,
+			width: 350,
+			modal: true,
+			buttons: {
+				"Modificar categoría": function() {
+					var bValid = true;
+					allFields.removeClass( "ui-state-error" );
+
+					bValid = bValid && checkLength( name, "Nombre", 1, 80 );
+					bValid = bValid && checkLength( desc, "Descripción", 1, 80 );
+					bValid = bValid && checkLength( nro_likes, "Likes", 1, 10 );
+
+					bValid = bValid && checkRegexp( name, /^[a-z|A-Z]([0-9a-z_A-Z ])+$/i, "El nombre de la categoría sólo puede contener letras, números y guiones bajos, empezando con una letra." );
+					bValid = bValid && checkRegexp( desc, /^[a-z|A-Z]([0-9a-zA-Z ,.])+$/i, "La descripción de la categoría sólo puede contener letras, números, comas y puntos, empezando con una letra." );
+					bValid = bValid && checkRegexp( nro_likes, /^([0-9]|[1-9][0-9]+)$/i, "La cantidad de likes debe ser un número entero." );
+         
+					
+					if ( bValid ) { //Si se validaron los campos
+						
+						//Modificar el producto en la BD
+						$.post("_lib/modificarCat.php", //PHP file to send POST to
+			                { 
+			                	'id' : $("#hiddenIdCat").val(),
+	                            'name' : name.val(),
+                                'desc': desc.val(),
+                                'nro_likes': nro_likes.val(),
+							 }, //POST fields to send
+			                function(returned) { //What to do if the POST finishes. 'returned' is the value recieved back from the script.
+			                        if (returned == 'Exito') {
+			                                //PHP retorna 'Exito'
+	                                        alert('¡Se completó la modificación con éxito!'); 
+	                                        //Refrescar la tabla
+											mostrarTablaCategorias();
+											$("#dialogModificarCat").dialog( "close" );                                 
+			                        } else {
+			                                alert('Ha ocurrido algun error en el procesamiento de los datos: '+returned);
+			                              	 $("#dialogModificarCat").dialog( "close" );
+			                               }
+			                    });
+					}
+				},
+				"Cancelar": function() {
+					allFields.val( "" ).removeClass( "ui-state-error" );
+					$("#dialogModificarCat").dialog( "close" );
+				}
+			},
+			close: function() {
+				allFields.val( "" ).removeClass( "ui-state-error" );
+			}
+		});	
+}//end dialogoModificarCat
+
+//Inicializa el dialog de eliminar categoria
+function dialogoElimCat(id){
+	
+	$("#dialogElimCat").dialog({
+			autoOpen: false,
+			height: 200,
+			width: 250,
+			modal: true,
+			buttons: {
+				"Eliminar categoría": function() {
+				$.post("_lib/eliminarCat.php", //PHP file to send POST to
+	                { 
+	                	'id' : id
+                    }, //POST fields to send
+	                function(returned) { //What to do if the POST finishes. 'returned' is the value recieved back from the script.
+	                        if (returned == 'Exito') {
+	                                //si PHP retorna 'Exito'
+                                    alert('¡Se completó la eliminación con éxito!'); 
+                                                                        
+                                    //Refrescar la tabla
+									mostrarTablaCategorias();
+									$("#dialogElimCat").dialog( "close" );                                 
+	                        } else {
+	                                alert('Ha ocurrido algun error en el procesamiento de los datos: '+returned);
+	                              	 $("#dialogElimCat").dialog( "close" );
+	                               }
+	                    });
+				},
+				"Cancelar": function() {
+					
+					$("#dialogElimCat").dialog( "close" );
+				}
+			},
+			close: function() {
+			}
+		});
+}//end dialogElimCat
 

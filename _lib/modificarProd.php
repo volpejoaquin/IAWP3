@@ -12,7 +12,10 @@ try {
     'SELECT id FROM categorias WHERE nombre=?');
 	$qry->execute(array($_POST['categoria']));
 	
-	$idcat=1;
+	foreach($qry as $row)
+	{
+		$idcat= $row['id'];
+	}
 	
 	//Modifico el producto
 	$qry = $db->prepare(

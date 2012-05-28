@@ -9,6 +9,9 @@
 		?>
 			<h2 class="mainheading link">
 			{tituloAccionAdmin}
+			<div id="logout" class="logout">
+				<a href="index.php?mc=Logout" class="icono" title="Cerrar sesion">Cerrar sesion</a>
+			</div>
 			</h2>
 			<div id="produc1">
 			<h3 class="menuAdmin link" id="menuProductos">

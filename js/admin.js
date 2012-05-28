@@ -146,6 +146,32 @@ $(document).ready(function() {
 		}
 		});
 		
+		
+		//Usuario y password
+		$("#usuario").focus(function() {
+			if ($("#usuario").val() == "Usuario") {
+				$("#usuario").val("");
+			}
+		});
+		$("#usuario").blur(function() {
+			if ($("#usuario").val() == "") {
+				$("#usuario").val("Usuario");
+			}
+		});
+		
+		$("#password").focus(function() {
+			if ($("#password").val() == "Password") {
+				$("#password").get(0).type = 'password';
+				$("#password").val("");
+			}			
+		});
+		$("#password").blur(function() {
+			if ($("#password").val() == "") {
+				$("#password").get(0).type = 'text';
+				$("#password").val("Password");
+			}
+		});
+		
 		//Boton de login
 		$("#botonLogin").click(function() {
 		var url = '_lib/login.php?user='+$("#usuario").val()+'&password='+$("#password").val()+'';

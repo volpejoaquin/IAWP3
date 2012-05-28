@@ -194,10 +194,10 @@
 			
 			<div id="accionesLogin">	
 				<div id="login">
-					<input class="searchInput" name="usuario" id="usuario" type="text">
+					<input class="searchInput" name="usuario" id="usuario" type="text" value="Usuario">
 				</div>
 				<div id="login">
-					<input class="searchInput" name="password" id="password" type="password">
+					<input class="searchInput" name="password" id="password" type="text" value="Password">
 				</div>	
 				<div id="entrar">
 					<input id="botonLogin" src="templates/template2/images/searchbtn.png" alt="Entrar" type="image">

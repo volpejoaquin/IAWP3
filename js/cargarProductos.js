@@ -13,12 +13,17 @@ $(document).ready(function() {
 	} else {
 		$("#menuInicio").addClass("current");		
 	}	
-});
+	
+	
+			
+	
+	
+});//end of document.ready
 
 function agregarProductoDestacado(destacado, producto) {
 	if (verdestacado == "true" || producto) {
 		$("[name='imgProdDes']").attr("src","productos/producto"+destacado.id+".jpg");
-		$("[name='imgProdDes']").attr("id","iprod"+destacado.id+"");		
+		$("[name='imgProdDes']").attr("id","iprod"+destacado.id+"");
 		$("[name='pDestacadoNom']").html(destacado.nombre);
 		$("[name='pDestacadoNom']").attr("id","iprod"+destacado.id+"");
 		$("#pDestacadoDesc").html(destacado.descripcion);
@@ -29,6 +34,24 @@ function agregarProductoDestacado(destacado, producto) {
 		$("#nroVisita").html(destacado.nro_visitas);
 		
 		$("#featured").show();
+		
+		//Agrego slimbox a las imagenes
+		$("[name='imgProdDes']").slimbox({overlayOpacity: 0.6,
+						loop:true,
+						initialWidth: 500,
+						initialHeight: 500,
+				        captionAnimationDuration: 1,
+				        imageFadeDuration: 1,
+				        counterText: "Imagen {x} de {y} ",
+				        closeKeys: [27, 88],
+				        previousKeys: [37, 80],
+				        nextKeys: [39, 83]
+				        },
+					function(el) {return [el.src, destacado.nombre];},
+					function(el) {return true;}		
+		);
+		
+		
 	} else {
 		$("#featured").hide();
 	}
@@ -62,6 +85,10 @@ function agregarProductos(productos) {
 						</article>";
 		$("#productos").append(producto);
 	}	
+	
+	//Seleccionar los anchor que tienen una img adentro 
+	//$("a:has(img)").slimbox();
+	
 }
 
 function existenMasProductos(haymas) {

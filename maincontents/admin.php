@@ -35,7 +35,7 @@
 						Tags: <input name="tags" type="text" size="30" tabindex="6"><br/>
 						Categor&iacute;a: <select id='list' name="list" tabindex="7" ></select>
 						<br/>
-						<input type="submit" value="Agregar" tabindex="10"/>	
+						<input type="image" alt="Agregar" src="templates/template2/images/agregarbtn.png" tabindex="10"/>	
 					</form>
 				</div>
 				<div id="resultAP" class="resultado"></div>
@@ -113,7 +113,7 @@
 							Nombre: <input name="nombre" type="text" size="30" tabindex="1"><br/>
 							Descripci&oacute;n: <input name="descripcion" type="text" size="30" tabindex="2"><br/>
 							<br/>
-						<input type="submit" value="Agregar" tabindex="10"/>	
+						<input type="image" alt="Agregar" src="templates/template2/images/agregarbtn.png" tabindex="10"/>	
 						</form>
 					</div>
 					<div id="resultAC" class="resultado"></div>

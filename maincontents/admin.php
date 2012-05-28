@@ -171,9 +171,22 @@
 				Configurar Menú Principal
 			</h3>
 			
-			<div id="divC" class="none">
-					ccccccccc
+			<div id="accCon" class="none">
+				<h3 class="link submenu" id="menuConfigurarConfiguracion">
+						Configuracion
+				</h3>
+				<div id="modificarConf" class="none">
+					<div id="erroresAgregarCat">
+					</div>
+					<form id="agregarCatForm" method="post" action="">
+						Nombre: <input name="nombre" type="text" size="30" tabindex="1"><br/>
+						Descripci&oacute;n: <input name="descripcion" type="text" size="30" tabindex="2"><br/>
+						<br/>
+					<input type="submit" value="Agregar" tabindex="10"/>	
+					</form>
 				</div>
+				<div id="resultAC" class="resultado"></div>
+			</div>
 				
 			<h3 class="menuAdmin link" id="menuBackup">
 				Realizar backup de archivos y datos

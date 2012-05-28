@@ -266,8 +266,13 @@ function limpiarResultados(){
 
 
 function menuConfigurar(){
-	$("#agregarC").toggle("fast");
-	limpiarResultados();
+	$("#accCon").toggle('fast');
+	
+	$("#agregarC").hide();
+	$("#modificarC").hide();
+	$("#agregarP").hide();
+	$("#modificarP").hide();
+	$("#acciones").hide();
 }
 
 function menuBackup(){

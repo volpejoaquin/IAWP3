@@ -37,6 +37,13 @@ $(document).ready(function() {
 	
 	$("#botonGuardarConf").click(guardarConfiguracion);
 	
+	//Carga configuracion
+	$.getJSON('_lib/configuracion.php', function(data) {
+		$("#limite option[value="+data.limit+"]").attr("selected",true);
+		$("#ver_destacado").attr("checked",data.destacado);
+	});
+	
+	
 	//Validar el formulario de agregar producto
 	$('#agregarForm').validate({
 		debug: true,
@@ -286,12 +293,13 @@ function menuConfigurarConf(){
 }
 
 function guardarConfiguracion() {
-	console.log("sarasaaaa");
-	$.post('_lib/configuracion.php', $("#modificarConfForm").serialize(), function(data) {
-		//$('#agregarC').toggle('fast');
-		//$('#modificarConfForm').get(0).reset();
-		console.log("sarasa");
-		$('#resultMC').html(data);
+	console.log($("#orden").val());
+	console.log($("#ver_destacado").is(':checked'));
+	console.log($("#limite").val());
+	console.log('_lib/configuracion.php?orden='+$("#orden").val()+'&ver_destacado='+$("#ver_destacado").is(':checked')+'');
+	$.getJSON('_lib/configuracion.php?orden='+$("#orden").val()+'&ver_destacado='+$("#ver_destacado").is(':checked')+'', function(data) {
+		$("#limite option[value="+data.limit+"]").attr("selected",true);
+		$("#ver_destacado").attr("checked",data.destacado);
 	});
 }
 

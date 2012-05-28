@@ -178,34 +178,51 @@
 				<div id="modificarConf" class="">
 					<div id="erroresModificarConf">
 					</div>
-					<form id="modificarConfForm" method="post" action="">
-						<table class="sinBorde">
-							<tr>
-								<td>
-								Ver destacado:
-								</td>
-								<td>
-								<input type="checkbox" name="ver_destacado" value="destacado"><br>
-								</td>
-							</tr>
-							<tr>
-								<td>
-								Ordenar productos por:
-								</td>
-								<td>
-								<select name="orden">
-									<option value="ult">Ultimo agregado</option>
-									<option value="masV">Mas visto</option>
-								</select>
-								</td>
-							</tr>
-							<tr>
-								<td colspan="2" class="center">
-									<input id="botonGuardarConf" src="templates/template2/images/guardarbtn.png" alt="Entrar" type="image">
-								</td>
-							</tr>
-						</table>
-					</form>
+					<table class="sinBorde">
+						<tr>
+							<td>
+							Ver destacado:
+							</td>
+							<td>
+							<input type="checkbox" id="ver_destacado" value="destacado"><br>
+							</td>
+						</tr>
+						<tr>
+							<td>
+							Ordenar productos por:
+							</td>
+							<td>
+							<select id="orden">
+								<option value="ult">Ultimo agregado</option>
+								<option value="masV">Mas visto</option>
+							</select>
+							</td>
+						</tr>
+						<tr>
+							<td>
+							Limite de lista de productos
+							</td>
+							<td>
+							<select id="limite">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+							</select>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" class="center">
+								<input id="botonGuardarConf" src="templates/template2/images/guardarbtn.png" alt="Entrar" type="image">
+							</td>
+						</tr>
+					</table>
 				</div>
 				<div id="resultMC" class="resultado">aad</div>
 			</div>

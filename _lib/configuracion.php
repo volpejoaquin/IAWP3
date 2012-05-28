@@ -8,10 +8,10 @@ try {
 
 	session_start();
 	if (isset($_SESSION['logueado'])) {	
-		if(isset($POST['ver_destacado']) && isset($POST['orden']))
+		if(isset($_GET['ver_destacado']) && isset($_GET['orden']))
 		{
-			
-			$confs = $db->prepare("UPDATE configuracion SET ver_destacado=".$POST['ver_destacado'].";");
+			$confs = $db->prepare("UPDATE configuracion SET ver_destacado='".$_GET['ver_destacado']."';");
+			$confs->execute();
 		}
 	}
 

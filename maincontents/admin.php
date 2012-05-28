@@ -171,21 +171,43 @@
 				Configurar Menú Principal
 			</h3>
 			
-			<div id="accCon" class="none">
+			<div id="accCon" class="">
 				<h3 class="link submenu" id="menuConfigurarConfiguracion">
 						Configuracion
 				</h3>
-				<div id="modificarConf" class="none">
-					<div id="erroresAgregarCat">
+				<div id="modificarConf" class="">
+					<div id="erroresModificarConf">
 					</div>
-					<form id="agregarCatForm" method="post" action="">
-						Nombre: <input name="nombre" type="text" size="30" tabindex="1"><br/>
-						Descripci&oacute;n: <input name="descripcion" type="text" size="30" tabindex="2"><br/>
-						<br/>
-					<input type="submit" value="Agregar" tabindex="10"/>	
+					<form id="modificarConfForm" method="post" action="">
+						<table class="sinBorde">
+							<tr>
+								<td>
+								Ver destacado:
+								</td>
+								<td>
+								<input type="checkbox" name="ver_destacado" value="destacado"><br>
+								</td>
+							</tr>
+							<tr>
+								<td>
+								Ordenar productos por:
+								</td>
+								<td>
+								<select name="orden">
+									<option value="ult">Ultimo agregado</option>
+									<option value="masV">Mas visto</option>
+								</select>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2" class="center">
+									<input id="botonGuardarConf" src="templates/template2/images/guardarbtn.png" alt="Entrar" type="image">
+								</td>
+							</tr>
+						</table>
 					</form>
 				</div>
-				<div id="resultAC" class="resultado"></div>
+				<div id="resultMC" class="resultado">aad</div>
 			</div>
 				
 			<h3 class="menuAdmin link" id="menuBackup">

@@ -32,7 +32,10 @@ $(document).ready(function() {
 	$("#menuAgregarCategorias").click(menuAgregarCat);
 	$("#menuModificarCategorias").click(menuModificarCat);
 	$("#menuConfigurar").click(menuConfigurar);
+	$("#menuConfigurarConfiguracion").click(menuConfigurarConf);
 	$("#menuBackup").click(menuBackup);
+	
+	$("#botonGuardarConf").click(guardarConfiguracion);
 	
 	//Validar el formulario de agregar producto
 	$('#agregarForm').validate({
@@ -174,18 +177,18 @@ $(document).ready(function() {
 		
 		//Boton de login
 		$("#botonLogin").click(function() {
-		var url = '_lib/login.php?user='+$("#usuario").val()+'&password='+$("#password").val()+'';
-		
-		$.getJSON(url, function(data) {
-			var resp = data.respuesta;
-			if (resp == false) {
-				$("#error").html(data.msj);
-				$("#error").show();
-			} else {
-				window.location.href = "index.php?mc=Admin";
-			}
-		});	
-	});
+			var url = '_lib/login.php?user='+$("#usuario").val()+'&password='+$("#password").val()+'';
+			
+			$.getJSON(url, function(data) {
+				var resp = data.respuesta;
+				if (resp == false) {
+					$("#error").html(data.msj);
+					$("#error").show();
+				} else {
+					window.location.href = "index.php?mc=Admin";
+				}
+			});	
+		});
 
 });//fin document.ready
 
@@ -198,6 +201,7 @@ function menuProductos(){
 	$("#agregarC").hide();
 	$("#modificarC").hide();
 	$("#accCat").hide();
+	$("#accCon").hide();
 	limpiarResultados();
 	
 }
@@ -211,6 +215,7 @@ function menuCateg(){
 	$("#agregarP").hide();
 	$("#modificarP").hide();
 	$("#acciones").hide();
+	$("#accCon").hide();
 	limpiarResultados();
 }
 
@@ -268,12 +273,28 @@ function limpiarResultados(){
 function menuConfigurar(){
 	$("#accCon").toggle('fast');
 	
+	$("#accCat").hide();
 	$("#agregarC").hide();
 	$("#modificarC").hide();
 	$("#agregarP").hide();
 	$("#modificarP").hide();
 	$("#acciones").hide();
 }
+
+function menuConfigurarConf(){
+	$("#modificarConf").toggle('fast');
+}
+
+function guardarConfiguracion() {
+	console.log("sarasaaaa");
+	$.post('_lib/configuracion.php', $("#modificarConfForm").serialize(), function(data) {
+		//$('#agregarC').toggle('fast');
+		//$('#modificarConfForm').get(0).reset();
+		console.log("sarasa");
+		$('#resultMC').html(data);
+	});
+}
+
 
 function menuBackup(){
 	$("#modificarC").toggle("fast");

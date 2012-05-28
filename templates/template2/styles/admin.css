@@ -24,8 +24,6 @@
 	padding-left:20pt;	
 }
 
-
-
 #agregarP {margin-top:10pt;}
 #modificarP {margin-top:10pt;}
 #agregarC {margin-top:10pt;}
@@ -37,7 +35,19 @@ table td { padding: 5px;	 border: solid #000 1px;}
 
 table#tablaCategorias { border-collapse: collapse; }
 
+.sinBorde  tr td { 
+	border-style: hidden !Important;
+}
 
+.center {
+	text-align:center;
+}
+
+.boton {
+	border-style:none;
+	background:url(images/login.png);
+	width:160px; height:26px;
+}
 
 .resultado{
 	 border-bottom: solid 1px; border-color:#ddd #fff; 

@@ -6,6 +6,15 @@ try {
     die($e);
 }
 
+	session_start();
+	if (isset($_SESSION['logueado'])) {	
+		if(isset($POST['ver_destacado']) && isset($POST['orden']))
+		{
+			
+			$confs = $db->prepare("UPDATE configuracion SET ver_destacado=".$POST['ver_destacado'].";");
+		}
+	}
+
 	$confs = $db->prepare("SELECT * FROM configuracion  WHERE id='0';");
 	$confs->execute();
 	

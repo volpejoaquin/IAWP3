@@ -206,3 +206,4 @@ body {background: #fff url(images/bodybg.jpg) repeat-x; font-family:Verdana, Gen
 .post ul li {display:block; background:url(images/ulli.png) 0 6px no-repeat; padding-left:25px; margin-bottom:10px;}
 .post h4 {font:bold 1.4em "Trebuchet MS", Arial, Helvetica, sans-serif; color:#000; margin-bottom:10px;}
 .post h2 {display:block; font:1.8em "Trebuchet MS", Arial, Helvetica, sans-serif; color:#000;}
+.post a:hover {color:#000; text-decoration:underline;}

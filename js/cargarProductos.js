@@ -142,6 +142,8 @@ function verMasOyente(catId,ord) {
 		//Proximos 5 
 		inic+= limit;
 		
+		//Si hay un search hay que mandarle tmb el search! solo los productos que cumplan con esa condicion
+		
 		if (catId != undefined) {
 			if (ord != undefined) {
 				url = '_lib/productos.php?id='+catId+'&limit='+limit+'&inic='+inic+'&ord='+parametros["ord"];

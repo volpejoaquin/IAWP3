@@ -6,10 +6,28 @@ try {
     die($e);
 }
 
-	$response= array("limit"=>"5","destacado"=>"true");
+	session_start();
+	if (isset($_SESSION['logueado'])) {	
+		if(isset($_GET['ver_destacado']) && isset($_GET['orden']))
+		{
+			$confs = $db->prepare("UPDATE configuracion SET ver_destacado='".$_GET['ver_destacado']."';");
+			$confs->execute();
+		}
+	}
+
+	$confs = $db->prepare("SELECT * FROM configuracion  WHERE id='0';");
+	$confs->execute();
+	
+	$i = 0;
+	foreach ($confs as $conf){
+		$response[$i]=    array("limit"=>$conf["num_limit"],
+									"destacado"=>$conf["ver_destacado"]);								 
+	}
+	
+	//$response= array("limit"=>"5","destacado"=>"true");
 
 	//echo $response;
-	echo json_encode($response);
+	echo json_encode($response[0]);
 	flush();
 
 }

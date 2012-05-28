@@ -32,7 +32,17 @@ $(document).ready(function() {
 	$("#menuAgregarCategorias").click(menuAgregarCat);
 	$("#menuModificarCategorias").click(menuModificarCat);
 	$("#menuConfigurar").click(menuConfigurar);
+	$("#menuConfigurarConfiguracion").click(menuConfigurarConf);
 	$("#menuBackup").click(menuBackup);
+	
+	$("#botonGuardarConf").click(guardarConfiguracion);
+	
+	//Carga configuracion
+	$.getJSON('_lib/configuracion.php', function(data) {
+		$("#limite option[value="+data.limit+"]").attr("selected",true);
+		$("#ver_destacado").attr("checked",data.destacado);
+	});
+	
 	
 	//Validar el formulario de agregar producto
 	$('#agregarForm').validate({
@@ -174,18 +184,18 @@ $(document).ready(function() {
 		
 		//Boton de login
 		$("#botonLogin").click(function() {
-		var url = '_lib/login.php?user='+$("#usuario").val()+'&password='+$("#password").val()+'';
-		
-		$.getJSON(url, function(data) {
-			var resp = data.respuesta;
-			if (resp == false) {
-				$("#error").html(data.msj);
-				$("#error").show();
-			} else {
-				window.location.href = "index.php?mc=Admin";
-			}
-		});	
-	});
+			var url = '_lib/login.php?user='+$("#usuario").val()+'&password='+$("#password").val()+'';
+			
+			$.getJSON(url, function(data) {
+				var resp = data.respuesta;
+				if (resp == false) {
+					$("#error").html(data.msj);
+					$("#error").show();
+				} else {
+					window.location.href = "index.php?mc=Admin";
+				}
+			});	
+		});
 
 });//fin document.ready
 
@@ -198,6 +208,7 @@ function menuProductos(){
 	$("#agregarC").hide();
 	$("#modificarC").hide();
 	$("#accCat").hide();
+	$("#accCon").hide();
 	limpiarResultados();
 	
 }
@@ -211,6 +222,7 @@ function menuCateg(){
 	$("#agregarP").hide();
 	$("#modificarP").hide();
 	$("#acciones").hide();
+	$("#accCon").hide();
 	limpiarResultados();
 }
 
@@ -266,9 +278,31 @@ function limpiarResultados(){
 
 
 function menuConfigurar(){
-	$("#agregarC").toggle("fast");
-	limpiarResultados();
+	$("#accCon").toggle('fast');
+	
+	$("#accCat").hide();
+	$("#agregarC").hide();
+	$("#modificarC").hide();
+	$("#agregarP").hide();
+	$("#modificarP").hide();
+	$("#acciones").hide();
 }
+
+function menuConfigurarConf(){
+	$("#modificarConf").toggle('fast');
+}
+
+function guardarConfiguracion() {
+	console.log($("#orden").val());
+	console.log($("#ver_destacado").is(':checked'));
+	console.log($("#limite").val());
+	console.log('_lib/configuracion.php?orden='+$("#orden").val()+'&ver_destacado='+$("#ver_destacado").is(':checked')+'');
+	$.getJSON('_lib/configuracion.php?orden='+$("#orden").val()+'&ver_destacado='+$("#ver_destacado").is(':checked')+'', function(data) {
+		$("#limite option[value="+data.limit+"]").attr("selected",true);
+		$("#ver_destacado").attr("checked",data.destacado);
+	});
+}
+
 
 function menuBackup(){
 	$("#modificarC").toggle("fast");

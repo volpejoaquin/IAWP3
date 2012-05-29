@@ -39,8 +39,13 @@ $(document).ready(function() {
 	
 	//Carga configuracion
 	$.getJSON('_lib/configuracion.php', function(data) {
-		$("#limite option[value="+data.limit+"]").attr("selected",true);
-		$("#ver_destacado").attr("checked",data.destacado);
+		if (data.destacado == "false") {
+			$("#ver_destacado").attr("checked",false);
+		}
+		else {
+			$("#ver_destacado").attr("checked",true);
+		}
+		$("#limite option[value="+data.limit+"]").attr("selected",true);			
 	});
 	
 	
@@ -293,13 +298,15 @@ function menuConfigurarConf(){
 }
 
 function guardarConfiguracion() {
-	console.log($("#orden").val());
-	console.log($("#ver_destacado").is(':checked'));
-	console.log($("#limite").val());
-	console.log('_lib/configuracion.php?orden='+$("#orden").val()+'&ver_destacado='+$("#ver_destacado").is(':checked')+'');
-	$.getJSON('_lib/configuracion.php?orden='+$("#orden").val()+'&ver_destacado='+$("#ver_destacado").is(':checked')+'', function(data) {
-		$("#limite option[value="+data.limit+"]").attr("selected",true);
-		$("#ver_destacado").attr("checked",data.destacado);
+	$.getJSON('_lib/configuracion.php?ver_destacado='+$("#ver_destacado").is(':checked')+'&limit='+$("#limite").val(), function(data) {
+		if (data.destacado == "false") {
+			$("#ver_destacado").attr("checked",false);
+		}
+		else {
+			$("#ver_destacado").attr("checked",true);
+		}
+		$("#limite option[value="+data.limit+"]").attr("selected",true);	
+		$("#resultMC").html("La configuracion se guardo exitosamente");
 	});
 }
 

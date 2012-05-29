@@ -5,7 +5,6 @@ $(document).ready(function() {
 		limit = data.limit;
 		verdestacado = data.destacado;
 		
-		
 		if (verdestacado == "true") {
 			$("#featured").show();
 		} else {

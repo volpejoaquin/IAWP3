@@ -8,10 +8,12 @@ try {
 
 	session_start();
 	if (isset($_SESSION['logueado'])) {	
-		if(isset($_GET['ver_destacado']) && isset($_GET['orden']))
+		if(isset($_GET['ver_destacado']) && isset($_GET['limit']))
 		{
-			$confs = $db->prepare("UPDATE configuracion SET ver_destacado='".$_GET['ver_destacado']."';");
-			$confs->execute();
+			$confs1 = $db->prepare("UPDATE configuracion SET ver_destacado='".$_GET['ver_destacado']."';");
+			$confs1->execute();
+			$confs2 = $db->prepare("UPDATE configuracion SET num_limit='".$_GET['limit']."';");
+			$confs2->execute();
 		}
 	}
 
@@ -21,7 +23,8 @@ try {
 	$i = 0;
 	foreach ($confs as $conf){
 		$response[$i]=    array("limit"=>$conf["num_limit"],
-									"destacado"=>$conf["ver_destacado"]);								 
+								"destacado"=>$conf["ver_destacado"],
+								"orden"=>$conf["ord"]);								 
 	}
 	
 	//$response= array("limit"=>"5","destacado"=>"true");

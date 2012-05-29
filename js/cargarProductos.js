@@ -137,7 +137,6 @@ function mostrarProductos(catId,ord) {
 		var haymas = data.masproductos;
 		existenMasProductos(haymas);
 		
-		console.log("mostrar productos");
 		verMasOyente(catId,ord);
 	});	
 	

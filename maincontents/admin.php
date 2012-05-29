@@ -171,7 +171,7 @@
 				Configurar Menú Principal
 			</h3>
 			
-			<div id="accCon" class="">
+			<div id="accCon" class="none">
 				<h3 class="link submenu" id="menuConfigurarConfiguracion">
 						Configuracion
 				</h3>
@@ -185,17 +185,6 @@
 							</td>
 							<td>
 							<input type="checkbox" id="ver_destacado" value="destacado"><br>
-							</td>
-						</tr>
-						<tr>
-							<td>
-							Ordenar productos por:
-							</td>
-							<td>
-							<select id="orden">
-								<option value="ult">Ultimo agregado</option>
-								<option value="masV">Mas visto</option>
-							</select>
 							</td>
 						</tr>
 						<tr>
@@ -224,7 +213,7 @@
 						</tr>
 					</table>
 				</div>
-				<div id="resultMC" class="resultado">aad</div>
+				<div id="resultMC" class="resultado"></div>
 			</div>
 				
 			<h3 class="menuAdmin link" id="menuBackup">

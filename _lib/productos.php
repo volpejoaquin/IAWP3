@@ -55,6 +55,7 @@ else {
 							  " WHERE (p.nombre LIKE '%".$search."%') OR (c.nombre LIKE '%".$search."%') OR (t.tag LIKE '%".$search."%') ".
 							  " AND p.id_categoria=c.id AND t.id_producto=p.id ".
 							  " ORDER BY ".$ord." DESC LIMIT ".$inic.",".$limit.";");			
+
 							  
 	}
 	else {

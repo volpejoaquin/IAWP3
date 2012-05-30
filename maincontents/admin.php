@@ -240,14 +240,7 @@
 				</div>
 				<div id="resultMC" class="resultado"></div>
 			</div>
-				
-			<h3 class="menuAdmin link" id="menuBackup">
-				Realizar backup de archivos y datos
-			</h3>
-				<div id="divD" class="none">
-					dddddddd
-				</div>
-			
+	
 			
 		
 		<?php

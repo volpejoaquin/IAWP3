@@ -543,7 +543,9 @@ function mostrarTablaImagenes(){
 			
 			var id = data[i].id;
 			var nombre = data[i].nombre;
-			var allPaths = 
+			var allPaths = getAllImgPaths(id);
+			
+				
 						
 			var fila = "<tr align='center'> "+
 							"<td>"+id+"</td>"+

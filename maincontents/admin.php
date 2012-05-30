@@ -95,6 +95,31 @@
 					</div>
 				</div>
 				</li>
+				<li>
+				<h3 class="link submenu" id="menuImagenes">
+					Agregar/Eliminar Im&aacute;genes
+				</h3>
+				<div id="agregarI" class="none">
+					<div id="imgUpload">
+						
+					</div>
+					<div id="tablaImagenes">
+							<table id="tableImg" class="viewTable" cellspacing="2" cellpadding="0" border="0" >
+								<thead id="theadImagenes">
+									<tr>
+									<th class="tdheader">Id</th>
+									<th class="tdheader">Nombre</th>
+									<th class="tdheader">Im&aacute;genes</th>
+									<th></th>
+									<th></th>	
+									</tr>							
+								</thead>
+								<tbody id="tbodyImagenes">
+								</tbody>
+							</table>
+					</div>
+				</div>
+				</li>
 				<div class="resultado"></div>
 			</ul>
 			</div>

@@ -19,6 +19,7 @@ $(document).ready(function() {
 	$("#modificarP").hide();
 	$("#agregarC").hide();
 	$("#modificarC").hide();
+	$("#agregarI").hide();
 	
 	$("#dialogModificarProd").hide();
 	$("#dialogModificarCat").hide();
@@ -31,6 +32,7 @@ $(document).ready(function() {
 	$("#menuModificar").click(menuModificarProd);
 	$("#menuAgregarCategorias").click(menuAgregarCat);
 	$("#menuModificarCategorias").click(menuModificarCat);
+	$("#menuImagenes").click(menuImagenes);
 	$("#menuConfigurar").click(menuConfigurar);
 	$("#menuConfigurarConfiguracion").click(menuConfigurarConf);
 	$("#menuBackup").click(menuBackup);
@@ -234,6 +236,7 @@ function menuCateg(){
 //Muestra los componentes para agregar un prod
 function menuAgregarProd(){
 	$("#agregarP").toggle("fast");
+	$("#agregarI").hide();
 	$("#modificarP").hide();
 	cargarCategorias();
 	limpiarResultados();
@@ -242,6 +245,7 @@ function menuAgregarProd(){
 function menuModificarProd(){
 	$("#modificarP").toggle("fast");
 	$("#agregarP").hide();
+	$("#agregarI").hide();
 	cargarCategorias();
 	limpiarResultados();
 	
@@ -250,6 +254,21 @@ function menuModificarProd(){
 	if(isHidden!="true")
 		//Hace la consulta a la bd y carga los productos a la tabla
 		mostrarTablaProductos();
+	
+}
+
+function menuImagenes(){
+	$("#agregarI").toggle("fast");
+	$("#agregarP").hide();
+	$("#modificarP").hide();
+	cargarCategorias();
+	limpiarResultados();
+	
+	var isHidden = $('#agregarI').is(':hidden');
+	
+	if(isHidden!="true")
+		//Hace la consulta a la bd y carga los productos a la tabla
+		mostrarTablaImagenes();
 	
 }
 
@@ -272,6 +291,8 @@ function menuModificarCat(){
 		//Hace la consulta a la bd y carga los productos a la tabla
 		mostrarTablaCategorias();
 }
+
+
 
 
 //Borra el contenido de los divs que muestran los resultados de insertar
@@ -508,6 +529,42 @@ function mostrarTablaCategorias(){
 	
 	});
 }//end mostrarTablaCategorias
+
+
+function mostrarTablaImagenes(){
+	cargarArregloImg();
+	
+	$("tbodyImagenes").html("");
+	
+	//Lleno la tabla 
+	$.getJSON('_lib/tablaProductos.php', function(data) {
+		//Una fila por cada producto nuevo
+		for(i=0;i<data.length;i++){
+			
+			var id = data[i].id;
+			var nombre = data[i].nombre;
+			var allPaths = 
+						
+			var fila = "<tr align='center'> "+
+							"<td>"+id+"</td>"+
+							"<td> <span class='spanProducto'>"+nombre+"</span></td>"+
+							"<td> <span class='spanProducto'>"+desc+"</span> </td>"+
+							"<td> <span class='spanProducto'>"+precio+"</span> </td>"+
+							"<td> <span class='spanProducto'>"+stock+"</span> </td>"+			
+							"<td> <span class='spanProducto'>"+cat+"</span></td>"+
+							"<td> <span class='spanProducto'>"+marca+"</span> </td>"+
+							"<td><img class='link editProducto' src='img/editIcon.png' /> </td>"+
+							"<td><img class='link deleteProducto' src='img/deleteIcon.png' /></td>"+
+					   "</tr>";
+			
+			
+			$("#tbodyImagenes").append(fila);
+		}
+						
+		});
+}
+
+
 	
 //Inicializa el dialog de modificar productos
 function dialogoModif (){

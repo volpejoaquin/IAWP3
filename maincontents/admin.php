@@ -126,6 +126,15 @@
 								</tbody>
 							</table>
 					</div>
+					<div id="dialogAgregarImg">
+						<label for="file">
+							Archivo a subir: 
+							<input type="file" name='file' id="fileInput"/>
+						</label>
+					</div>
+					<div id="dialogElimImg">
+						
+					</div>
 				</div>
 				</li>
 				<div class="resultado"></div>

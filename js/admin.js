@@ -25,6 +25,8 @@ $(document).ready(function() {
 	$("#dialogModificarCat").hide();
 	$("#dialogElim").hide();
 	$("#dialogElimCat").hide();
+	$("#dialogAgregarImg").hide();
+	$("#dialogElimImg").hide();
 
 	$("#menuProductos").click(menuProductos);
 	$("#menuCateg").click(menuCateg);
@@ -592,8 +594,11 @@ function mostrarTablaImagenes(){
 		var id;
 		id=$(this).parent().parent().children(':first-child').text();
 		nombre=$(this).parent().parent().children(':first-child').next().text();
-		
 		alert("Quiere agregarle una imagen al prod "+id);
+		//inicializo el dialog
+		dialogAgregarImg(id);
+		
+		
 		
 	});
 	
@@ -902,3 +907,42 @@ function dialogoElimCat(id){
 		});
 }//end dialogElimCat
 
+
+//Inicializa el dialog de eliminar categoria
+function dialogAgregarImg(id){
+	
+	$("#dialogElimCat").dialog({
+			autoOpen: false,
+			height: 200,
+			width: 250,
+			modal: true,
+			buttons: {
+				"Eliminar categoría": function() {
+				$.post("_lib/agregarImg.php", //PHP file to send POST to
+	                { 
+	                	'id' : id,
+	                	'file': $("[name='file']")
+                    }, //POST fields to send
+	                function(returned) { //What to do if the POST finishes. 'returned' is the value recieved back from the script.
+	                        if (returned == 'Exito') {
+	                                //si PHP retorna 'Exito'
+                                    alert('¡Se completó la eliminación con éxito!'); 
+                                                                        
+                                    //Refrescar la tabla
+									mostrarTablaCategorias();
+									$("#dialogElimCat").dialog( "close" );                                 
+	                        } else {
+	                                alert('Ha ocurrido algun error en el procesamiento de los datos: '+returned);
+	                              	 $("#dialogElimCat").dialog( "close" );
+	                               }
+	                    });
+				},
+				"Cancelar": function() {
+					
+					$("#dialogElimCat").dialog( "close" );
+				}
+			},
+			close: function() {
+			}
+		});
+}//end dialogAgregarImg

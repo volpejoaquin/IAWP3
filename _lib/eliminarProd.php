@@ -16,6 +16,10 @@ try {
     "DELETE FROM tags WHERE id_producto=?");
 	$qry->execute(array($_POST['id']));
 
+	//Borro la carpeta de imagenes asociadas al producto
+	include 'borrarDir.php';
+	
+	
 //echo $response;
   echo "Exito";
   flush();

@@ -1,6 +1,7 @@
 ﻿limit=8;
 inic=0;
 verdestacado = "true";
+pathImagenes= new Array();
 
 //Menu current
 $(document).ready(function() {
@@ -14,15 +15,34 @@ $(document).ready(function() {
 		$("#menuInicio").addClass("current");		
 	}	
 	
+	cargarArregloImg();
 	
-			
+	$("[name='imgProdDes']").live('click',function(){
+		
+		var strid=$("[name='pDestacadoNom']").attr("id");
+		var id=strid.substr(5);
+		//alert("prod clickeado "+id);
+		
+		$.slimbox(getAllImg(id),0,
+							{overlayOpacity: 0.6,
+							loop:false,
+							initialWidth: 800,
+							initialHeight: 600,
+					        captionAnimationDuration: 1,
+					        imageFadeDuration: 1,
+					        counterText: "Imagen {x} de {y} ",
+					        closeKeys: [27, 88],
+					        previousKeys: [37, 80],
+					        nextKeys: [39, 83]
+					        });
+	});
 	
 	
 });//end of document.ready
 
 function agregarProductoDestacado(destacado, producto) {
 	if (verdestacado == "true" || producto) {
-		$("[name='imgProdDes']").attr("src","productos/producto"+destacado.id+".jpg");
+		$("[name='imgProdDes']").attr("src",getPrimeraImg(destacado.id));
 		$("[name='imgProdDes']").attr("id","iprod"+destacado.id+"");
 		$("[name='pDestacadoNom']").html(destacado.nombre);
 		$("[name='pDestacadoNom']").attr("id","iprod"+destacado.id+"");
@@ -34,22 +54,6 @@ function agregarProductoDestacado(destacado, producto) {
 		$("#nroVisita").html(destacado.nro_visitas);
 		
 		$("#featured").show();
-		
-		//Agrego slimbox a las imagenes
-		$("[name='imgProdDes']").slimbox({overlayOpacity: 0.6,
-						loop:true,
-						initialWidth: 500,
-						initialHeight: 500,
-				        captionAnimationDuration: 1,
-				        imageFadeDuration: 1,
-				        counterText: "Imagen {x} de {y} ",
-				        closeKeys: [27, 88],
-				        previousKeys: [37, 80],
-				        nextKeys: [39, 83]
-				        },
-					function(el) {return [el.src, destacado.nombre];},
-					function(el) {return true;}		
-		);
 		
 		
 	} else {
@@ -68,27 +72,30 @@ function agregarProductos(productos) {
 		catNombre = productos[i].nombrecat;
 		nrovis = productos[i].nro_visitas;
 
-		producto = "<article class='post'>\
-							<div class='ftimg'>\
-								<a href='index.php?mc=Inicio&idProd="+id+"'><img id='iprod"+id+"' class='link' src='productos/producto"+id+".jpg' alt='img1' width='204' height='128'></a>\
-							</div>\
-							<header>\
-								<h3 id='iprod"+id+"' class='link'>"+nombre+"</h3>\
-							</header>\
-							<p class='posttext pComunDesc'>"+descripcion+"</p>\
-							<footer>\
-								<span class='comments' title='Marca'>"+marca+"</span>\
-								<span class='comments precio' title='Precio'>"+precio+"</span>\
-								<span class='comments visitas' title='Numero de visitas'>"+nrovis+"</span>\
-								<span class='comments' id='icat"+catId+"' title='Categoria'><a class='categoria' href='http://localhost:8080/IAW-Proy3/index.php?mc=Categorías&idCat="+catId+"'>"+catNombre+"</a></span>\
-							</footer>\
-						</article>";
+		producto = "<article class='post'> "+
+						"	<div class='ftimg'> "+
+						"		<a href='index.php?mc=Inicio&idProd="+id+"'> "+
+						"          <img id='iprod"+id+"' class='link' src='"+getPrimeraImg(id)+"' alt='img1' width='204' height='128'> "+
+						"        </a> "+
+						"	</div> "+
+						"	<header> "+
+						"		<h3 id='iprod"+id+"' class='link'>"+nombre+"</h3>"+
+						"	</header> "+
+						"	<p class='posttext pComunDesc'>"+descripcion+"</p>"+
+						"	<footer>"+
+						"		<span class='comments' title='Marca'>"+marca+"</span>"+
+						"		<span class='comments precio' title='Precio'>"+precio+"</span>"+
+						"		<span class='comments visitas' title='Numero de visitas'>"+nrovis+"</span>"+
+						"		<span class='comments' id='icat"+catId+"' title='Categoria'><a class='categoria' href='http://localhost:8080/IAW-Proy3/index.php?mc=Categorías&idCat="+catId+"'>"+catNombre+"</a></span>"+
+						"	</footer> "+
+					" </article> ";
 		$("#productos").append(producto);
 	}	
 	
 	//Seleccionar los anchor que tienen una img adentro 
 	//$("a:has(img)").slimbox();
 	
+	//$(".hiddenImg").hide();
 }
 
 function existenMasProductos(haymas) {
@@ -206,6 +213,45 @@ function verMasOyente(catId,ord) {
 			
 		
 	});
+}
+
+
+//Carga el arreglo de imagenes
+function cargarArregloImg(){
+	
+	//borro lo que tenia antes, nueva instancia
+	pathImagenes= new Array();
+	
+	url = '_lib/pathImg.php';
+	
+	$.getJSON(url, function(data) {
+	
+		for (i=0;i<data.length;i++)
+		{
+			
+			if(data[i]== undefined )
+			{
+				alert("Data[i] undefined para i="+i);	
+			}
+				var	idProd= data[i].id;
+				var	arregloImg= data[i].img;
+					
+				pathImagenes[idProd]=arregloImg;
+			
+		}	
+				
+	});//end getJSON
+		
+}
+
+//Devuelve la primera img de un producto (la que se muestra)
+function getPrimeraImg(idProd){
+	return pathImagenes[idProd][0][0];
+}
+
+//Devuelve todas las img disponibles del producto junto a su descripcion (las que mostrara slimbox)
+function getAllImg(idProd){
+	return pathImagenes[idProd];
 }
 
 

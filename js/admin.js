@@ -19,6 +19,7 @@ $(document).ready(function() {
 	$("#modificarP").hide();
 	$("#agregarC").hide();
 	$("#modificarC").hide();
+	$("#agregarI").hide();
 	
 	$("#dialogModificarProd").hide();
 	$("#dialogModificarCat").hide();
@@ -31,6 +32,7 @@ $(document).ready(function() {
 	$("#menuModificar").click(menuModificarProd);
 	$("#menuAgregarCategorias").click(menuAgregarCat);
 	$("#menuModificarCategorias").click(menuModificarCat);
+	$("#menuImagenes").click(menuImagenes);
 	$("#menuConfigurar").click(menuConfigurar);
 	$("#menuConfigurarConfiguracion").click(menuConfigurarConf);
 	$("#menuBackup").click(menuBackup);
@@ -202,6 +204,7 @@ $(document).ready(function() {
 			});	
 		});
 
+		
 });//fin document.ready
 
 
@@ -234,6 +237,7 @@ function menuCateg(){
 //Muestra los componentes para agregar un prod
 function menuAgregarProd(){
 	$("#agregarP").toggle("fast");
+	$("#agregarI").hide();
 	$("#modificarP").hide();
 	cargarCategorias();
 	limpiarResultados();
@@ -242,6 +246,7 @@ function menuAgregarProd(){
 function menuModificarProd(){
 	$("#modificarP").toggle("fast");
 	$("#agregarP").hide();
+	$("#agregarI").hide();
 	cargarCategorias();
 	limpiarResultados();
 	
@@ -250,6 +255,20 @@ function menuModificarProd(){
 	if(isHidden!="true")
 		//Hace la consulta a la bd y carga los productos a la tabla
 		mostrarTablaProductos();
+	
+}
+
+function menuImagenes(){
+	$("#agregarI").toggle("fast");
+	$("#agregarP").hide();
+	$("#modificarP").hide();
+	limpiarResultados();
+	
+	var isHidden = $('#agregarI').is(':hidden');
+	
+	if(isHidden!="true")
+		//Hace la consulta a la bd y carga los productos a la tabla
+		mostrarTablaImagenes();
 	
 }
 
@@ -272,6 +291,8 @@ function menuModificarCat(){
 		//Hace la consulta a la bd y carga los productos a la tabla
 		mostrarTablaCategorias();
 }
+
+
 
 
 //Borra el contenido de los divs que muestran los resultados de insertar
@@ -508,6 +529,106 @@ function mostrarTablaCategorias(){
 	
 	});
 }//end mostrarTablaCategorias
+
+
+//Refresca la tabla
+function mostrarTablaImagenes(){
+	
+	$("#tbodyImagenes").html("");
+	
+	
+	//Lleno la tabla 
+	$.ajax({
+			async:false,
+			url:'_lib/tablaProductos.php',
+			dataType: "json",
+			success: function(data) {
+		
+			var ids=new Array();
+			var nombres=new Array();
+			//Una fila por cada producto nuevo
+			for(i=0;i<data.length;i++){
+				var id = data[i].id;
+				var nombre = data[i].nombre;
+		
+			$.ajax({
+					async:false,
+					url:'_lib/imagenes.php?id='+id,
+					dataType: "json",
+					success: function(images) {
+					
+							var fila = "<tr align='center'> "+
+											"<td>"+id+"</td>"+
+											"<td> <span class='spanImg'>"+nombre+"</span></td>";
+							var strAux="";
+							for(j=0;j<images.length;j++){
+								if(j>0)
+									strAux+=", ";
+								
+								if(images[j]!="productos/noimage.png")
+									strAux+="<span class='link imageText'>"+images[j].substring(images[j].lastIndexOf("/")+1,images[j].length)+"</span>";			
+							}
+							fila+= "<td width='300'>"+strAux+"</td>";
+								
+								
+							fila+= "<td><img class='link agregarImg' src='img/addIcon.png' /> </td>"+
+								   "<td><img class='link deleteImg' src='img/deleteIcon.png' /></td>"+
+									   "</tr>";
+					
+						
+						$("#tbodyImagenes").append(fila);
+				
+				}
+			});//end JSON images
+		}//endfor
+		
+						
+	}});//endJSON tablaProd
+	
+	
+	
+	$(".agregarImg").live('click',function(){
+		
+		var id;
+		id=$(this).parent().parent().children(':first-child').text();
+		nombre=$(this).parent().parent().children(':first-child').next().text();
+		
+		alert("Quiere agregarle una imagen al prod "+id);
+		
+	});
+	
+	$(".deleteImg").live('click',function(){
+		var id;
+		id=$(this).parent().parent().children(':first-child').text();
+		nombre=$(this).parent().parent().children(':first-child').next().text();
+		
+		alert("Quiere borrarle una imagen al prod "+id);
+		
+	});
+	
+	//preview de la img al clickearla
+		$(".imageText").live('click',function(){
+		
+		id=$(this).parent().parent().children(':first-child').text();
+		file=$(this).text();
+		$.slimbox("productos/producto"+id+"/"+file,file,{overlayOpacity: 0.6,
+														loop:false,
+														initialWidth: 800,
+														initialHeight: 600,
+												        captionAnimationDuration: 1,
+												        imageFadeDuration: 1,
+												        counterText: "Imagen {x} de {y} ",
+												        closeKeys: [27, 88],
+												        previousKeys: [37, 80],
+												        nextKeys: [39, 83]
+												        });
+		
+	});
+	
+	
+}
+
+
 	
 //Inicializa el dialog de modificar productos
 function dialogoModif (){

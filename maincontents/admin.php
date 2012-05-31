@@ -1,4 +1,5 @@
 <script src="js/admin.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/slimbox2.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/jquery.validate.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/jquery-ui-1.8.20.custom.min.js" type="text/javascript" charset="utf-8"></script>
 <section id="main">
@@ -92,6 +93,38 @@
 								</tbody>
 							</table>
 						</div>
+					</div>
+				</div>
+				</li>
+				<div class="resultado"></div>
+				<li>
+				<h3 class="link submenu" id="menuImagenes">
+					Agregar/Eliminar Im&aacute;genes
+				</h3>
+				
+				<div id="agregarI" class="none">
+					<div id="optionsI">
+					<span>Haga click sobre el nombre de las im&aacute;genes para previsualizarlas.</span>
+					</div>
+					
+					
+					<div id="imgUpload">
+						
+					</div>
+					<div id="tablaImagenes">
+							<table id="tableImg" class="viewTable" cellspacing="2" cellpadding="0" border="0" >
+								<thead id="theadImagenes">
+									<tr>
+									<th class="tdheader">Id</th>
+									<th class="tdheader">Nombre</th>
+									<th class="tdheader">Im&aacute;genes</th>
+									<th></th>
+									<th></th>	
+									</tr>							
+								</thead>
+								<tbody id="tbodyImagenes">
+								</tbody>
+							</table>
 					</div>
 				</div>
 				</li>

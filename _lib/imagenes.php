@@ -17,7 +17,7 @@ if (glob($directory . "*.*") != false)
  
  foreach ($images as $image) {
      $path=substr($image, 3,strlen($image)-1);
-	 $response[$i++]=array($path);
+	 $response[$i++]=$path;
  } //arreglo con los paths de las imagenes
 
 }
@@ -25,7 +25,7 @@ else
 {//no tiene imagenes o no existe el directorio...
 
 if (file_exists($directory))
-	$response[$i]=array("productos/noimage.png");
+	$response[$i]="productos/noimage.png";
 
 //Si no existe el directorio, el arreglo response queda vacio.
  

@@ -204,6 +204,7 @@ $(document).ready(function() {
 			});	
 		});
 
+		
 });//fin document.ready
 
 
@@ -261,7 +262,6 @@ function menuImagenes(){
 	$("#agregarI").toggle("fast");
 	$("#agregarP").hide();
 	$("#modificarP").hide();
-	cargarCategorias();
 	limpiarResultados();
 	
 	var isHidden = $('#agregarI').is(':hidden');
@@ -531,39 +531,101 @@ function mostrarTablaCategorias(){
 }//end mostrarTablaCategorias
 
 
+//Refresca la tabla
 function mostrarTablaImagenes(){
-	cargarArregloImg();
 	
-	$("tbodyImagenes").html("");
+	$("#tbodyImagenes").html("");
+	
 	
 	//Lleno la tabla 
-	$.getJSON('_lib/tablaProductos.php', function(data) {
-		//Una fila por cada producto nuevo
-		for(i=0;i<data.length;i++){
-			
-			var id = data[i].id;
-			var nombre = data[i].nombre;
-			var allPaths = getAllImgPaths(id);
-			
+	$.ajax({
+			async:false,
+			url:'_lib/tablaProductos.php',
+			dataType: "json",
+			success: function(data) {
+		
+			var ids=new Array();
+			var nombres=new Array();
+			//Una fila por cada producto nuevo
+			for(i=0;i<data.length;i++){
+				var id = data[i].id;
+				var nombre = data[i].nombre;
+		
+			$.ajax({
+					async:false,
+					url:'_lib/imagenes.php?id='+id,
+					dataType: "json",
+					success: function(images) {
+					
+							var fila = "<tr align='center'> "+
+											"<td>"+id+"</td>"+
+											"<td> <span class='spanImg'>"+nombre+"</span></td>";
+							var strAux="";
+							for(j=0;j<images.length;j++){
+								if(j>0)
+									strAux+=", ";
+								
+								if(images[j]!="productos/noimage.png")
+									strAux+="<span class='link imageText'>"+images[j].substring(images[j].lastIndexOf("/")+1,images[j].length)+"</span>";			
+							}
+							fila+= "<td width='300'>"+strAux+"</td>";
+								
+								
+							fila+= "<td><img class='link agregarImg' src='img/addIcon.png' /> </td>"+
+								   "<td><img class='link deleteImg' src='img/deleteIcon.png' /></td>"+
+									   "</tr>";
+					
+						
+						$("#tbodyImagenes").append(fila);
 				
+				}
+			});//end JSON images
+		}//endfor
+		
 						
-			var fila = "<tr align='center'> "+
-							"<td>"+id+"</td>"+
-							"<td> <span class='spanProducto'>"+nombre+"</span></td>"+
-							"<td> <span class='spanProducto'>"+desc+"</span> </td>"+
-							"<td> <span class='spanProducto'>"+precio+"</span> </td>"+
-							"<td> <span class='spanProducto'>"+stock+"</span> </td>"+			
-							"<td> <span class='spanProducto'>"+cat+"</span></td>"+
-							"<td> <span class='spanProducto'>"+marca+"</span> </td>"+
-							"<td><img class='link editProducto' src='img/editIcon.png' /> </td>"+
-							"<td><img class='link deleteProducto' src='img/deleteIcon.png' /></td>"+
-					   "</tr>";
-			
-			
-			$("#tbodyImagenes").append(fila);
-		}
-						
-		});
+	}});//endJSON tablaProd
+	
+	
+	
+	$(".agregarImg").live('click',function(){
+		
+		var id;
+		id=$(this).parent().parent().children(':first-child').text();
+		nombre=$(this).parent().parent().children(':first-child').next().text();
+		
+		alert("Quiere agregarle una imagen al prod "+id);
+		
+	});
+	
+	$(".deleteImg").live('click',function(){
+		var id;
+		id=$(this).parent().parent().children(':first-child').text();
+		nombre=$(this).parent().parent().children(':first-child').next().text();
+		
+		alert("Quiere borrarle una imagen al prod "+id);
+		
+	});
+	
+	//preview de la img al clickearla
+		$(".imageText").live('click',function(){
+		
+		id=$(this).parent().parent().children(':first-child').text();
+		file=$(this).text();
+		$.slimbox("productos/producto"+id+"/"+file,file,{overlayOpacity: 0.6,
+														loop:false,
+														initialWidth: 800,
+														initialHeight: 600,
+												        captionAnimationDuration: 1,
+												        imageFadeDuration: 1,
+												        counterText: "Imagen {x} de {y} ",
+												        closeKeys: [27, 88],
+												        previousKeys: [37, 80],
+												        nextKeys: [39, 83]
+												        });
+		
+	});
+	
+	
 }
 
 

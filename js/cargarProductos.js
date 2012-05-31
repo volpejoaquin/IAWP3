@@ -21,7 +21,7 @@ $(document).ready(function() {
 		
 		var strid=$("[name='pDestacadoNom']").attr("id");
 		var id=strid.substr(5);
-		alert("prod clickeado "+id);
+		//alert("prod clickeado "+id);
 		
 		$.slimbox(getAllImg(id),0,
 							{overlayOpacity: 0.6,
@@ -223,15 +223,22 @@ function cargarArregloImg(){
 	pathImagenes= new Array();
 	
 	url = '_lib/pathImg.php';
+	
 	$.getJSON(url, function(data) {
-				
-		for (i=0;data.length;i++)
+	
+		for (i=0;i<data.length;i++)
 		{
-			unProd=data[i];
-			pathImagenes[unProd.id]=unProd.img;
 			
-		}		
-				
+			if(data[i]== undefined )
+			{
+				alert("Data[i] undefined para i="+i);	
+			}
+				var	idProd= data[i].id;
+				var	arregloImg= data[i].img;
+					
+				pathImagenes[idProd]=arregloImg;
+			
+		}	
 				
 	});//end getJSON
 		
@@ -247,22 +254,4 @@ function getAllImg(idProd){
 	return pathImagenes[idProd];
 }
 
-/**Devuelve todas las img, sin descripcion (para mostrar en la tabla de imagenes de c/prod)
- * 
- * @param {Object} id del producto
- */
-function getAllImgPaths(idProd){
-	var aux=new Array();
-	var resp = new Array();
-	i=0;
-	
-	aux=pathImagenes[idProd];
-	
-	for(var img in aux){
-		resp[i++]=img[0];
-	}
-	
-	return resp;
-	
-	
-}
+

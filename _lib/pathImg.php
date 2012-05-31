@@ -7,6 +7,7 @@ try {
     die($e);
 }
 
+//Imagenes exclusivamente para el Slimbox
 
 $productos = $db->query("SELECT id,nombre from productos");
 

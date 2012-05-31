@@ -16,8 +16,8 @@
 #acciones {
 	padding-left:20pt;
 }
-#menuAgregar,#menuModificar{
-	margin-bottom:5pt;
+#menuAgregar,#menuModificar,#menuImagenes{
+	margin-bottom:8pt;
 }
 
 #accCat, #accCon{
@@ -28,6 +28,7 @@
 #modificarP {margin-top:10pt;}
 #agregarC {margin-top:10pt;}
 #modificarC {margin-top:10pt;}
+#optionsI { margin-bottom:5pt;color:blue; }
 
 table { border-collapse: collapse;
 					   border: 1px solid black;}

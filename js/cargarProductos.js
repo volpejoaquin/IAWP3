@@ -173,7 +173,7 @@ function verMasOyente(catId,ord) {
 		
 		
 		//Proximos 5 
-		inic+= limit;
+		inic = parseInt(inic) + parseInt(limit);
 		
 		//Si hay un search hay que mandarle tmb el search! solo los productos que cumplan con esa condicion
 		if (catId != undefined) {
@@ -204,9 +204,7 @@ function verMasOyente(catId,ord) {
 				var haymas = data.masproductos;
 				existenMasProductos(haymas);
 				
-				$("#imgLoading").hide();	
-					
-				verMasOyente(undefined,parametros["ord"]);
+				$("#imgLoading").hide();
 				
 		});
 			

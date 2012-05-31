@@ -141,6 +141,7 @@ body {background: #fff url(images/bodybg.jpg) repeat-x; font-family:Verdana, Gen
 .precio { padding-left:14px !Important; background:url(images/pesos.png) left no-repeat; }
 .categoria { padding-right:30px !Important; background:url(images/ver.png) right no-repeat; height:20px !Important;}
 .catMenu { max-width:180px; margin:auto; }
+.divLiMenu { margin:auto; }
 .verCategoria { background:url(images/ver.png) right no-repeat; font-size:1.4em;}
 .producto { padding-left:22px !Important; background:url(images/iconoproducto.png) left no-repeat; }
 
@@ -174,8 +175,8 @@ body {background: #fff url(images/bodybg.jpg) repeat-x; font-family:Verdana, Gen
 
 #sidebar p {font-size:1.4em; line-height:18px; margin-bottom:20px;}
 #sidebar ul {font-size:1.4em; font-style:italic; margin-bottom:20px;}
-#sidebar ul li {display:block; height:24px; text-align:right; border-bottom:solid 1px #cdcdcd; line-height:24px;}
-#sidebar ul li a { line-height:24px; height:24px; background:url(images/ulli.png) left center no-repeat; padding:0 0 0 10px; display:block; color:#666; float:left; text-align:left;}
+#sidebar ul li {display:block; min-height:50px; margin:auto; line-height:24px; text-align:right; border-bottom:solid 1px #cdcdcd; }
+#sidebar ul li a { line-height:24px; background:url(images/ulli.png) left center no-repeat; padding:0 0 0 10px; display:block; color:#666; float:left; text-align:left;}
 #sidebarwrap {padding:0 20px;}
 #sidebar ul li a:hover {color:#000;}
 #pagefooter {background:url(images/footerbg.jpg) repeat-x; height:89px;}

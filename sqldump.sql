@@ -56,7 +56,7 @@ INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('10','Rotulas U
 INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('11','Rotulas UNI-ROT con pista de nylon','Todas las rotulas uni-rot con pista de nylon y de diferentes roscas. 1/4, 5/16, 3/8, etc.','0');
 INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('12','Rotulas UNI-ROT nuez','Todas las rotulas uni-rot con nuez y de diferentes roscas. 9mm, 12mm, 14mm, etc.','0');
 INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('13','Buzos antiflmama de karting PREMIUM','Todas los buzos antiflamas para chicos del karting en todos los talles. 6-12, 14-16, etc.','0');
-INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('14','Buzos antiflama homologado FIA','Todas los buzos antiflamas para chicos del karting en todos los talles. 6-12, 14-16, etc.','0');
+INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('14','Buzos antiflama homologado FIA','Todas los buzos antiflamas homologados con tela nomex marca JS opacos o brillosos.','0');
 COMMIT;
 
 ----

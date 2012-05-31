@@ -28,15 +28,69 @@
 						
 					</div>
 					<form id="agregarForm" method="post" action="">
-						Nombre: <input name="nombre" type="text" size="30" tabindex="1"><br/>
-						Descripci&oacute;n: <input name="descripcion" type="text" size="30" tabindex="2"><br/>
-						Precio: <input name="precio" type="text" size="30" value="0.00" tabindex="3"><br/>
-						Stock: <input name="stock" type="text" size="30" value="0" tabindex="4"><br/>
-						Marca: <input name="marca" type="text" size="30"  tabindex="5"><br/>
-						Tags: <input name="tags" type="text" size="30" tabindex="6"><br/>
-						Categor&iacute;a: <select id='list' name="list" tabindex="7" ></select>
-						<br/>
-						<input type="image" alt="Agregar" src="templates/template2/images/agregarbtn.png" tabindex="10"/>	
+						<table class="sinBorde">
+							<tr>
+								<td>
+									Nombre:
+								</td>
+								<td>
+									<input name="nombre" type="text" size="30" tabindex="1">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Descripci&oacute;n:
+								</td>
+								<td>	
+									<input name="descripcion" type="text" size="30" tabindex="2">
+									</td>
+							</tr>
+							<tr>
+								<td>
+									Precio: 
+								</td>
+								<td>
+									<input name="precio" type="text" size="30" value="0.00" tabindex="3">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Stock: 
+								</td>
+								<td>
+									<input name="stock" type="text" size="30" value="0" tabindex="4">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Marca:
+								</td>
+								<td>
+									<input name="marca" type="text" size="30"  tabindex="5">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Tags:
+								</td>
+								<td>
+									<input name="tags" type="text" size="30" tabindex="6">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Categor&iacute;a: 
+								</td>
+								<td>
+									<select id='list' name="list" tabindex="7" ></select>
+								</td>
+							</tr>
+							<tr>
+								<td class="center" colspan="2">
+									<input type="image" alt="Agregar" src="templates/template2/images/agregarbtn.png" tabindex="10"/>	
+								</td>
+							</tr>
+						</table>
 					</form>
 				</div>
 				<div id="resultAP" class="resultado"></div>
@@ -143,10 +197,29 @@
 						<div id="erroresAgregarCat">
 						</div>
 						<form id="agregarCatForm" method="post" action="">
-							Nombre: <input name="nombre" type="text" size="30" tabindex="1"><br/>
-							Descripci&oacute;n: <input name="descripcion" type="text" size="30" tabindex="2"><br/>
-							<br/>
-						<input type="image" alt="Agregar" src="templates/template2/images/agregarbtn.png" tabindex="10"/>	
+							<table class="sinBorde">
+								<tr>
+									<td>
+										Nombre:
+									</td>
+									<td>
+										<input name="nombre" type="text" size="30" tabindex="1">
+									</td>
+								</tr>
+								<tr>
+									<td>
+									Descripci&oacute;n:
+									</td>
+									<td> 
+										<input name="descripcion" type="text" size="30" tabindex="2">
+									</td>
+								</tr>
+								<tr>
+									<td class="center" colspan="2">
+										<input type="image" alt="Agregar" src="templates/template2/images/agregarbtn.png" tabindex="10"/>	
+									</td>
+								</tr>
+							</table>
 						</form>
 					</div>
 					<div id="resultAC" class="resultado"></div>

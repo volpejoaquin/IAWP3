@@ -104,7 +104,7 @@ a:hover {color:#000;}
 h1, h2, h3 {font-family:Arial, Helvetica, sans-serif; }
 ul {list-style:none;}
 a {color:#1496d9; text-decoration:none;}
-body {background: #fff url(images/bodybg.jpg) repeat-x; font-family:Verdana, Geneva, sans-serif; font-size:70.5%; color:#444;}
+body {background: #fff url(images/bodybg.jpg) repeat-x; font-family:Verdana, Geneva, sans-serif; font-size:65.5%; color:#444;}
 #bodywrap {width:1000px; margin:0 auto; background:url(images/wrapbg.jpg) center top no-repeat; min-height:400px; padding:0 10px;}
 #pagetop {height:34px; padding:0 20px;}
 #pagetop #siteinfo {display:block; height:32px; line-height:30px; float:left; color:#ccc; font-style:italic; font-size:1.1em;}
@@ -140,6 +140,7 @@ body {background: #fff url(images/bodybg.jpg) repeat-x; font-family:Verdana, Gen
 .visitas { margin-left:230px; margin-top:5px; padding-left:22px !Important; font-size:1.4em; background:url(images/visto.png) left no-repeat; }
 .precio { padding-left:14px !Important; background:url(images/pesos.png) left no-repeat; }
 .categoria { padding-right:30px !Important; background:url(images/ver.png) right no-repeat; height:20px !Important;}
+.catMenu { max-width:180px; margin:auto; }
 .verCategoria { background:url(images/ver.png) right no-repeat; font-size:1.4em;}
 .producto { padding-left:22px !Important; background:url(images/iconoproducto.png) left no-repeat; }
 

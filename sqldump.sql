@@ -42,14 +42,21 @@ CREATE TABLE categorias(id INTEGER PRIMARY KEY NOT NULL, nombre TEXT, descripcio
 -- Data dump for categorias, a total of 8 rows
 ----
 BEGIN TRANSACTION;
-INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('0','Sin Categoria','','17');
-INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('1','Accesorios','Todo tipo de elementos que no pueden faltar en tu auto!','25');
-INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('2',' Suspension','Suspensiones y articulos relacionados','0');
-INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('3','Cintos y butacas','','0');
-INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('4','Fibra de vidrio','','0');
-INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('5','Motor y caja','','1');
-INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('6','Nueva','Categoria','496');
-INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('7','OTRA','mas','0');
+INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('0','Cintos y butacas','Todos los accesorios de seguridad homologados y no homologados de alta performance.','0');
+INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('1','Accesorios','Todo los accesorios esteticos, electricos y de utilidad para el interior de tu auto de carreras. Volantes, extractores, espejos, etc.','0');
+INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('2','Suspension','Todos los elementos de suspension necesarios para una buena perfomance de tu auto. Disco de freno, pastillas de freno de competicion, etc.','0');
+INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('3','Motor y caja','Todos los elementos relacionados a la transmicion de tu auto, Resortes de valvula, bomba, filtros de aire, etc.','0');
+INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('4','Frente fiat uno','Todos los elementos relacionados a la estetica delantera de tu FIAT. Opticas delanteras y traseras, giros, etc.','0');
+INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('5','Accesorios externos','Todos los elementos externos que son utilizados por los mecanicos para asegurar alta performance. Pistola neumatica, calibre de presion de neumaticos, etc.','0');
+INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('6','Matafuegos','Todos los elementos relacionados con los matafuegos y kit de interior.','0');
+INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('7','Fibra de vidrio','Todos los elementos de fibra de vidrio para el exterior de tu auto. Capot de FIAT, Trompas de FIAT 600, Diferentes modelos de trompas de TC, etc.','0');
+INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('8','Rotulas granzella','Todas las rotulas necesarias para el armado de tu auto de carreras. 8x8 Hembra, 3/8" x 3/8", etc.','0');
+INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('9','Rotulas granzella nuez','Todas las rotulas en forma de nuez necesarias para el armado de tu auto de carreras. 25" x 8" , 25" x 12", etc.','0');
+INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('10','Rotulas UNI-ROT con inserto','Todas las rotulas uni-rot con inserto y de diferentes roscas. 3/8 x 7/16, 7/16, 1/2 , etc.','0');
+INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('11','Rotulas UNI-ROT con pista de nylon','Todas las rotulas uni-rot con pista de nylon y de diferentes roscas. 1/4, 5/16, 3/8, etc.','0');
+INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('12','Rotulas UNI-ROT nuez','Todas las rotulas uni-rot con nuez y de diferentes roscas. 9mm, 12mm, 14mm, etc.','0');
+INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('13','Buzos antiflmama de karting PREMIUM','Todas los buzos antiflamas para chicos del karting en todos los talles. 6-12, 14-16, etc.','0');
+INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('14','Buzos antiflama homologado FIA','Todas los buzos antiflamas para chicos del karting en todos los talles. 6-12, 14-16, etc.','0');
 COMMIT;
 
 ----

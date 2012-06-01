@@ -183,7 +183,7 @@
 					</div>
 					<div id="dialogAgregarImg">
 						<label for="file">
-							Archivo a subir: 
+							Agregar archivos: 
 							<input type="file" name='file' id="fileInput"/>
 						</label>
 					</div>

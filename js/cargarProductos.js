@@ -71,11 +71,19 @@ function agregarProductos(productos) {
 		catId = productos[i].catid;
 		catNombre = productos[i].nombrecat;
 		nrovis = productos[i].nro_visitas;
+		imagen="";
 
 		producto = "<article class='post'> "+
 						"	<div class='ftimg'> "+
-						"		<a href='index.php?mc=Inicio&idProd="+id+"'> "+
-						"          <img id='iprod"+id+"' class='link' src='"+getPrimeraImg(id)+"' alt='img1' width='204' height='128'> "+
+						"		<a href='index.php?mc=Inicio&idProd="+id+"'> ";
+						
+						//Si contiene "http" es un link ! no es una img del servidor
+						if(getPrimeraImg(id).indexOf('http://') != -1) //verdadero si NO contiene http
+							imagen=getPrimeraImg(id);
+						else
+							imagen=getPrimeraImg(id).substring(getPrimeraImg(id).indexOf('http://'),getPrimeraImg(id).length);
+						
+		producto+=		"          <img id='iprod"+id+"' class='link' src='"+imagen+"' alt='img1' width='204' height='128'> "+
 						"        </a> "+
 						"	</div> "+
 						"	<header> "+

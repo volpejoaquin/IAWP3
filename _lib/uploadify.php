@@ -4,9 +4,10 @@ Uploadify
 Copyright (c) 2012 Reactive Apps, Ronnie Garcia
 Released under the MIT License <http://www.opensource.org/licenses/mit-license.php> 
 */
+$id=$_POST['id'];
 
 // Define a destination
-$targetFolder = '/uploads'; // Relative to the root
+$targetFolder = '/productos/producto'.$id; // Relative to the root
 
 if (!empty($_FILES)) {
 	$tempFile = $_FILES['Filedata']['tmp_name'];

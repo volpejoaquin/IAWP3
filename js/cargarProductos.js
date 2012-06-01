@@ -84,9 +84,9 @@ function agregarProductos(productos) {
 						"	</header> "+
 						"	<p class='posttext pComunDesc'>"+descripcion+"</p>"+
 						"	<footer class='footer2'>"+
-						"		<table class='sinBorde'>"+
+						"		<table class='tablaProd sinBorde'>"+
 						"			<tr>"+
-						"				<td>"+
+						"				<td class='colMarca'>"+
 						"					<span class='comments' title='Marca'>"+marca+"</span>"+
 						"				</td>"+
 						"				<td>"+

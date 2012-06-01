@@ -63,6 +63,42 @@ $(document).ready(function() {
 		$("#limite option[value="+data.limit+"]").attr("selected",true);			
 	});
 	
+	//Carga backups
+	$.getJSON('_lib/backup.php', function(data) {
+		backs = "";
+		for (i=0; i<data.length;i++) {
+			backs += "<tr>"+
+					 "	<td class='zip'>"+
+					"				"+data[i].nombre+
+					"	</td>"+
+					"	<td colspan='2' class='center'>"+
+					"		<a  target='_blank'  href='http://localhost:8080/IAW-Proy3/"+data[i].nombre+"'><input id='botonDescargar' src='templates/template2/images/descargar.png' alt='Descargar' type='image'></a>"+
+					"	</td>"+
+					"</tr>";
+		}			
+		
+		$("#tablaBackups").html(backs);
+	});
+	
+	$("#botonBackUp").click(function() {
+		$.getJSON('_lib/backup.php?acc=backUp', function(data) {
+			backs = "";
+			for (i=0; i<data.length;i++) {
+				backs += "<tr>"+
+						 "	<td class='zip'>"+
+						"				"+data[i].nombre+
+						"	</td>"+
+						"	<td colspan='2' class='center'>"+
+						"		<a target='_blank' href='http://localhost:8080/IAW-Proy3/"+data[i].nombre+"'><input id='botonDescargar' src='templates/template2/images/descargar.png' alt='Descargar' type='image'></a>"+
+						"	</td>"+
+						"</tr>";
+			}			
+			
+			$("#tablaBackups").html(backs);
+			$("#resultBackUp").html("El backup ha sido realizado correctamente");
+		});
+	});
+	
 	
 	//Validar el formulario de agregar producto
 	$('#agregarForm').validate({

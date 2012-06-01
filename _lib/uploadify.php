@@ -1,9 +1,5 @@
 <?php
-/*
-Uploadify
-Copyright (c) 2012 Reactive Apps, Ronnie Garcia
-Released under the MIT License <http://www.opensource.org/licenses/mit-license.php> 
-*/
+
 $id=$_POST['id'];
 /*
 	echo $_SERVER['DOCUMENT_ROOT'];
@@ -11,16 +7,16 @@ $id=$_POST['id'];
 	echo $_SERVER['SCRIPT_FILENAME'];
 	echo "<br/>";
 	*/
+	
+	//Busca el nombre de la carpeta anterior a /_lib ... se asume que esa sera la raiz del proyecto
 	$homeProject= $_SERVER['SCRIPT_FILENAME'];
 	$libDirIndex = strrpos($homeProject,"_lib");
 	$homeProject= substr($_SERVER['SCRIPT_FILENAME'], 0 ,$libDirIndex-1);
 	
-	//echo "HomePROJECT>>".$homeProject;
-	//$homeProject=$_SERVER['DOCUMENT_ROOT'];
-	
 // Define a destination
-//$targetFolder = '/IAW-P3/productos/producto'.$id; // Relative to the root
-	$targetFolder = '/productos/producto'.$id; // Relativo a la carpeta del proyecto donde estoy!!
+////$homeProject=$_SERVER['DOCUMENT_ROOT'];
+//$targetFolder = '/IAW-P3/productos/producto'.$id; // Relative to the webserver document root --- No reconoce el alias !
+	$targetFolder = '/productos/producto'.$id; // Relativo a la carpeta del proyecto, el alias donde estoy!!
 	
 if (!empty($_FILES)) {
 	$tempFile = $_FILES['Filedata']['tmp_name'];

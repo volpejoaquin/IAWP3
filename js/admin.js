@@ -20,6 +20,7 @@ $(document).ready(function() {
 	$("#agregarC").hide();
 	$("#modificarC").hide();
 	$("#agregarI").hide();
+	$('#nuevaImg').hide();
 	
 	$("#dialogModificarProd").hide();
 	$("#dialogModificarCat").hide();
@@ -206,9 +207,7 @@ $(document).ready(function() {
 			});	
 		});
 		
-		
-
-		
+		 
 });//fin document.ready
 
 
@@ -242,6 +241,7 @@ function menuCateg(){
 function menuAgregarProd(){
 	$("#agregarP").toggle("fast");
 	$("#agregarI").hide();
+	$('#nuevaImg').hide();
 	$("#modificarP").hide();
 	cargarCategorias();
 	limpiarResultados();
@@ -251,6 +251,7 @@ function menuModificarProd(){
 	$("#modificarP").toggle("fast");
 	$("#agregarP").hide();
 	$("#agregarI").hide();
+	$('#nuevaImg').hide();
 	cargarCategorias();
 	limpiarResultados();
 	
@@ -264,6 +265,7 @@ function menuModificarProd(){
 
 function menuImagenes(){
 	$("#agregarI").toggle("fast");
+	$('#nuevaImg').hide();
 	$("#agregarP").hide();
 	$("#modificarP").hide();
 	limpiarResultados();
@@ -597,24 +599,39 @@ function mostrarTablaImagenes(){
 		id=$(this).parent().parent().children(':first-child').text();
 		nombre=$(this).parent().parent().children(':first-child').next().text();
 	//	alert("Quiere agregarle una imagen al prod "+id);
+		$('#idImgUpload').val(id);
+		$('#uploadText').text("Agregar imágenes al producto ID: "+$('#idImgUpload').val()+" '"+nombre+"'");
 		
-		
-		//INICIALIZA EL FILE UPLOAD
 			$(function() {
-			    $('#fileInput').uploadify({
-			        'swf'      : '_lib/uploadify.swf',
-			        'uploader' : '_lib/uploadify.php',
-			        'method'   : 'post',
-    				'formData' : { 'id' : id }
-			    });
-			});
+			$('#file_upload').uploadify({
+								'auto'	: false,
+						        'swf'      : '_lib/uploadify.swf',
+						        'uploader' : '_lib/uploadify.php',
+						        'method'   : 'post',
+			    				'formData' : { 'id' : $('#idImgUpload').val() },
+			    				'queueID'  : 'file_upload_queue',
+			    				'fileObjName': 'Filedata',
+			    				'buttonText':'Elegir Im&aacute;genes..',
+			    				'onUploadError' : function(file, errorCode, errorMsg, errorString) {
+								            jAlert('El archivo ' + file.name + ' no pudo ser subido: ' + errorString);
+								       },
+								'onUploadSuccess' : function(file, data, response) {
+									
+											if(data.charAt(0)=="1")
+									   			respuestin= "\nEl path completo al archivo es: \n"+data.substring(1,data.length);
+									   		else
+									   			respuestin= "\nSin embargo el servidor respondió: \n'"+data+"'";
+											
+								            jAlert('Se completó la carga de ' + file.name + '. '+respuestin);
+								        }   
+								    
+						    });
+		});
 		
-		//inicializo el dialog
-		dialogAgregarImg(id);
-		
-		
-		$("#dialogAgregarImg").dialog("open");
-		
+		//Se mueve la atencion al div de agregar nueva imagen
+		$('#agregarI').hide();
+		$('#nuevaImg').show();
+	
 		
 	});
 	
@@ -649,6 +666,21 @@ function mostrarTablaImagenes(){
 	
 }
 
+//Se invoca cuando se mandan a cargar las imagenes!
+function doUpload(){
+	
+	if($('#file_upload_queue').children().size() >0)
+			$('#file_upload').uploadify('upload');
+	else
+			jAlert("No hay imágenes para subir...seleccione al menos una");
+}
+
+//Se invoca cuando el usuario presiono para dejar de agregar imagenes de ese producto
+function finishUpload(){
+	$("#nuevaImg").hide();
+	mostrarTablaImagenes();
+	$("#agregarI").show();
+}
 
 	
 //Inicializa el dialog de modificar productos
@@ -709,8 +741,8 @@ function dialogoModif (){
 					bValid = bValid && checkLength( stock, "Stock", 1, 10 );
 					bValid = bValid && checkLength( marca, "Marca", 1, 40 );
 
-					bValid = bValid && checkRegexp( name, /^[a-z|A-Z]([0-9a-z_A-Z ])+$/i, "El nombre del producto sólo puede contener letras, números y guiones bajos, empezando con una letra." );
-					bValid = bValid && checkRegexp( desc, /^[a-z|A-Z]([0-9a-zA-Z ,.])+$/i, "La descripción del producto sólo puede contener letras, números, comas y puntos, empezando con una letra." );
+					bValid = bValid && checkRegexp( name, /^[a-z|A-Z]([0-9a-z_-A-Z ])+$/i, "El nombre del producto sólo puede contener letras, números y guiones, empezando con una letra." );
+					bValid = bValid && checkRegexp( desc, /^[a-z|A-Z]([0-9a-zA-Z ,.-])+$/i, "La descripción del producto sólo puede contener letras, números, guiones, comas y puntos, empezando con una letra." );
               		//bValid = bValid && checkRegexp( precio,/^  $/i, "El precio debe ser un número con dos cifras decimales, separar con punto o coma es indistinto");
 					bValid = bValid && checkRegexp( stock, /^([0-9]|[1-9][0-9]+)$/i, "El stock debe ser un número entero." );
 					bValid = bValid && checkRegexp( marca, /^[a-z|A-Z ]([0-9a-z_A-Z ])+$/i, "La marca del producto sólo puede contener letras, números y guiones bajos, empezando con una letra." );
@@ -841,12 +873,12 @@ function dialogoModifCat (){
 					var bValid = true;
 					allFields.removeClass( "ui-state-error" );
 
-					bValid = bValid && checkLength( name, "Nombre", 1, 80 );
-					bValid = bValid && checkLength( desc, "Descripción", 1, 80 );
+					bValid = bValid && checkLength( name, "Nombre", 1, 100 );
+					bValid = bValid && checkLength( desc, "Descripción", 1, 200 );
 					bValid = bValid && checkLength( nro_likes, "Likes", 1, 10 );
 
-					bValid = bValid && checkRegexp( name, /^[a-z|A-Z]([0-9a-z_A-Z ])+$/i, "El nombre de la categoría sólo puede contener letras, números y guiones bajos, empezando con una letra." );
-					bValid = bValid && checkRegexp( desc, /^[a-z|A-Z]([0-9a-zA-Z ,.])+$/i, "La descripción de la categoría sólo puede contener letras, números, comas y puntos, empezando con una letra." );
+					bValid = bValid && checkRegexp( name, /^[a-z|A-Z]([0-9a-z_A-Z -])+$/i, "El nombre de la categoría sólo puede contener letras, números y guiones bajos, empezando con una letra." );
+					bValid = bValid && checkRegexp( desc, /^[a-z|A-Z]([0-9a-zA-Z ,.-])+$/i, "La descripción de la categoría sólo puede contener letras, números, comas y puntos, empezando con una letra." );
 					bValid = bValid && checkRegexp( nro_likes, /^([0-9]|[1-9][0-9]+)$/i, "La cantidad de likes debe ser un número entero." );
          
 					

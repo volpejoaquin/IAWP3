@@ -28,7 +28,7 @@
 #modificarP {margin-top:10pt;}
 #agregarC {margin-top:10pt;}
 #modificarC {margin-top:10pt;}
-#optionsI { margin-bottom:5pt;color:blue; }
+#optionsI{ margin-bottom:5pt;color:blue; }
 
 table { border-collapse: collapse;
 					   border: 1px solid black;}
@@ -69,3 +69,9 @@ table#tablaCategorias { border-collapse: collapse; }
     padding-left: 10px;
     padding-right: 10px;
 }
+
+#file_upload{ padding-left: 150pt;}
+#file_upload_queue{padding-left: 65pt;}
+#doUploadButton{padding-left: 130pt;margin-bottom:5pt;}
+#finishButton{padding-left:175pt;margin-bottom:5pt;}
+#uploadText{color:blue;font:1.2em "Trebuchet MS", Arial, Helvetica, sans-serif; margin-bottom:10pt;}

@@ -1,7 +1,8 @@
 <script src="js/admin.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/slimbox2.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/jquery.uploadify-3.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/jquery.uploadify.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/jquery.validate.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/jquery.alerts.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/jquery-ui-1.8.20.custom.min.js" type="text/javascript" charset="utf-8"></script>
 <section id="main">
 	<div id="leftcontainer">
@@ -156,7 +157,17 @@
 				<h3 class="link submenu" id="menuImagenes">
 					Agregar/Eliminar Im&aacute;genes
 				</h3>
-				
+				<div id='nuevaImg'>
+					<label for="file">
+							<span id="uploadText"></span> 
+							<input type="hidden" id="idImgUpload"/>
+							<input type="file" name='file' class="uploadify" id="file_upload"/>
+							<div id="file_upload_queue" class="uploadify-queue"></div>
+							<p><a id="doUploadButton"href="javascript: doUpload()">Subir primera imagen de la lista</a></p>
+							<p><a id="finishButton"href="javascript: finishUpload()">Terminar</a></p>
+						</label>
+					
+				</div>
 				<div id="agregarI" class="none">
 					<div id="optionsI">
 					<span>Haga click sobre el nombre de las im&aacute;genes para previsualizarlas.</span>
@@ -182,10 +193,7 @@
 							</table>
 					</div>
 					<div id="dialogAgregarImg">
-						<label for="file">
-							Agregar archivos: 
-							<input type="file" name='file' id="fileInput"/>
-						</label>
+						
 					</div>
 					<div id="dialogElimImg">
 						

@@ -10,15 +10,27 @@
 			</div>
 			
 			<div class="fttxt">				
-				<h3 name="pDestacadoNom" class="link">{pDestacado}</h3>
+				<h3><a name="pDestacadoNom" class="link">{pDestacado}</a></h3>
 				<p id="pDestacadoDesc" class="pDestacadoDesc">{pDestacadoTexto}</p>
 				
-				<span class="author marca" id="pDestacadoMarca">Marca: JS</span>
-				<span class="comments precio" title="Precio"><span id="pDestacadoPrecio"></span></span>
-				<span class="comments right" title="Categoria"><a class='' id="pDestacadoCategoria" href="#">asd</a></span>
-
+				<table class="sinBorde table">
+					<tr>
+						<td>
+							<span class="comments" id="pDestacadoMarca" title="Marca">JS</span>
+						</td>
+						<td>
+							<span class="comments precio" title="Precio"><span id="pDestacadoPrecio"></span></span>
+						</td>
+						<td>
+							<h2 id="nroVisita" class="visitasDes" title="Numero de visitas"></h2>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3">
+							<span class="comments" title="Categoria"><a class='' id="pDestacadoCategoria" href="#">asd</a></span>
+						</td>
+				</table>
 			</div>
-			<h2 id="nroVisita" class="visitas" title="Numero de visitas"></h2>
 		</div>
 	</section>
 	

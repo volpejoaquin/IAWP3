@@ -132,10 +132,16 @@ else {
 		$masproductos = false;
 	}
 
-	$response= array("destacado"=>$destacado,"productos"=>$allProds,"masproductos"=>$masproductos);
+	if(isset($_GET['id']))
+	{
+		$response= array("destacado"=>$destacado,"productos"=>$allProds,"masproductos"=>$masproductos);
 
-	//echo $response;
-	echo json_encode($response);
+		echo json_encode($response);
+	}
+	else {
+		
+		echo $response;
+	}
 	flush();
 
 }

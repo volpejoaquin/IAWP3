@@ -136,8 +136,37 @@ body {background: #fff url(images/bodybg.jpg) repeat-x; font-family:Verdana, Gen
 .ftimg {float:left; background:url(images/imgthumb.png) no-repeat; width:220px; height:144px;  padding:13px 0 0 13px;}
 .ftwrap .fttxt { margin-left:220px; padding-top:0px; padding-right:25px; font-size:1.2em;}
 
+.tablaProd {
+	border:none !Important; 
+	width:600px !Important; 
+	padding:0px !Important;
+	text-align:right;
+}
+
+.tablaProd .colMarca {
+	text-align:left;
+}
+
+.tablaProd tr td {
+	padding:0px !Important;
+}
+
+.table {
+	border:none !Important; 
+	width:300px !Important; 
+	padding:0px !Important;
+	text-align:center;
+	float:right;
+}
+
+
+
+.footer2 {height:20px !Important; line-height:15px;}
+.footer2 span {margin:0px !Important;}
+
 
 .visitas { margin-left:230px; margin-top:5px; padding-left:22px !Important; font-size:1.4em; background:url(images/visto.png) left no-repeat; }
+.visitasDes { margin-top:5px; padding-left:10px !Important; font-size:1.4em; background:url(images/visto.png) left no-repeat; }
 .precio { padding-left:14px !Important; background:url(images/pesos.png) left no-repeat; }
 .categoria { padding-right:30px !Important; background:url(images/ver.png) right no-repeat; height:20px !Important;}
 .catMenu { max-width:180px; margin:auto; }

@@ -46,11 +46,12 @@ function agregarProductoDestacado(destacado, producto) {
 		$("[name='imgProdDes']").attr("id","iprod"+destacado.id+"");
 		$("[name='pDestacadoNom']").html(destacado.nombre);
 		$("[name='pDestacadoNom']").attr("id","iprod"+destacado.id+"");
+		$("[name='pDestacadoNom']").attr("href","index.php?mc=Inicio&idProd="+destacado.id);
 		$("#pDestacadoDesc").html(destacado.descripcion);
-		$("#pDestacadoMarca").html("Marca: "+destacado.marca);
+		$("#pDestacadoMarca").html(destacado.marca);
 		$("#pDestacadoPrecio").html(destacado.precio);
 		$("#pDestacadoCategoria").html(destacado.nombrecat);
-		$("#pDestacadoCategoria").attr("href","http://localhost:8080/IAW-Proy3/index.php?mc=Categorías&idCat="+destacado.catid);
+		$("#pDestacadoCategoria").attr("href","index.php?mc=Categorías&idCat="+destacado.catid);
 		$("#nroVisita").html(destacado.nro_visitas);
 		
 		$("#featured").show();
@@ -87,14 +88,26 @@ function agregarProductos(productos) {
 						"        </a> "+
 						"	</div> "+
 						"	<header> "+
-						"		<h3 id='iprod"+id+"' class='link'>"+nombre+"</h3>"+
+						"		<a href='index.php?mc=Inicio&idProd="+id+"'><h3 id='iprod"+id+"' class='link'>"+nombre+"</h3></a>"+
 						"	</header> "+
 						"	<p class='posttext pComunDesc'>"+descripcion+"</p>"+
-						"	<footer>"+
-						"		<span class='comments' title='Marca'>"+marca+"</span>"+
-						"		<span class='comments precio' title='Precio'>"+precio+"</span>"+
-						"		<span class='comments visitas' title='Numero de visitas'>"+nrovis+"</span>"+
-						"		<span class='comments' id='icat"+catId+"' title='Categoria'><a class='categoria' href='http://localhost:8080/IAW-Proy3/index.php?mc=Categorías&idCat="+catId+"'>"+catNombre+"</a></span>"+
+						"	<footer class='footer2'>"+
+						"		<table class='tablaProd sinBorde'>"+
+						"			<tr>"+
+						"				<td class='colMarca'>"+
+						"					<span class='comments' title='Marca'>"+marca+"</span>"+
+						"				</td>"+
+						"				<td>"+
+						"					<span class='comments visitas' title='Numero de visitas'>"+nrovis+"</span>"+
+						"				</td>"+
+						"				<td>"+
+						"					<span class='comments precio' title='Precio'>"+precio+"</span>"+
+						"				</td>"+
+						"				<td>"+
+						"					<span class='comments' id='icat"+catId+"' title='Categoria'><a class='categoria' href='http://localhost:8080/IAW-Proy3/index.php?mc=Categorías&idCat="+catId+"'>"+catNombre+"</a></span>"+
+						"				</td>"+
+						"			</tr>"+
+						"		</table>"+
 						"	</footer> "+
 					" </article> ";
 		$("#productos").append(producto);

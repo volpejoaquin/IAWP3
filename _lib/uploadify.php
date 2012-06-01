@@ -19,9 +19,9 @@ $id=$_POST['id'];
 	$targetFolder = '/productos/producto'.$id; // Relativo a la carpeta del proyecto, el alias donde estoy!!
 	
 if (!empty($_FILES)) {
-	$tempFile = $_FILES['Filedata']['tmp_name'];
+	$tempFile = str_replace(' ', '_', $_FILES['Filedata']['tmp_name']);
 	$targetPath = $homeProject . $targetFolder;
-	$targetFile = rtrim($targetPath,'/') . '/' . $_FILES['Filedata']['name'];
+	$targetFile = rtrim($targetPath,'/') . '/' . str_replace(' ', '_', $_FILES['Filedata']['name']);
 	
 	// Validate the file type
 	$fileTypes = array('jpg','jpeg','gif','png'); // File extensions

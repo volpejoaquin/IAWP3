@@ -749,10 +749,12 @@ function cargarImgDelete(tdEvento, idProd,nombre){
 	$(".simpleImgDelete").live('click',function(){
 		liItem=$(this).parent();
 		nombreImg=$(this).prev().text();
-		jConfirm("Se borrara: '"+nombreImg+"' del producto: '"+nombre+"'. ¿Está seguro?", "Confirmación",function(r){
+		jConfirm("Se borrar&aacute;: '"+nombreImg+"' del producto: '"+nombre+"'. ¿Est&aacute; seguro?", "Confirmaci&oacute;n",function(r){
 			if(r) 
 			{
-					$.post("_lib/eliminarImg.php", //PHP file to send POST to
+				if(isUrl(nombreImg))
+				{
+					$.post("_lib/eliminarURL.php", //PHP file to send POST to
 			                { 
 			                	'id' : idProd,
 	                            'path': nombreImg
@@ -765,7 +767,24 @@ function cargarImgDelete(tdEvento, idProd,nombre){
 			                                jAlert('Ha ocurrido algun error en la eliminación de la imagen: '+returned);
 			                               }
 			                    });
-					liItem.remove();
+			     }
+			     else
+			     {
+			     	$.post("_lib/eliminarImg.php", //PHP file to send POST to
+			                { 
+			                	'id' : idProd,
+	                            'path': nombreImg
+							 }, //POST fields to send
+			                function(returned) { //What to do if the POST finishes. 'returned' is the value recieved back from the script.
+			                        if (returned) {
+			                                //PHP retorna 'Exito'
+	                                        jAlert('Eliminado correctamente.'); 
+			                        } else {
+			                                jAlert('Ha ocurrido algun error en la eliminación de la imagen: '+returned);
+			                               }
+			                    });
+			     }
+			     liItem.remove();
 			}
 		});
 		

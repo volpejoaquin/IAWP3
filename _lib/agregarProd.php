@@ -9,11 +9,22 @@ try {
 	echo($e);
     die($e);
 }
+		
+		$tagsString="";
+		//Asocio las tags con el producto
+		if(isset($_POST['tags']))
+		{
+		//$tagsArray= explode(",", trim($_POST['tags']));
+		
+		
+		$tagsString=$_POST['tags'];
+				
+		}
 
 		//Se usa una categoria existente
 		$qry = $db->prepare(
-		    'INSERT INTO productos VALUES (null,?, ?, ?,0,?,?,?)');
-		$qry->execute(array($_POST['nombre'],$_POST['descripcion'],$_POST['precio'],$_POST['stock'],$_POST['list'],$_POST['marca']));
+		    'INSERT INTO productos VALUES (null,?, ?, ?,0,?,?,?,?)');
+		$qry->execute(array($_POST['nombre'],$_POST['descripcion'],$_POST['precio'],$_POST['stock'],$_POST['list'],$_POST['marca'],$_POST['tags']));
 		
 		//Obtengo el id del producto recien insertado
 				$qry=$db->prepare( "SELECT last_insert_rowid()");
@@ -24,21 +35,7 @@ try {
 						$lastid=$id['last_insert_rowid()'];
 					}
 		
-		//Asocio las tags con el producto
-		if(isset($_POST['tags']))
-		{
-		$tagsArray= explode(",", trim($_POST['tags']));
-			
-				//Inserto en la tabla de tags
-				foreach ($tagsArray as $key => $value) {
-					$qry = $db->prepare(
-		    		"INSERT INTO tags VALUES (?,?)");
-					$qry->execute(array($lastid,$value));
-					
-				}
-		}
-
-
+	
 
 //echo $response;
   echo "<p>¡Se agreg&oacute; '".$_POST['nombre']."' satisfactoriamente!</p>";

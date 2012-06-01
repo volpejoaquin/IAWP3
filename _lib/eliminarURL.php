@@ -1,5 +1,4 @@
 <?php
-
 try{
 try {
     $db = new PDO('sqlite:../db/iawp3.sqlite');
@@ -8,15 +7,12 @@ try {
 }
 	//Elimino el producto
 	$qry = $db->prepare(
-    "DELETE FROM productos WHERE id=?");
-	$qry->execute(array($_POST['id']));
-
-	//Borro la carpeta de imagenes asociadas al producto
-	include 'borrarDir.php';
+    "DELETE FROM urls WHERE id_producto=? AND url=?");
+	$qry->execute(array($_POST['id'],$_POST['path']));
 	
 	
 //echo $response;
-  echo "1";
+  echo "Exito";
   flush();
 
 }

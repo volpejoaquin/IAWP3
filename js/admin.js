@@ -124,7 +124,7 @@ $(document).ready(function() {
 		}
 		});
 		
-		//Validar el formulario de agregar producto
+		//Validar el formulario de agregar categoria
 	$('#agregarCatForm').validate({
 		debug: true,
 		errorClass:'invalid',
@@ -205,6 +205,8 @@ $(document).ready(function() {
 				}
 			});	
 		});
+		
+		
 
 		
 });//fin document.ready
@@ -594,10 +596,24 @@ function mostrarTablaImagenes(){
 		var id;
 		id=$(this).parent().parent().children(':first-child').text();
 		nombre=$(this).parent().parent().children(':first-child').next().text();
-		alert("Quiere agregarle una imagen al prod "+id);
+	//	alert("Quiere agregarle una imagen al prod "+id);
+		
+		
+		//INICIALIZA EL FILE UPLOAD
+			$(function() {
+			    $('#fileInput').uploadify({
+			        'swf'      : '_lib/uploadify.swf',
+			        'uploader' : '_lib/uploadify.php',
+			        'method'   : 'post',
+    				'formData' : { 'id' : id }
+			    });
+			});
+		
 		//inicializo el dialog
 		dialogAgregarImg(id);
 		
+		
+		$("#dialogAgregarImg").dialog("open");
 		
 		
 	});
@@ -908,38 +924,25 @@ function dialogoElimCat(id){
 }//end dialogElimCat
 
 
-//Inicializa el dialog de eliminar categoria
+//Inicializa el dialog de agregar imagen
+
 function dialogAgregarImg(id){
 	
-	$("#dialogElimCat").dialog({
+	$("#dialogAgregarImg").dialog({
 			autoOpen: false,
 			height: 200,
 			width: 250,
 			modal: true,
 			buttons: {
-				"Eliminar categoría": function() {
-				$.post("_lib/agregarImg.php", //PHP file to send POST to
-	                { 
-	                	'id' : id,
-	                	'file': $("[name='file']")
-                    }, //POST fields to send
-	                function(returned) { //What to do if the POST finishes. 'returned' is the value recieved back from the script.
-	                        if (returned == 'Exito') {
-	                                //si PHP retorna 'Exito'
-                                    alert('¡Se completó la eliminación con éxito!'); 
-                                                                        
-                                    //Refrescar la tabla
-									mostrarTablaCategorias();
-									$("#dialogElimCat").dialog( "close" );                                 
-	                        } else {
-	                                alert('Ha ocurrido algun error en el procesamiento de los datos: '+returned);
-	                              	 $("#dialogElimCat").dialog( "close" );
-	                               }
-	                    });
+				"Terminar": function() {
+					
+					alert("confirmacion");
+					$("#dialogAgregarImg").dialog( "close" );
+				
 				},
 				"Cancelar": function() {
 					
-					$("#dialogElimCat").dialog( "close" );
+					$("#dialogAgregarImg").dialog( "close" );
 				}
 			},
 			close: function() {

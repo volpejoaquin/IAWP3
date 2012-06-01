@@ -51,7 +51,7 @@ $(document).ready(function() {
 				//Agrega el producto destacado
 				var destacado = data.destacado;
 				agregarProductoDestacado(destacado);
-
+						
 				//Verifica si hay mas productos en el sistema
 				var haymas = data.masproductos;
 				existenMasProductos(haymas);

@@ -21,12 +21,13 @@ $(document).ready(function() {
 	$("#modificarC").hide();
 	$("#agregarI").hide();
 	$('#nuevaImg').hide();
+	$("#radioURLDiv").hide();
+	$("#radioImgDiv").hide();
 	
 	$("#dialogModificarProd").hide();
 	$("#dialogModificarCat").hide();
 	$("#dialogElim").hide();
 	$("#dialogElimCat").hide();
-	$("#dialogAgregarImg").hide();
 	$("#dialogElimImg").hide();
 
 	$("#menuProductos").click(menuProductos);
@@ -39,6 +40,15 @@ $(document).ready(function() {
 	$("#menuConfigurar").click(menuConfigurar);
 	$("#menuConfigurarConfiguracion").click(menuConfigurarConf);
 	$("#menuBackup").click(menuBackup);
+	
+	$("#radioURL").live('click',function(){
+		radioImgEvent();
+	});
+	$("#doUploadURL").live('click',doUploadURL);
+	
+	$("#radioImg").live('click',function(){
+		radioImgEvent();
+	});
 	
 	$("#botonGuardarConf").click(guardarConfiguracion);
 	
@@ -216,6 +226,8 @@ function menuProductos(){
 	
 	$("#agregarP").hide();
 	$("#modificarP").hide();
+	$("#agregarI").hide();
+	$("#nuevaImg").hide();
 	$("#agregarC").hide();
 	$("#modificarC").hide();
 	$("#accCat").hide();
@@ -232,6 +244,8 @@ function menuCateg(){
 	$("#modificarC").hide();
 	$("#agregarP").hide();
 	$("#modificarP").hide();
+	$("#agregarI").hide();
+	$("#nuevaImg").hide();
 	$("#acciones").hide();
 	$("#accCon").hide();
 	limpiarResultados();
@@ -317,6 +331,8 @@ function menuConfigurar(){
 	$("#modificarC").hide();
 	$("#agregarP").hide();
 	$("#modificarP").hide();
+	$("#agregarI").hide();
+	$("#nuevaImg").hide();
 	$("#acciones").hide();
 }
 
@@ -373,21 +389,28 @@ function cargarCategorias()
 }
 
 //
-function validarCat(){
-
-	var selec=$("#list option:selected").text();
+function radioImgEvent(){
 	
-	if(selec=="Otra...")
+	if($("#radioURL").is(":checked"))
 	{
-		$("#otraCat").show('fast');
-		$("#categoria").val("null");
+		limpiarRadioComponents();
+		$("#radioURLDiv").show();
+		$("#radioImgDiv").hide();
+		
 	}
-	else
+	else if($("#radioImg").is(":checked"))
 	{
-		$("#otraCat").hide('fast');
-		$("#otraCat:input").val("null");
-		$("#categoria").val($("#list").val());
+		limpiarRadioComponents();
+		$("#radioURLDiv").hide();
+		$("#radioImgDiv").show();
 	}
+}
+
+function limpiarRadioComponents()
+{
+	$("#url_upload").val("");
+	
+	$("#file_upload_queue").children().remove();
 	
 }
 
@@ -413,13 +436,13 @@ function mostrarTablaProductos(){
 						
 			var fila = "<tr align='center'> "+
 							"<td>"+id+"</td>"+
-							"<td> <span class='spanProducto'>"+nombre+"</span></td>"+
-							"<td> <span class='spanProducto'>"+desc+"</span> </td>"+
-							"<td> <span class='spanProducto'>"+precio+"</span> </td>"+
-							"<td> <span class='spanProducto'>"+stock+"</span> </td>"+			
-							"<td> <span class='spanProducto'>"+cat+"</span></td>"+
-							"<td> <span class='spanProducto'>"+marca+"</span> </td>"+
-							"<td><img class='link editProducto' src='img/editIcon.png' /> </td>"+
+							"<td><span class='spanProducto'>"+nombre+"</span></td>"+
+							"<td><span class='spanProducto'>"+desc+"</span></td>"+
+							"<td><span class='spanProducto'>"+precio+"</span></td>"+
+							"<td><span class='spanProducto'>"+stock+"</span></td>"+			
+							"<td width='80px'><span class='spanProducto'>"+cat+"</span></td>"+
+							"<td><span class='spanProducto'>"+marca+"</span></td>"+
+							"<td><img class='link editProducto' src='img/editIcon.png' /></td>"+
 							"<td><img class='link deleteProducto' src='img/deleteIcon.png' /></td>"+
 					   "</tr>";
 			
@@ -462,7 +485,7 @@ function mostrarTablaProductos(){
 		id=$(this).parent().parent().children(':first-child').text();
 		nombre=$(this).parent().parent().children(':first-child').next().text();
 		$("#deleteId").val(id);
-		$("#deleteInfo").text("Está a punto de eliminar '"+nombre+"' con ID: "+id+". \n¿Está seguro?");
+		$("#deleteInfo").html("<p>Est&aacute; a punto de eliminar '"+nombre+"' con ID: "+id+".<p>¿Est&aacute; seguro?");
 		dialogoElim(id);
 		
 		$("#dialogElim").dialog("open");
@@ -487,10 +510,10 @@ function mostrarTablaCategorias(){
 			var nro_likes = data[i].nro_likes;
 			var fila = "<tr align='center'> "+
 							"<td>"+id+"</td>"+
-							"<td> <span class='spanProducto'>"+nombre+"</span></td>"+
-							"<td> <span class='spanProducto'>"+desc+"</span> </td>"+
-							"<td> <span class='spanProducto'>"+nro_likes+"</span> </td>"+
-							"<td><img class='link editCategoria' src='img/editIcon.png' /> </td>"+
+							"<td><span class='spanProducto'>"+nombre+"</span></td>"+
+							"<td><span class='spanProducto'>"+desc+"</span></td>"+
+							"<td><span class='spanProducto'>"+nro_likes+"</span></td>"+
+							"<td><img class='link editCategoria' src='img/editIcon.png' /></td>"+
 							"<td><img class='link deleteCategoria' src='img/deleteIcon.png' /></td>"+
 					   "</tr>";
 			
@@ -540,6 +563,7 @@ function mostrarTablaCategorias(){
 //Refresca la tabla
 function mostrarTablaImagenes(){
 	
+	limpiarRadioComponents();
 	$("#tbodyImagenes").html("");
 	
 	
@@ -564,21 +588,28 @@ function mostrarTablaImagenes(){
 					success: function(images) {
 					
 							var fila = "<tr align='center'> "+
-											"<td>"+id+"</td>"+
-											"<td> <span class='spanImg'>"+nombre+"</span></td>";
+											"<td class='colId'>"+id+"</td>"+
+											"<td class='colNombre' ><span class='spanImg'>"+nombre+"</span></td>";
 							var strAux="";
 							for(j=0;j<images.length;j++){
 								if(j>0)
 									strAux+=", ";
 								
-								if(images[j]!="productos/noimage.png")
-									strAux+="<span class='link imageText'>"+images[j].substring(images[j].lastIndexOf("/")+1,images[j].length)+"</span>";			
+								if(isUrl(images[j]))
+								{
+									strAux+="<span class='link imageText'>"+images[j]+"</span>";
+								}
+								else{
+									if(images[j]!="productos/noimage.png")
+										strAux+="<span class='link imageText'>"+images[j].substring(images[j].lastIndexOf("/")+1,images[j].length)+"</span>";			
+								}
+								
 							}
-							fila+= "<td width='300'>"+strAux+"</td>";
+							fila+= "<td class='colImg'>"+strAux+"</td>";
 								
 								
-							fila+= "<td><img class='link agregarImg' src='img/addIcon.png' /> </td>"+
-								   "<td><img class='link deleteImg' src='img/deleteIcon.png' /></td>"+
+							fila+= "<td class='colIcon'><img class='link agregarImg' src='img/addIcon.png' /></td>"+
+								   "<td class='colIcon'><img class='link deleteImg' src='img/deleteIcon.png' /></td>"+
 									   "</tr>";
 					
 						
@@ -631,7 +662,7 @@ function mostrarTablaImagenes(){
 		//Se mueve la atencion al div de agregar nueva imagen
 		$('#agregarI').hide();
 		$('#nuevaImg').show();
-	
+			radioImgEvent();
 		
 	});
 	
@@ -640,7 +671,13 @@ function mostrarTablaImagenes(){
 		id=$(this).parent().parent().children(':first-child').text();
 		nombre=$(this).parent().parent().children(':first-child').next().text();
 		
-		alert("Quiere borrarle una imagen al prod "+id);
+		$("#deleteIdImg").val(id);
+		$("#dialogElimImg").attr("title","Eliminar im&aacute;genes del producto: <br/>'"+nombre+"'");
+		cargarImgDelete($(this), id,nombre);
+		dialogElimImg(id);
+		
+		$("#dialogElimImg").dialog("open");
+		
 		
 	});
 	
@@ -649,10 +686,27 @@ function mostrarTablaImagenes(){
 		
 		id=$(this).parent().parent().children(':first-child').text();
 		file=$(this).text();
+		
+		if(isUrl(file))
+		{
+		$.slimbox(file,file,{overlayOpacity: 0.6,
+							loop:false,
+							initialWidth: 400,
+							initialHeight: 400,
+							captionAnimationDuration: 1,
+							imageFadeDuration: 1,
+							counterText: "Imagen {x} de {y} ",
+							closeKeys: [27, 88],
+							previousKeys: [37, 80],
+							nextKeys: [39, 83]
+							});
+		}
+		else
+		{	
 		$.slimbox("productos/producto"+id+"/"+file,file,{overlayOpacity: 0.6,
 														loop:false,
-														initialWidth: 800,
-														initialHeight: 600,
+														initialWidth: 400,
+														initialHeight: 400,
 												        captionAnimationDuration: 1,
 												        imageFadeDuration: 1,
 												        counterText: "Imagen {x} de {y} ",
@@ -660,10 +714,104 @@ function mostrarTablaImagenes(){
 												        previousKeys: [37, 80],
 												        nextKeys: [39, 83]
 												        });
+		}
 		
 	});
 	
 	
+}
+
+//Carga en el dialogo las imagenes para eliminar
+function cargarImgDelete(tdEvento, idProd,nombre){
+	
+	textoImagenes= tdEvento.parent().parent().children(':first-child').next().next().text();
+	
+	arrayImg=textoImagenes.split(',');
+	
+	divInsertar="<div id='chooseImgDelete'><ul id='ulImgDelete'> ";  
+	
+	for(i=0;i<arrayImg.length;i++)
+	{
+		//Para comer el espacio despues de la coma (prods que estan 2dos o 3ros en la lista)
+		if(i>0)
+			imag=arrayImg[i].substring(1);
+		else
+			imag=arrayImg[i];
+		divInsertar+="<li><span class='dialogText'>"+imag+"</span><img class='link simpleImgDelete' src='img/deleteImg2.png' /></li>";
+	}
+	
+	divInsertar+="</ul></div>";
+	
+	
+	$("#deleteInfoImg").html("<p>Seleccione las im&aacute;genes que desea borrar<p>");
+	$("#deleteInfoImg").append(divInsertar);
+	
+	$(".simpleImgDelete").live('click',function(){
+		liItem=$(this).parent();
+		nombreImg=$(this).prev().text();
+		jConfirm("Se borrara: '"+nombreImg+"' del producto: '"+nombre+"'. ¿Está seguro?", "Confirmación",function(r){
+			if(r) 
+			{
+					$.post("_lib/eliminarImg.php", //PHP file to send POST to
+			                { 
+			                	'id' : idProd,
+	                            'path': nombreImg
+							 }, //POST fields to send
+			                function(returned) { //What to do if the POST finishes. 'returned' is the value recieved back from the script.
+			                        if (returned) {
+			                                //PHP retorna 'Exito'
+	                                        jAlert('Eliminado correctamente.'); 
+			                        } else {
+			                                jAlert('Ha ocurrido algun error en la eliminación de la imagen: '+returned);
+			                               }
+			                    });
+					liItem.remove();
+			}
+		});
+		
+	});
+}
+
+//Se invoca al elegir upload URL
+function doUploadURL(){
+	
+	url=$("#url_upload").val();
+	
+	if(trim(url)!= "")
+	{
+		if(isUrl(url))
+		{		
+			$.post("_lib/agregarURL.php", //PHP file to send POST to
+				{ 
+					'id' : $("#idImgUpload").val(),
+					'url' : url
+				 }, //POST fields to send
+				function(returned) { //What to do if the POST finishes. 'returned' is the value recieved back from the script.
+						
+								jAlert(returned); 
+								//Refrescar la tabla
+								mostrarTablaImagenes();
+								$("#url_upload").val("");
+								}	
+			);
+		
+		}
+		else
+			jAlert("Url invalido.");
+	}
+	else
+	{
+		jAlert("Url vacío.");
+	}		
+}
+
+function trim(stringToTrim) {
+	return stringToTrim.replace(/^\s+|\s+$/g,"");
+}
+
+function isUrl(s) {
+var regexp = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+return regexp.test(s);
 }
 
 //Se invoca cuando se mandan a cargar las imagenes!
@@ -764,12 +912,12 @@ function dialogoModif (){
 			                function(returned) { //What to do if the POST finishes. 'returned' is the value recieved back from the script.
 			                        if (returned == 'Exito') {
 			                                //PHP retorna 'Exito'
-	                                        alert('¡Se completó la modificación con éxito!'); 
+	                                        jAlert('¡Se completó la modificación con éxito!'); 
 	                                        //Refrescar la tabla
 											mostrarTablaProductos();
 											$("#dialogModificarProd").dialog( "close" );                                 
 			                        } else {
-			                                alert('Ha ocurrido algun error en el procesamiento de los datos: '+returned);
+			                                jAlert('Ha ocurrido algun error en el procesamiento de los datos: '+returned);
 			                              	 $("#dialogModificarProd").dialog( "close" );
 			                               }
 			                    });
@@ -791,8 +939,8 @@ function dialogoElim(id){
 	
 	$("#dialogElim").dialog({
 			autoOpen: false,
-			height: 200,
-			width: 250,
+			height: 150,
+			width: 385,
 			modal: true,
 			buttons: {
 				"Eliminar producto": function() {
@@ -803,13 +951,13 @@ function dialogoElim(id){
 	                function(returned) { //What to do if the POST finishes. 'returned' is the value recieved back from the script.
 	                        if (returned == 'Exito') {
 	                                //si PHP retorna 'Exito'
-                                    alert('¡Se completó la eliminación con éxito!'); 
+                                    jAlert('¡Se completó la eliminación con éxito!'); 
                                                                         
                                     //Refrescar la tabla
 									mostrarTablaProductos();
 									$("#dialogElim").dialog( "close" );                                 
 	                        } else {
-	                                alert('Ha ocurrido algun error en el procesamiento de los datos: '+returned);
+	                                jAlert('Ha ocurrido algun error en el procesamiento de los datos: '+returned);
 	                              	 $("#dialogElim").dialog( "close" );
 	                               }
 	                    });
@@ -895,12 +1043,12 @@ function dialogoModifCat (){
 			                function(returned) { //What to do if the POST finishes. 'returned' is the value recieved back from the script.
 			                        if (returned == 'Exito') {
 			                                //PHP retorna 'Exito'
-	                                        alert('¡Se completó la modificación con éxito!'); 
+	                                        jAlert('¡Se completó la modificación con éxito!'); 
 	                                        //Refrescar la tabla
 											mostrarTablaCategorias();
 											$("#dialogModificarCat").dialog( "close" );                                 
 			                        } else {
-			                                alert('Ha ocurrido algun error en el procesamiento de los datos: '+returned);
+			                                jAlert('Ha ocurrido algun error en el procesamiento de los datos: '+returned);
 			                              	 $("#dialogModificarCat").dialog( "close" );
 			                               }
 			                    });
@@ -922,8 +1070,8 @@ function dialogoElimCat(id){
 	
 	$("#dialogElimCat").dialog({
 			autoOpen: false,
-			height: 200,
-			width: 250,
+			height: 150,
+			width: 385,
 			modal: true,
 			buttons: {
 				"Eliminar categoría": function() {
@@ -934,13 +1082,13 @@ function dialogoElimCat(id){
 	                function(returned) { //What to do if the POST finishes. 'returned' is the value recieved back from the script.
 	                        if (returned == 'Exito') {
 	                                //si PHP retorna 'Exito'
-                                    alert('¡Se completó la eliminación con éxito!'); 
+                                    jAlert('¡Se completó la eliminación con éxito!'); 
                                                                         
                                     //Refrescar la tabla
 									mostrarTablaCategorias();
 									$("#dialogElimCat").dialog( "close" );                                 
 	                        } else {
-	                                alert('Ha ocurrido algun error en el procesamiento de los datos: '+returned);
+	                                jAlert('Ha ocurrido algun error en el procesamiento de los datos: '+returned);
 	                              	 $("#dialogElimCat").dialog( "close" );
 	                               }
 	                    });
@@ -956,28 +1104,24 @@ function dialogoElimCat(id){
 }//end dialogElimCat
 
 
-//Inicializa el dialog de agregar imagen
-
-function dialogAgregarImg(id){
+//Inicializa el dialog de eliminar imagen
+function dialogElimImg(id){
 	
-	$("#dialogAgregarImg").dialog({
+	$("#dialogElimImg").dialog({
 			autoOpen: false,
-			height: 200,
-			width: 250,
+			height: 230,
+			width: 600,
 			modal: true,
 			buttons: {
 				"Terminar": function() {
 					
-					alert("confirmacion");
-					$("#dialogAgregarImg").dialog( "close" );
+					mostrarTablaImagenes();
+					$("#dialogElimImg").dialog( "close" );
 				
-				},
-				"Cancelar": function() {
-					
-					$("#dialogAgregarImg").dialog( "close" );
 				}
 			},
 			close: function() {
+				mostrarTablaImagenes();
 			}
 		});
-}//end dialogAgregarImg
+}//end dialogElimImg

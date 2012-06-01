@@ -72,7 +72,7 @@ $(document).ready(function() {
 					"				"+data[i].nombre+
 					"	</td>"+
 					"	<td colspan='2' class='center'>"+
-					"		<a  target='_blank'  href='http://localhost:8080/IAW-Proy3/"+data[i].nombre+"'><input id='botonDescargar' src='templates/template2/images/descargar.png' alt='Descargar' type='image'></a>"+
+					"		<a  target='_blank'  href='http://localhost:8080/backups/"+data[i].nombre+"'><input id='botonDescargar' src='templates/template2/images/descargar.png' alt='Descargar' type='image'></a>"+
 					"	</td>"+
 					"</tr>";
 		}			
@@ -89,7 +89,7 @@ $(document).ready(function() {
 						"				"+data[i].nombre+
 						"	</td>"+
 						"	<td colspan='2' class='center'>"+
-						"		<a target='_blank' href='http://localhost:8080/IAW-Proy3/"+data[i].nombre+"'><input id='botonDescargar' src='templates/template2/images/descargar.png' alt='Descargar' type='image'></a>"+
+						"		<a target='_blank' href='http://localhost:8080/backups/"+data[i].nombre+"'><input id='botonDescargar' src='templates/template2/images/descargar.png' alt='Descargar' type='image'></a>"+
 						"	</td>"+
 						"</tr>";
 			}			

@@ -380,7 +380,7 @@
 				Backups del sitio
 			</h3>
 			
-			<div id="accBack" class="">
+			<div id="accBack" class="none">
 				<h3 class="link submenu" id="menuBackupsBackup">
 						Realizar back up
 				</h3>

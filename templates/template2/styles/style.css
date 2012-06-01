@@ -159,6 +159,14 @@ body {background: #fff url(images/bodybg.jpg) repeat-x; font-family:Verdana, Gen
 	float:right;
 }
 
+.divIframe span{
+	margin-bottom:20px;
+	font-size:1.2em;
+}
+
+.divIframe input {
+	width:500px;
+}
 
 
 .footer2 {height:20px !Important; line-height:15px;}

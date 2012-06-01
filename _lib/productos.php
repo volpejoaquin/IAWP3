@@ -48,8 +48,7 @@ else {
 	if(isset($_GET['search']))
 	{
 		$search = $_GET['search'];
-		//VER BD TAGS !!
-	//	$prods = $db->prepare(" SELECT * FROM productos WHERE nombre LIKE '%".$search."%' ORDER BY ".$ord." DESC LIMIT ".$inic.",".$limit.";");			  
+		//VER BD TAGS !!		  
 		$prods = $db->prepare(" SELECT DISTINCT p.* ".
 							  " FROM productos p, tags t, categorias c ".
 							  " WHERE (p.nombre LIKE '%".$search."%') OR (p.marca LIKE '%".$search."%') OR (c.nombre LIKE '%".$search."%') OR (t.tag LIKE '%".$search."%') ".
@@ -132,16 +131,13 @@ else {
 		$masproductos = false;
 	}
 
-	if(isset($_GET['id']))
+	$response= array("destacado"=>$destacado,"productos"=>$allProds,"masproductos"=>$masproductos);
+	
+	if(!isset($_GET['iframe']))
 	{
-		$response= array("destacado"=>$destacado,"productos"=>$allProds,"masproductos"=>$masproductos);
+		echo json_encode($response);		
+	}
 
-		echo json_encode($response);
-	}
-	else {
-		
-		echo $response;
-	}
 	flush();
 
 }

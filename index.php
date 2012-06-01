@@ -29,6 +29,9 @@ if (empty($_GET['mc'])) {
 			session_destroy();
 			$maincontent = 'maincontents/admin.php';
 			break;
+		case 'I-Frame':
+			$maincontent = 'maincontents/iframe.html';
+			break;
 	}
 }
 

@@ -1,6 +1,7 @@
 ﻿<?php
 
 $_GET['iframe'] = 'true';
+$_GET['limit'] = '10';
 include 'productos.php';
 
 if (!isset($_GET['search'])) {

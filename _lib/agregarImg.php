@@ -32,7 +32,7 @@ if ((($_FILES["file"]["type"] == "image/gif")
       {
       move_uploaded_file($_FILES["file"]["tmp_name"],
       					$fullPath . $_FILES["file"]["name"]);
-      echo "Se almacen&oacute; la imagen correctamente."; // in: " . $fullPath . $_FILES["file"]["name"];
+      echo "Exito."; // in: " . $fullPath . $_FILES["file"]["name"];
       }
     }
   }

@@ -51,7 +51,7 @@ else {
 		//VER BD TAGS !!		  
 		$prods = $db->prepare(" SELECT DISTINCT p.* ".
 							  " FROM productos p, tags t, categorias c ".
-							  " WHERE (p.nombre LIKE '%".$search."%') OR (p.marca LIKE '%".$search."%') OR (c.nombre LIKE '%".$search."%') OR (t.tag LIKE '%".$search."%') ".
+							  " WHERE (p.nombre LIKE '%".$search."%') OR p.descripcion LIKE '%".$search."%' OR (p.marca LIKE '%".$search."%') OR (c.nombre LIKE '%".$search."%') OR (t.tag LIKE '%".$search."%') ".
 							  " AND p.id_categoria=c.id AND t.id_producto=p.id ".
 							  " ORDER BY ".$ord." DESC LIMIT ".$inic.",".$limit.";");			
 

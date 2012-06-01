@@ -1,6 +1,8 @@
 <script src="js/admin.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/slimbox2.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/jquery.uploadify.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/jquery.validate.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/jquery.alerts.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/jquery-ui-1.8.20.custom.min.js" type="text/javascript" charset="utf-8"></script>
 <section id="main">
 	<div id="leftcontainer">
@@ -130,6 +132,15 @@
 						</div>
 						<div id="tablaProductos">
 							<table id="tableProd" class="viewTable" cellspacing="2" cellpadding="0" border="0" >
+								<col width='30' />
+								<col width='100'/>
+								<col width='130'/>
+								<col width="60"/>
+								<col width="40"/>
+								<col width="80"/>
+								<col width="60"/>
+								<col width="35"/>
+								<col width="35"/>
 								<thead id="theadProductos">
 									<tr>
 									<th class="tdheader">Id</th>
@@ -155,7 +166,33 @@
 				<h3 class="link submenu" id="menuImagenes">
 					Agregar/Eliminar Im&aacute;genes
 				</h3>
-				
+				<div id='nuevaImg'>
+					<span id="uploadText"></span> 
+					<br/>
+					<input type="hidden" id="idImgUpload"></input>
+					<input type="radio" name="group1" id="radioURL" checked="checked">Mostrar una imagen externa
+						<br/>
+						<div id="radioURLDiv">
+							<label for="externalURL">
+									<input type="text" name='url' class="urlLoad" id="url_upload"></input>
+									<input type="button" id="doUploadURL" ></input>
+								</label>
+						</div>
+					</input>
+					<br/>
+					<input type="radio" name="group1" id="radioImg">Subir im&aacute;genes al servidor
+						<br/>
+						<div id="radioImgDiv">
+							<label for="file">
+									<input type="file" name='file' class="uploadify" id="file_upload"></input>
+									<div id="file_upload_queue" class="uploadify-queue"></div>
+									<p><a id="doUploadButton"href="javascript: doUpload()">Subir primera imagen de la lista</a></p>
+									<p><a id="finishButton"href="javascript: finishUpload()">Terminar</a></p>
+								</label>
+						</div>
+					</input>
+					
+				</div>
 				<div id="agregarI" class="none">
 					<div id="optionsI">
 					<span>Haga click sobre el nombre de las im&aacute;genes para previsualizarlas.</span>
@@ -166,8 +203,14 @@
 						
 					</div>
 					<div id="tablaImagenes">
+						
 							<table id="tableImg" class="viewTable" cellspacing="2" cellpadding="0" border="0" >
-								<thead id="theadImagenes">
+								<col width='30' />
+								<col width='150'/>
+								<col width='290'/>
+								<col width="35"/>
+								<col width="35"/>
+							<thead id="theadImagenes">
 									<tr>
 									<th class="tdheader">Id</th>
 									<th class="tdheader">Nombre</th>
@@ -179,6 +222,11 @@
 								<tbody id="tbodyImagenes">
 								</tbody>
 							</table>
+					</div>
+					<div id="dialogElimImg" title="Eliminar im&aacute;genes de un producto">
+						<input type="hidden" id="deleteIdImg" />
+							<div id="deleteInfoImg">
+							</div>
 					</div>
 				</div>
 				</li>
@@ -253,6 +301,12 @@
 						</div>
 						<div id="tablaCategorias">
 							<table id="tableCats" class="viewTable" cellspacing="2" cellpadding="0" border="0" >
+								<col width='30' />
+								<col width='140'/>
+								<col width='280'/>
+								<col width="60"/>
+								<col width="35"/>
+								<col width="35"/>
 								<thead id="theadCategorias">
 									<tr>
 									<th class="tdheader">Id</th>

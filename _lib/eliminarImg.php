@@ -2,19 +2,25 @@
 
 try{
 $idProd=$_POST['id'];
+$imgPath=$_POST['path'];
 
 $dirPath="../productos/";
-$elimDir="producto".$idProd;
+$elimFile="producto".$idProd."/".$imgPath;
 
-$fullPath=$dirPath.$elimDir;
+$fullPath=$dirPath.$elimFile;
+echo $fullPath."\n";
 
 if(file_exists($fullPath))
 {
-	deleteDir($fullPath);
-	//echo "Exito";
+	if(unlink($fullPath))
+		echo "1";
+	else 
+	{
+		echo "Error al tratar de eliminar la imagen.";
+	}
 }
 else {
-	//echo "No such directory!";
+	echo "No existe el archivo ".$fullPath;
 }
 
 //echo "Exito";

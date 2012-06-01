@@ -1,11 +1,29 @@
 <?php
 try{
 
-$id=$_GET['id'];
+try {
+    $db = new PDO("sqlite:../db/iawp3.sqlite");
+} catch (Exception $e) {
+    die($e);
+}
 
-$directory = "../productos/producto".$id."/";
+$id=$_GET['id'];
 $response=array();
 $i=0;
+
+$urls= $db->query("SELECT url from urls where id_producto=".$id);
+		{
+			foreach($urls as $urlRow)
+			{
+				$imagenURL=$urlRow['url'];
+				$response[$i++]=$imagenURL;
+			}
+			
+		}
+
+
+$directory = "../productos/producto".$id."/";
+
 
 //Si hay archivos (de cualquier tipo)
 if (glob($directory . "*.*") != false)
@@ -35,7 +53,7 @@ $resp=json_encode($response);
 echo $resp;
 
 }
-catch(Exception $e)
+catch(PDOException $e)
     {
     echo $e->getMessage();
     }

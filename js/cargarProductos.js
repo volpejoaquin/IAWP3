@@ -77,7 +77,6 @@ function agregarProductos(productos) {
 		producto = "<article class='post'> "+
 						"	<div class='ftimg'> "+
 						"		<a href='index.php?mc=Inicio&idProd="+id+"'> ";
-						
 						//Si contiene "http" es un link ! no es una img del servidor
 						if(getPrimeraImg(id).indexOf('http://') != -1) //verdadero si NO contiene http
 							imagen=getPrimeraImg(id);
@@ -257,7 +256,7 @@ function cargarArregloImg(){
 				pathImagenes[idProd]=arregloImg;
 			
 		}	
-				
+		
 	});//end getJSON
 		
 }

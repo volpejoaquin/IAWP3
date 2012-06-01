@@ -20,7 +20,7 @@
 	margin-bottom:8pt;
 }
 
-#accCat, #accCon{
+#accCat, #accCon, #accBack{
 	padding-left:20pt;	
 }
 
@@ -52,6 +52,11 @@ table#tableImg { width:580px;
 
 .center {
 	text-align:center;
+}
+
+.rar {
+	background:url(images/rar.gif) left no-repeat;
+	padding-left:20px;
 }
 
 .boton {

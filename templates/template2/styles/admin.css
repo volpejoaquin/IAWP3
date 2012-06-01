@@ -31,11 +31,21 @@
 #optionsI{ margin-bottom:5pt;color:blue; }
 
 table { border-collapse: collapse;
-					   border: 1px solid black;}
-table td { padding: 5px;	 border: solid #000 1px;}
+					   border: 1px solid black;
+					   table-layout: fixed;}
+table td { padding: 5px;	 
+	border: solid #000 1px;
+			text-overflow:ellipsis;
+			    overflow:hidden;
+			    white-space:normal;}
 
-table#tablaCategorias { border-collapse: collapse; }
-
+table#tableProd { width:580px;
+						border-collapse: collapse; }
+table#tableImg { width:580px;
+						border-collapse: collapse; }
+table#tableImg { width:580px;
+						border-collapse: collapse; }
+						
 .sinBorde  tr td { 
 	border-style: hidden !Important;
 }
@@ -46,7 +56,7 @@ table#tablaCategorias { border-collapse: collapse; }
 
 .boton {
 	border-style:none;
-	background:url(images/login.png);
+	background:url('images/login.png');
 	width:160px; height:26px;
 }
 
@@ -66,12 +76,28 @@ table#tablaCategorias { border-collapse: collapse; }
     border-width: 1px;
     font-size: 12px;
     font-weight: bold;
-    padding-left: 10px;
-    padding-right: 10px;
 }
 
-#file_upload{ padding-left: 150pt;}
+
+#file_upload{ padding-left: 150pt; margin-top:10pt;}
 #file_upload_queue{padding-left: 65pt;}
 #doUploadButton{padding-left: 130pt;margin-bottom:5pt;}
 #finishButton{padding-left:175pt;margin-bottom:5pt;}
 #uploadText{color:blue;font:1.2em "Trebuchet MS", Arial, Helvetica, sans-serif; margin-bottom:10pt;}
+
+#url_upload{ margin-left:150pt; margin-top:10pt; }
+#doUploadURL{
+	background: url('images/addUrl.png');
+	width:30pt;
+	height:30pt;
+	background-position:center;
+	background-repeat:no-repeat;
+		
+}
+
+
+#ulImgDelete{list-style-type: disc; list-style-position: inside;}
+#ulImgDelete li {padding-left:20pt;margin-bottom: 3pt;}
+.simpleImgDelete {position:relative;
+				left:5px;
+				top:5px;	}

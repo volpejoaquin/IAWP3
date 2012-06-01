@@ -11,6 +11,8 @@ try {
 
 $productos = $db->query("SELECT id,nombre from productos");
 
+
+
 $response=array();
 $i=0;
  foreach($productos as $row)
@@ -20,6 +22,16 @@ $i=0;
 		$id=$row['id'];
 		$nombre=$row['nombre'];
 		
+		$urls= $db->query("SELECT url from urls where id_producto=".$id);
+		{
+			foreach($urls as $urlRow)
+			{
+				$imagenURL=$urlRow['url'];
+				$aux[$j++]=array($imagenURL,$nombre.": imagen ".$j);
+			}
+			
+		}
+			
 		$directory = "../productos/producto".$id."/";
 		
 		//Si hay archivos (de cualquier tipo)

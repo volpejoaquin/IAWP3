@@ -132,6 +132,15 @@
 						</div>
 						<div id="tablaProductos">
 							<table id="tableProd" class="viewTable" cellspacing="2" cellpadding="0" border="0" >
+								<col width='30' />
+								<col width='100'/>
+								<col width='130'/>
+								<col width="60"/>
+								<col width="40"/>
+								<col width="80"/>
+								<col width="60"/>
+								<col width="35"/>
+								<col width="35"/>
 								<thead id="theadProductos">
 									<tr>
 									<th class="tdheader">Id</th>
@@ -158,14 +167,30 @@
 					Agregar/Eliminar Im&aacute;genes
 				</h3>
 				<div id='nuevaImg'>
-					<label for="file">
-							<span id="uploadText"></span> 
-							<input type="hidden" id="idImgUpload"/>
-							<input type="file" name='file' class="uploadify" id="file_upload"/>
-							<div id="file_upload_queue" class="uploadify-queue"></div>
-							<p><a id="doUploadButton"href="javascript: doUpload()">Subir primera imagen de la lista</a></p>
-							<p><a id="finishButton"href="javascript: finishUpload()">Terminar</a></p>
-						</label>
+					<span id="uploadText"></span> 
+					<br/>
+					<input type="hidden" id="idImgUpload"></input>
+					<input type="radio" name="group1" id="radioURL" checked="checked">Mostrar una imagen externa
+						<br/>
+						<div id="radioURLDiv">
+							<label for="externalURL">
+									<input type="text" name='url' class="urlLoad" id="url_upload"></input>
+									<input type="button" id="doUploadURL" ></input>
+								</label>
+						</div>
+					</input>
+					<br/>
+					<input type="radio" name="group1" id="radioImg">Subir im&aacute;genes al servidor
+						<br/>
+						<div id="radioImgDiv">
+							<label for="file">
+									<input type="file" name='file' class="uploadify" id="file_upload"></input>
+									<div id="file_upload_queue" class="uploadify-queue"></div>
+									<p><a id="doUploadButton"href="javascript: doUpload()">Subir primera imagen de la lista</a></p>
+									<p><a id="finishButton"href="javascript: finishUpload()">Terminar</a></p>
+								</label>
+						</div>
+					</input>
 					
 				</div>
 				<div id="agregarI" class="none">
@@ -178,8 +203,14 @@
 						
 					</div>
 					<div id="tablaImagenes">
+						
 							<table id="tableImg" class="viewTable" cellspacing="2" cellpadding="0" border="0" >
-								<thead id="theadImagenes">
+								<col width='30' />
+								<col width='150'/>
+								<col width='290'/>
+								<col width="35"/>
+								<col width="35"/>
+							<thead id="theadImagenes">
 									<tr>
 									<th class="tdheader">Id</th>
 									<th class="tdheader">Nombre</th>
@@ -192,11 +223,10 @@
 								</tbody>
 							</table>
 					</div>
-					<div id="dialogAgregarImg">
-						
-					</div>
-					<div id="dialogElimImg">
-						
+					<div id="dialogElimImg" title="Eliminar im&aacute;genes de un producto">
+						<input type="hidden" id="deleteIdImg" />
+							<div id="deleteInfoImg">
+							</div>
 					</div>
 				</div>
 				</li>
@@ -271,6 +301,12 @@
 						</div>
 						<div id="tablaCategorias">
 							<table id="tableCats" class="viewTable" cellspacing="2" cellpadding="0" border="0" >
+								<col width='30' />
+								<col width='140'/>
+								<col width='280'/>
+								<col width="60"/>
+								<col width="35"/>
+								<col width="35"/>
 								<thead id="theadCategorias">
 									<tr>
 									<th class="tdheader">Id</th>

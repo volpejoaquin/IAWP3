@@ -39,7 +39,7 @@ $(document).ready(function() {
 	$("#menuImagenes").click(menuImagenes);
 	$("#menuConfigurar").click(menuConfigurar);
 	$("#menuConfigurarConfiguracion").click(menuConfigurarConf);
-	$("#menuBackup").click(menuBackup);
+	$("#menuBackups").click(menuBackup);
 	
 	$("#radioURL").live('click',function(){
 		radioImgEvent();
@@ -232,6 +232,7 @@ function menuProductos(){
 	$("#modificarC").hide();
 	$("#accCat").hide();
 	$("#accCon").hide();
+	$("#accBack").hide();
 	limpiarResultados();
 	
 }
@@ -248,6 +249,7 @@ function menuCateg(){
 	$("#nuevaImg").hide();
 	$("#acciones").hide();
 	$("#accCon").hide();
+	$("#accBack").hide();
 	limpiarResultados();
 }
 
@@ -266,6 +268,7 @@ function menuModificarProd(){
 	$("#agregarP").hide();
 	$("#agregarI").hide();
 	$('#nuevaImg').hide();
+	$("#accBack").hide();
 	cargarCategorias();
 	limpiarResultados();
 	
@@ -282,6 +285,7 @@ function menuImagenes(){
 	$('#nuevaImg').hide();
 	$("#agregarP").hide();
 	$("#modificarP").hide();
+	$("#accBack").hide();
 	limpiarResultados();
 	
 	var isHidden = $('#agregarI').is(':hidden');
@@ -334,6 +338,7 @@ function menuConfigurar(){
 	$("#agregarI").hide();
 	$("#nuevaImg").hide();
 	$("#acciones").hide();
+	$("#accBack").hide();
 }
 
 function menuConfigurarConf(){
@@ -355,8 +360,17 @@ function guardarConfiguracion() {
 
 
 function menuBackup(){
-	$("#modificarC").toggle("fast");
-	limpiarResultados();
+	$("#accBack").toggle('fast');
+	
+	$("#accCon").hide();
+	$("#accCat").hide();
+	$("#agregarC").hide();
+	$("#modificarC").hide();
+	$("#agregarP").hide();
+	$("#modificarP").hide();
+	$("#agregarI").hide();
+	$("#nuevaImg").hide();
+	$("#acciones").hide();
 }
 
 //Carga el combobox de categorias, en agregar y modif producto

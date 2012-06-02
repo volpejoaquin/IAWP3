@@ -1,0 +1,97 @@
+footer,header,hgroup,menu,nav,section { 
+    display:block;
+}
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section { 
+    display:block;
+}
+blockquote, q {
+    quotes:none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content:'';
+    content:none;
+}
+
+.articulo {
+	width:520px;
+}
+
+ul {
+	margin:0px 0xp 0px 0px;
+}
+
+ul {list-style:none;}
+
+del {
+    text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+    border-bottom:1px dotted #ccc;
+    cursor:help;
+}
+
+body {background: #fff; font-family:Verdana, Geneva, sans-serif; font-size:65.5%; color:#444; padding:0px; margin:0px;}
+h1, h2, h3 {font-family:Arial, Helvetica, sans-serif; }
+ul {list-style:none;}
+a {color:#1496d9; text-decoration:none;}
+
+#bodywrap {width:557px; background:url(images/wrapbg.jpg) left top no-repeat; min-height:400px;}
+
+.titulo { color:lightgray; padding:5px 0px 0px 5px !Important; font:bold 1.6em Arial, Helvetica, sans-serif;  }
+
+.post { border-bottom: solid 1px; border-color:#ddd #fff; }
+.post p {font-size:1.2em; line-height:18px; margin-bottom:10px;}
+.post header {margin-bottom:10px;}
+.post h3,#comments h3 { padding-top:10px; height:30px; font:bold 1.6em Arial, Helvetica, sans-serif; color:#000; margin-bottom:5px;}
+.post h3 a {color:#333; text-decoration:none;}
+.post header .postinfo {font-size:1.1em; color:#777;}
+.post .posttext { min-height:120px;}
+.post footer .comments {border-color:#ddd #fff #ddd #fff;  font-size:1.0em; color:#777;}
+.post footer {border-bottom: solid 1px; border-color:#ddd #fff; padding:3px; font-size:1.1em; color:#777;}
+
+.post footer {height:15px; line-height:15px;}
+.post footer span {margin:0 55px 0 0;}
+.post footer a {color:#333;}
+.post {padding-bottom:20px; margin-bottom:5px;}
+
+
+#bodywrap ul {font-size:1.2em; line-height:18px; margin-bottom:15px; padding-left:20px; margin-top:15px;}
+#bodywrap ul li {display:block; background:url(images/ulli.png) 0 6px no-repeat; padding-left:25px; margin-bottom:10px;}
+#bodywrap h4 {font:bold 1.4em "Trebuchet MS", Arial, Helvetica, sans-serif; color:#000; margin-bottom:10px;}
+#bodywrap h2 {display:block; font:1.8em "Trebuchet MS", Arial, Helvetica, sans-serif; color:#000;}
+
+
+.footer2 {height:20px !Important; line-height:15px;}
+.footer2 span {margin:0px !Important;}
+
+.filtradoPor { margin-left:20px; margin-top:20px; color:gray; font-size:1.4em; }
+.filtro { padding-left:5px; color:black; font-style:italic; }
+.visitas { margin-left:230px; margin-top:5px; padding-left:22px !Important; font-size:1.4em; background:url(images/visto.png) left no-repeat; }
+.visitasDes { margin-top:5px; padding-left:10px !Important; font-size:1.4em; background:url(images/visto.png) left no-repeat; }
+.precio { padding-left:14px !Important; background:url(images/pesos.png) left no-repeat; }
+.categoria { padding-right:30px !Important; background:url(images/ver.png) right no-repeat; height:20px !Important;}
+.verCategoria { background:url(images/ver.png) right no-repeat; font-size:1.4em;}
+.producto { padding-left:22px !Important; background:url(images/iconoproducto.png) left no-repeat; }
+
+.pComunDesc {
+	min-height:120px;
+}
+
+.tablaProd {
+	border:none !Important; 
+	width:500px !Important; 
+	padding:0px !Important;
+	text-align:right;
+}
+
+.tablaProd .colMarca {
+	text-align:left;
+}
+
+.tablaProd tr td {
+	padding:0px !Important;
+}

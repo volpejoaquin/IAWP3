@@ -1,9 +1,14 @@
 ----
 -- phpLiteAdmin database dump (http://phpliteadmin.googlecode.com)
 -- phpLiteAdmin version: 1.9.1
--- Exported on May 31st, 2012, 05:57:21PM
+-- Exported on Jun 2nd, 2012, 12:49:05AM
 -- Database file: ./db/iawp3.sqlite
 ----
+
+----
+-- Drop table for administradores
+----
+DROP TABLE 'administradores';
 
 ----
 -- Table structure for administradores
@@ -17,6 +22,11 @@ BEGIN TRANSACTION;
 COMMIT;
 
 ----
+-- Drop table for productos
+----
+DROP TABLE 'productos';
+
+----
 -- Table structure for productos
 ----
 CREATE TABLE productos(id INTEGER PRIMARY KEY NOT NULL, nombre TEXT, descripcion TEXT, precio REAL NOT NULL default '0', nro_likes INTEGER NOT NULL default 0 , stock INTEGER NOT NULL DEFAULT 0, id_categoria INTEGER NOT NULL DEFAULT 0, marca TEXT);
@@ -25,7 +35,7 @@ CREATE TABLE productos(id INTEGER PRIMARY KEY NOT NULL, nombre TEXT, descripcion
 -- Data dump for productos, a total of 94 rows
 ----
 BEGIN TRANSACTION;
-INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('1','Cinturones 5 puntos','Cinturones con anclaje de 5 puntos.','911.0','0','1','0','-');
+INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('1','Cinturones 5 puntos','Cinturones con anclaje de 5 puntos.','911.0','2','1','0','-');
 INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('2','Cinturones 5 puntos homologados','Cinturones con anclaje de 5 puntos homologados FIAT.','1981.0','0','1','0','GP RACE');
 INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('3','Butaca Efe-Uno Homologada','Butaca homologada FIA modelo Efe-Uno. Colores Rojo-Negro-Azul.','2484.0','0','1','0','Nick');
 INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('4','Butaca Indy Homologada','Butaca homologada FIA modelo Indy. Colores Rojo-Negro-Azul.','2214.0','0','1','0','Nick');
@@ -48,8 +58,8 @@ INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria
 INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('21','Pastillas de freno CarbonMetallic','Pastillas de freno CarbonMetallic para modelo TC del Sur.','1202.0','0','2','2','CarbonMetallic');
 INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('22','Pastillas de freno HAWK','Pastillas de freno Hawk modelo TC del Sur.','1713.0','1','1','2','Hawk');
 INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('23','Resorte de suspension','Resorte de suspension nacionales de todas las medidas.','783.0','1','0','2','Rulcon');
-INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('24','Llantas de alinear','Llantas de alineacion para todos los modelos Sudan.','1958.0','0','1','2','Sudan');
-INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('25','Llantas','Llantas sudan todos los modelos.','675.0','0','1','2','Sudan');
+INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('24','Llantas de alinear','Llantas de alineacion para todos los modelos Sudam.','1958.0','0','1','2','Sudam');
+INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('25','Llantas','Llantas sudam todos los modelos.','675.0','0','1','2','Sudam');
 INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('26','Llantas','Llantas ruedas argentinas todos los modelos.','945.0','0','1','2','Ruedas Argentinas');
 INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('27','Filtro de aire','Filtro de aire con canasto para boca de carburador.','510.0','0','2','3','ARC');
 INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('28','Zonda de escape FS','Zonda de escape con display interior FS.','1013.0','0','1','3','FS');
@@ -63,7 +73,7 @@ INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria
 INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('36','Optica delantera','Optica delantera Fiat Uno','150.0','0','10','4','-');
 INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('37','Opticas delanteras Fire','Optica delantera para Fiat uno modelo Fire.','216.0','0','1','4','-');
 INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('38','Optica trasera Fire','Optica trasera para Fiat uno modelo Fire.','101.0','0','1','4','-');
-INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('39','Pistola Goodyear','Pistola a bateria 24v con cargador marca Goodyear.','1919.0','0','1','5','Goodyear');
+INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('39','Pistola Goodyear','Pistola a bateria 24v con cargador marca Goodyear.','1919.0','2','1','5','Goodyear');
 INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('40','Bateria pistola Goodyear','Bateria para pistola Goodyear.','891.0','0','1','5','Goodyear');
 INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('41','Calibre de presion 0-30psi','Calibre de presion de neumaticos 0-30psi marca JMH.','164.0','0','5','5','JMH');
 INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('42','Calibre de presion 0-60psi','Calibre de presion de neumaticos 0-60psi marca JMH.','174.0','0','10','5','JMH');
@@ -71,14 +81,14 @@ INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria
 INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('44','Calibre de presion 0-60psi','Calibre de presion de neumaticos 0-60psi vision nocturna marca Longacre','365.0','0','1','5','Longacre');
 INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('45','Calibre de presion 0-30psi','Calibre de presion de neumaticos 0-30psi marca Longacre','365.0','0','1','5','Longacre');
 INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('46','Calibre de presion 0-30psi','Calibre de presion de neumaticos 0-30psi marca Longacre vision nocturna','365.0','0','1','5','Longacre');
-INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('47','Buzo de karting','Buzo antiflama de karting Talle 6-12.','1318.0','0','0','13','JS');
+INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('47','Buzo de karting','Buzo antiflama de karting Talle 6-12.','1318.0','51','0','13','JS');
 INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('48','Buzo de karting','Buzo antiflama de karting Talle14-16.','1405.0','0','1','13','JS');
 INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('49','Buzo de karting','Buzo antiflama de karting Talle 46-56.','1460.0','0','1','13','JS');
 INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('50','Buzo de karting','Buzo antiflama de karting Talle 58-60.','1515.0','0','1','13','JS');
 INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('51','Buzo de karting','Buzo antiflama de karting Talle 62.','1625.0','0','1','13','JS');
 INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('52','Buzo de karting','Buzo antiflama de karting Talle 64.','1735.0','0','1','13','JS');
-INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('53','Liquido inifugo','Liquido inifugo para buzo de karting JS.','100.0','0','1','13','-');
-INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('54','Bolso buzo','Bolso para buzo antiflama.','100.0','0','1','13','JS');
+INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('53','Liquido inifugo','Liquido ignifugo para buzo de karting JS.','100.0','0','1','13','-');
+INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('54','Bolso buzo','Bolso para buzo antiflama.','100.0','2','1','13','JS');
 INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('55','Buzo homologado FIA','Buzo homologado FIA tela nomex. Opaco 1 color','3080.0','0','1','14','JS');
 INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('56','Buzo homologado FIA','Buzo homologado FIA tela nomex. Opaco 2 colores.','3717.0','0','1','14','JS');
 INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('57','Buzo homologado FIA','Buzo homologado FIA tela nomex. Brilloso 1 color.','5204.0','0','1','14','JS');
@@ -113,13 +123,18 @@ INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria
 INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('86','Trompa Fiat 600','Trompa para Fiat 600 completa de fibra de vidrio','1210.0','0','1','7','-');
 INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('87','Trompa TC','Trompa TC modelo 1 con carga.','1700.0','0','1','7','-');
 INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('88','Trompa TC','Trompa TC modelo 2','1700.0','0','1','7','-');
-INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('89','Trompa TC','Trompa TC modelo 3 liso.','1935.0','0','1','7','-');
+INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('89','Trompa TC','Trompa TC modelo 3 liso.','1935.0','1','1','7','-');
 INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('90','Tapa baul TC','Tapa de baul de TC todos los modelos en fibra de vidrio.','550.0','0','1','7','-');
 INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('91','Toma de aire TC','Toma de aire de TC en fibra de vidrio.','864.0','0','1','7','-');
 INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('92','Cubre caja de velocidades','Cubre caja de velocidades Saenz ZF para TC en fibra de vidrio.','616.0','0','1','7','-');
-INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('93','Trompa Fiat 128','Trompa para Fiat 128 completa en fibra de vidrio.','1256.0','0','1','7','-');
-INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('94','Tapa de baul Fiat 128','Tapa de baul Fiat 128 en fibra de vidrio','497.0','0','1','7','-');
+INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('93','Trompa Fiat 128','Trompa para Fiat 128 completa en fibra de vidrio.','1256.0','1','1','7','-');
+INSERT INTO productos (id,nombre,descripcion,precio,nro_likes,stock,id_categoria,marca) VALUES ('94','Tapa de baul Fiat 128','Tapa de baul Fiat 128 en fibra de vidrio','497.0','5','1','7','-');
 COMMIT;
+
+----
+-- Drop table for categorias
+----
+DROP TABLE 'categorias';
 
 ----
 -- Table structure for categorias
@@ -127,29 +142,29 @@ COMMIT;
 CREATE TABLE categorias(id INTEGER PRIMARY KEY NOT NULL, nombre TEXT, descripcion TEXT, nro_likes INTEGER NOT NULL DEFAULT 0);
 
 ----
--- Data dump for categorias, a total of 19 rows
+-- Data dump for categorias, a total of 14 rows
 ----
 BEGIN TRANSACTION;
-INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('0','Cintos y butacas','Todos los accesorios de seguridad homologados y no homologados de alta performance.','1');
+INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('0','Cintos y butacas','Todos los accesorios de seguridad homologados y no homologados de alta performance.','9');
 INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('1','Accesorios','Todo los accesorios esteticos, electricos y de utilidad para el interior de tu auto de carreras. Volantes, extractores, espejos, etc.','1');
 INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('2','Suspension','Todos los elementos de suspension necesarios para una buena perfomance de tu auto. Disco de freno, pastillas de freno de competicion, etc.','1');
-INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('3','Motor y caja','Todos los elementos relacionados a la transmicion de tu auto, Resortes de valvula, bomba, filtros de aire, etc.','1');
-INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('4','Frente fiat uno','Todos los elementos relacionados a la estetica delantera de tu FIAT. Opticas delanteras y traseras, giros, etc.','0');
+INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('3',' Motor y caja',' Todos los elementos relacionados a la transmision de tu auto, Resortes de valvula, bomba, filtros de aire, etc. ','2');
+INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('4','Frente fiat uno','Todos los elementos relacionados a la estetica delantera de tu FIAT. Opticas delanteras y traseras, giros, etc.','1');
 INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('5','Accesorios externos','Todos los elementos externos que son utilizados por los mecanicos para asegurar alta performance. Pistola neumatica, calibre de presion de neumaticos, etc.','0');
 INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('6','Protectores cervicales','Todas los modelos de protectores cervicales tipo HANS.','1');
-INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('7','Fibra de vidrio','Todos los elementos de fibra de vidrio para el exterior de tu auto. Capot de FIAT, Trompas de FIAT 600, Diferentes modelos de trompas de TC, etc.','0');
---INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('8','Rotulas granzella','Todas las rotulas necesarias para el armado de tu auto de carreras. 8x8 Hembra, 3/8" x 3/8", etc.','0');
---INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('9','Rotulas granzella nuez','Todas las rotulas en forma de nuez necesarias para el armado de tu auto de carreras. 25" x 8" , 25" x 12", etc.','0');
---INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('10','Rotulas UNI-ROT con inserto','Todas las rotulas uni-rot con inserto y de diferentes roscas. 3/8 x 7/16, 7/16, 1/2 , etc.','0');
---INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('11','Rotulas UNI-ROT con pista de nylon','Todas las rotulas uni-rot con pista de nylon y de diferentes roscas. 1/4, 5/16, 3/8, etc.','0');
---INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('12','Rotulas UNI-ROT nuez','Todas las rotulas uni-rot con nuez y de diferentes roscas. 9mm, 12mm, 14mm, etc.','0');
-INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('13','Buzos antiflmama de karting PREMIUM','Todas los buzos antiflamas para chicos del karting en todos los talles. 6-12, 14-16, etc.','1');
-INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('14','Buzos antiflama homologado FIA','Todas los buzos antiflamas homologados con tela nomex marca JS opacos o brillosos.','0');
+INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('7','Fibra de vidrio','Todos los elementos de fibra de vidrio para el exterior de tu auto. Capot de FIAT, Trompas de FIAT 600, Diferentes modelos de trompas de TC, etc.','4');
+INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('13',' Buzos antiflama de karting PREMIUM',' Todos los buzos antiflamas para chicos del karting en todos los talles. 6-12, 14-16, etc. ','34');
+INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('14',' Buzos antiflama homologado FIA',' Todos los buzos antiflamas homologados con tela nomex marca JS opacos o brillosos. ','5');
 INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('15','Botas antiflama','Todas los modelos de botas antiflamas homologados.','0');
-INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('16','Ropa interior','Todas la ropa interior homogolada tela NOMEX.','0');
+INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('16','Ropa interior','Todas la ropa interior homogolada tela NOMEX.','3');
 INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('17','Guantes','Todos los modelos de guantes JS o tela NOMEX.','0');
 INSERT INTO categorias (id,nombre,descripcion,nro_likes) VALUES ('18','Capuchas','Todos los modelos de capuchas inifugas tela NOMEX y homologadas.','0');
 COMMIT;
+
+----
+-- Drop table for tags
+----
+DROP TABLE 'tags';
 
 ----
 -- Table structure for tags
@@ -257,6 +272,11 @@ INSERT INTO tags (id_producto,tag) VALUES ('94','');
 COMMIT;
 
 ----
+-- Drop table for usuarios
+----
+DROP TABLE 'usuarios';
+
+----
 -- Table structure for usuarios
 ----
 CREATE TABLE usuarios(usuario TEXT PRIMARY KEY NOT NULL, password TEXT NOT NULL);
@@ -269,6 +289,11 @@ INSERT INTO usuarios (usuario,password) VALUES ('admin','admin');
 COMMIT;
 
 ----
+-- Drop table for configuracion
+----
+DROP TABLE 'configuracion';
+
+----
 -- Table structure for configuracion
 ----
 CREATE TABLE configuracion(id INTEGER NOT NULL, num_limit INTEGER NOT NULL default 5 , ver_destacado TEXT NOT NULL default 'true', ord TEXT);
@@ -277,8 +302,32 @@ CREATE TABLE configuracion(id INTEGER NOT NULL, num_limit INTEGER NOT NULL defau
 -- Data dump for configuracion, a total of 1 rows
 ----
 BEGIN TRANSACTION;
-INSERT INTO configuracion (id,num_limit,ver_destacado,ord) VALUES ('0','5','true','masV');
+INSERT INTO configuracion (id,num_limit,ver_destacado,ord) VALUES ('0','5','false','masV');
 COMMIT;
+
+----
+-- Drop table for urls
+----
+DROP TABLE 'urls';
+
+----
+-- Table structure for urls
+----
+CREATE TABLE urls (id_producto INTEGER NOT NULL, url TEXT NOT NULL, primary key(id_producto,url));
+
+----
+-- Data dump for urls, a total of 3 rows
+----
+BEGIN TRANSACTION;
+INSERT INTO urls (id_producto,url) VALUES ('1','http://www.mercadolibre.com.ar/jm/img?s=MLA&f=85592628_1401.jpg&v=E');
+INSERT INTO urls (id_producto,url) VALUES ('1','http://www.mercadolibre.com.ar/jm/img?s=MLA&f=97055187_7746.jpg&v=M');
+INSERT INTO urls (id_producto,url) VALUES ('1','http://static.betazeta.com/www.bolido.com/wp-content/uploads/2007/12/camionlobo_11.jpg');
+COMMIT;
+
+----
+-- Drop index for sqlite_autoindex_tags_1
+----
+DROP INDEX 'sqlite_autoindex_tags_1';
 
 ----
 -- Structure for index sqlite_autoindex_tags_1 on table tags
@@ -286,6 +335,21 @@ COMMIT;
 ;
 
 ----
+-- Drop index for sqlite_autoindex_usuarios_1
+----
+DROP INDEX 'sqlite_autoindex_usuarios_1';
+
+----
 -- Structure for index sqlite_autoindex_usuarios_1 on table usuarios
+----
+;
+
+----
+-- Drop index for sqlite_autoindex_urls_1
+----
+DROP INDEX 'sqlite_autoindex_urls_1';
+
+----
+-- Structure for index sqlite_autoindex_urls_1 on table urls
 ----
 ;

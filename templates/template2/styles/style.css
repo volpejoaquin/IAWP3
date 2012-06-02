@@ -136,32 +136,33 @@ body {background: #fff url(images/bodybg.jpg) repeat-x; font-family:Verdana, Gen
 .ftimg {float:left; background:url(images/imgthumb.png) no-repeat; width:220px; height:144px;  padding:13px 0 0 13px;}
 .ftwrap .fttxt { margin-left:220px; padding-top:0px; padding-right:25px; font-size:1.2em;}
 
-.tablaProd {
-	border:none !Important; 
-	width:600px !Important; 
-	padding:0px !Important;
-	text-align:right;
-}
+
 
 .tablaProd .colMarca {
 	text-align:left;
 }
 
 .tablaProd tr td {
-	padding:0px !Important;
+	padding-right:15px !Important;
 }
 
 .table {
-	border:none !Important; 
-	width:300px !Important; 
 	padding:0px !Important;
 	text-align:center;
 	float:right;
 }
 
+.divIframe span{
+	margin-bottom:20px;
+	font-size:1.2em;
+}
+
+.divIframe input {
+	width:500px;
+}
 
 
-.footer2 {height:20px !Important; line-height:15px;}
+.footer2 {height:20px !Important; line-height:0px;}
 .footer2 span {margin:0px !Important;}
 
 

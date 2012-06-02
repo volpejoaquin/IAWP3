@@ -1,7 +1,7 @@
 <?php
 try{
 try {
-    $db = new PDO('sqlite:../db/iawp3.sqlite');
+    $db = new PDO('sqlite:../datos/iawp3.sqlite');
 } catch (Exception $e) {
     die($e);
 }

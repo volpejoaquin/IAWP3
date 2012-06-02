@@ -4,7 +4,7 @@ $lastid=0;
 
 try{
 try {
-    $db = new PDO('sqlite:../db/iawp3.sqlite');
+    $db = new PDO('sqlite:../datos/iawp3.sqlite');
 } catch (Exception $e) {
 	echo($e);
     die($e);

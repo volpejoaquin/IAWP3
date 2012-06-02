@@ -66,17 +66,26 @@ $(document).ready(function() {
 	//Carga backups
 	$.getJSON('_lib/backup.php', function(data) {
 		backs = "";
-		for (i=0; i<data.length;i++) {
+		if (data.length == 0) {
 			backs += "<tr>"+
 					 "	<td class='zip'>"+
-					"				"+data[i].nombre+
-					"	</td>"+
-					"	<td colspan='2' class='center'>"+
-					"		<a  target='_blank'  href='http://localhost:8080/backups/"+data[i].nombre+"'><input id='botonDescargar' src='templates/template2/images/descargar.png' alt='Descargar' type='image'></a>"+
-					"	</td>"+
+					 "				No hay ningun backup."+
+					 "	</td>"+
 					"</tr>";
-		}			
-		
+		}
+		else {
+			
+			for (i=0; i<data.length;i++) {
+				backs += "<tr>"+
+						 "	<td class='zip'>"+
+						"				"+data[i].nombre+
+						"	</td>"+
+						"	<td colspan='2' class='center'>"+
+						"		<a  target='_blank'  href='http://localhost:8080/backups/"+data[i].nombre+"'><input id='botonDescargar' src='templates/template2/images/descargar.png' alt='Descargar' type='image'></a>"+
+						"	</td>"+
+						"</tr>";
+			}			
+		}
 		$("#tablaBackups").html(backs);
 	});
 	

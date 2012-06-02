@@ -380,7 +380,7 @@
 				Backups del sitio
 			</h3>
 			
-			<div id="accBack" class="">
+			<div id="accBack" class="none">
 				<h3 class="link submenu" id="menuBackupsBackup">
 						Realizar back up
 				</h3>
@@ -390,12 +390,12 @@
 					<table class="sinBorde">
 						<tr>
 							<td colspan="2" class="center">
-								<input id="botonGuardarConf" src="templates/template2/images/backup.png" alt="Entrar" type="image">
+								<input id="botonBackUp" src="templates/template2/images/backup.png" alt="Entrar" type="image">
 							</td>
 						</tr>
 					</table>
 				</div>
-				<div id="resultMC" class="resultado"></div>
+				<div id="resultBackUp" class="resultado"></div>
 				
 				<h3 class="link submenu" id="menuBackupsBackup">
 						Backups guardados
@@ -403,31 +403,7 @@
 				<div id="realizarBack" class="">
 					<div id="erroresModificarBack">
 					</div>
-					<table class="sinBorde">
-						<tr>
-							<td class="rar">
-								Backup-17-05-2010.rar
-							</td>
-							<td colspan="2" class="center">
-								<input id="botonGuardarConf" src="templates/template2/images/descargar.png" alt="Entrar" type="image">
-							</td>
-						</tr>
-						<tr>
-							<td class="rar">
-								Backup-17-05-2010.rar
-							</td>
-							<td colspan="2" class="center">
-								<input id="botonGuardarConf" src="templates/template2/images/descargar.png" alt="Entrar" type="image">
-							</td>
-						</tr>
-						<tr>
-							<td class="rar">
-								Backup-17-05-2010.rar
-							</td>
-							<td colspan="2" class="center">
-								<input id="botonGuardarConf" src="templates/template2/images/descargar.png" alt="Entrar" type="image">
-							</td>
-						</tr>
+					<table id="tablaBackups" class="sinBorde">
 					</table>
 				</div>
 				<div id="resultMC" class="resultado"></div>
